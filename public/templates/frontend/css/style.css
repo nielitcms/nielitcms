@@ -1,0 +1,23 @@
+body {
+	background: #dadada;
+}
+.navbar-default {
+	background-color: #4F66C0;
+}
+.navbar-default .navbar-brand {
+	color: #ffffff;
+}
+.navbar-default .navbar-nav>li>a {
+	color: #ffffff;
+}
+.main-area {
+	margin-bottom: 80px;
+}
+#main {
+	background: #ffffff;
+}
+#sidebar {
+}
+#footer {
+	color: #ffffff;
+}
