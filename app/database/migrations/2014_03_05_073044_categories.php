@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContentsTable extends Migration {
+class Categories extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,9 @@ class CreateContentsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('contents', function($table){
+		Schema::create('categories', function($table){
 			$table->increments('id')->unsigned();
-			$table->string('title', 400);
-			$table->text('content')->nullable();
-			$table->integer('author_id')->unsigned();
-			$table->enum('type', array('post', 'page'))->default('post');
+			$table->string('name');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -30,7 +27,7 @@ class CreateContentsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('contents');
+		Schema::dropIfExists('categories');
 	}
 
 }

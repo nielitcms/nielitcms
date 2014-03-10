@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class Downloads extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,12 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table){
+		Schema::create('download', function($table)
+		{
 			$table->increments('id')->unsigned();
-			$table->string('username');
-			$table->string('display_name')->nullable();
-			$table->string('password');
-			$table->enum('role', array('administrator', 'editor'))->default('editor');
+			$table->string('title', 400);
+			$table->integer('created_by')->unsigned();
+			$table->string('file_part')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('users');
+		Schema::dropIfExists('download');
 	}
 
 }
