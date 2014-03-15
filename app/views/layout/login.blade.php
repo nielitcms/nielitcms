@@ -26,11 +26,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="#">Forgot Password</a></li>
+            <li><a href="#">Forgot Username</a></li>
           </ul>
         </div>
       </div>
@@ -38,12 +35,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			
-			<div class="col-sm-3 col-md-2 sidebar">
-				@include('layout.backend-partial.sidebar')
-			</div>
-
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="col-md-12 main">
 				@yield('content')
 			</div>
 		</div>

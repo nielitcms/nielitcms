@@ -12,7 +12,7 @@ class PostCategories extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('PostCategories', function($table)
+		Schema::create('post_categories', function($table)
 			{
 				$table->increments('id')->unsigned();
 				$table->string('title');
@@ -30,7 +30,7 @@ class PostCategories extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('postcategories');
+		Schema::dropIfExists('post_categories');
 	}
 
 }

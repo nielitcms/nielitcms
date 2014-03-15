@@ -1,0 +1,17 @@
+body {
+	font-family: Arial;
+	font-size: 12px;
+}
+.nielit-nav {
+	background-color: #39dbac;
+}
+.nielit-nav .navbar-brand {
+	color: #ffffff;
+}
+.nielit-nav .navbar-brand:hover,
+.nielit-nav .navbar-brand:focus {
+	color: #dddddd;
+}
+.nielit-nav .navbar-nav>li>a {
+	color: #ffffff;
+}

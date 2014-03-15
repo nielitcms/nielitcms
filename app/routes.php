@@ -20,6 +20,11 @@ Route::get('/pageshow', 'PageController@show');
 
 Route::post('/postuser', 'UserController@receiveUser');
 
+Route::get('/admin', array('uses'=>'AdminController@getIndex', 'before'=>'auth'));
+
+Route::get('/login', 'AuthController@login');
+Route::post('/login', 'AuthController@authenticate');
+Route::get('/logout', 'AuthController@logout');
 
 // Route::get('/', function()
 // {
