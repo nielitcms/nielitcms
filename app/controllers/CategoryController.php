@@ -40,10 +40,10 @@ class CategoryController extends BaseController {
 	
 	public function remove($id)
 	{
-		$category = Category::find($id);
-		$category->posts()->detach();
-		Category::destroy($id);
-		return Redirect::to('category')->with('message','Category deleted successfully');
+		category::destroy($id);
+		return Redirect::to('category')->with('message','category deleted Successfully');
+		// Category::destroy($id);
+		// return Redirect::to('category')->with('message','Category deleted Successfully');
 	}
 
 	public function edit($id)
@@ -64,7 +64,7 @@ class CategoryController extends BaseController {
 	$category = Category::find($id);
 	$category->name = Input::get('name');
 	$category->save();
-	return Redirect::to('category')->with('message', 'Category updated successfully');
+	return Redirect::to('category')->with('message', 'Category Edit/Update Successfully');
 	}
 }
 ?>

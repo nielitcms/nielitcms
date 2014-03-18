@@ -14,13 +14,7 @@ class SettingTableSeeder extends Seeder {
         DB::table('settings')->insert(array(
             'setting_key' => 'admin_site_title',
             'setting_title' => 'Administration Site Title',
-            'setting_data' => 'NIELIT CMS Administration',
-            ));
-
-        DB::table('settings')->insert(array(
-            'setting_key' => 'allowed_file_extension',
-            'setting_title' => 'Allowed File Extension',
-        	'setting_data' => 'jpg,jpeg,bmp,gif,png,pdf,docx,doc,xls,xlsx,txt',
+        	'setting_data' => 'NIELIT CMS Administration',
         	));
     }
 

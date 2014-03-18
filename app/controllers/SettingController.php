@@ -47,10 +47,6 @@ class SettingController extends \BaseController {
 		Setting::where('setting_key', '=', 'admin_site_title')
 			->update(array('setting_data'=>$admin_site_title));
 
-		$allowed_file_extension = Input::get('allowed_file_extension');
-		Setting::where('setting_key', '=', 'allowed_file_extension')
-			->update(array('setting_data'=>$allowed_file_extension));
-
 		return Redirect::to('/settings')->with('message', 'Settings updated succesfully');
 	}
 

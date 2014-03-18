@@ -43,19 +43,6 @@
 </ul>
 
 <ul class="nav nav-sidebar">
-	<li {{(Request::path() == 'download/create')?'class="active"':''}}>
-		<a href="{{url('download/create')}}">
-			<span class="glyphicon glyphicon-plus"></span> Add Download
-		</a>
-	</li>
-	<li {{(Request::path() == 'download')?'class="active"':''}}>
-		<a href="{{url('download')}}">
-			<span class="glyphicon glyphicon-list"></span> Downloads
-		</a>
-	</li>
-</ul>
-
-<ul class="nav nav-sidebar">
 	<li>
 		<a href="{{url('user/create')}}">
 			<span class="glyphicon glyphicon-plus"></span> Add User
