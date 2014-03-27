@@ -5,10 +5,10 @@ class UserTableSeeder extends Seeder {
     {
         DB::table('users')->truncate();
 
-        User::create(array(
-        	'username' => 'admin',
+        DB::table('users')->insert(array(
+        	'username' => 'rema',
         	'display_name' => 'Administrator',
-        	'password' => Hash::make('pass'),
+        	'password' => Hash::make('rema'),
         	'role' => 'administrator'
         	));
     }

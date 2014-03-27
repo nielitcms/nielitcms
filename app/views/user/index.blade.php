@@ -1,10 +1,50 @@
-@extends('layout.frontend')
+@extends('layout.backend')
 
 @section('content')
-<h3>User</h3>
+<div class="col-sm-12">
+	<h3><i class="glyphicon glyphicon-th-list"></i> User List</h3>
+	<hr>
+	
+	@if(Session::has('message'))
+	<div class="alert alert-success">{{Session::get('message')}}</div>	
+	@endif
+	
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>User Name</th>
+				<th>Display Name</th>
+				<th>Role</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($users as $key => $user)
+			<tr>
+				<td>{{$key+$index}}</td>
+				<td>{{$user->username}}</td>
+				<td>{{$user->display_name}}</td>
+				<td>{{$user->role}}</td>
+				<td class="tools">
+					<a title="Edit User" href="{{url('user/edit', array($user->id))}}" class="btn btn-warning btn-xs">
+						<i class="glyphicon glyphicon-edit"></i>
+					</a>
+					
+					<a onclick="return confirm('Are you sure?');" title="Delete User" href="{{url('user/delete', array($user->id))}}" class="btn btn-danger btn-xs">
+						<i class="glyphicon glyphicon-trash"></i>
+					</a>
+					
+					<a title="Change Password" href="{{url('user/changepassword', array($user->id))}}" class="btn btn-primary btn-xs">
+						<i class="glyphicon glyphicon-cog"></i>
+					</a>
+				</td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
 
-<form action="/postuser" method="post">
-	<input type="text" name="username" value="" />
-	<input type="submit" name="submit" value="Go" />
-</form>
+	{{$users->links()}}
+</div>
+
 @stop

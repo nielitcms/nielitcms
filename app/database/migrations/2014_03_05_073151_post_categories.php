@@ -15,11 +15,8 @@ class PostCategories extends Migration {
 		Schema::create('post_categories', function($table)
 			{
 				$table->increments('id')->unsigned();
-				$table->string('title');
-				$table->string('photo_path', (400));
-				$table->integer('album_id')->unsigned();
-				$table->timestamps();
-				$table->softDeletes();
+				$table->integer('post_id')->unsigned();
+				$table->integer('category_id')->unsigned();
 			});
 	}
 

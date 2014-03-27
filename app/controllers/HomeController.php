@@ -25,4 +25,18 @@ class HomeController extends BaseController {
 		return View::make('home.test1');
 	}
 
+	public function hello()
+	{
+		return View::make('home.hello');
+	}
+	public function helloagain()
+	{
+		return View::make('home.helloagain');
+	}
+	
+	public function postHello()
+	{
+		dd('Hello Posted');
+	}
+
 }
