@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="col-sm-12">
-	<h3><i class="glyphicon glyphicon-edit"></i> Edit Category({{$category->name}})</h3>
+	<h3><i class="glyphicon glyphicon-edit"></i> Edit Category ({{$category->name}})</h3>
 	<hr>
 
 	<div class="col-sm-6">

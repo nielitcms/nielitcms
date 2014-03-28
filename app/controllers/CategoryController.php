@@ -22,7 +22,7 @@ class CategoryController extends BaseController {
 	public function postCreate()
 	{
 		$rules = array(
-			'name'=>'required');
+			'name'=>'required|unique:categories,name');
 
 		$validation= Validator::make(Input::all(), $rules);
 
