@@ -32,12 +32,12 @@
 <ul class="nav nav-sidebar">
 	<li {{(Request::path() == 'page/create')?'class="active"':''}}>
 		<a href="{{url('page/create')}}">
-			<span class="glyphicon glyphicon-plus"></span> Create New Page
+			<span class="glyphicon glyphicon-plus"></span> Add Page
 		</a>
 	</li>
 	<li {{(Request::path() == 'page')?'class="active"':''}}>
 		<a href="{{url('page')}}">
-			<span class="glyphicon glyphicon-list"></span> Page List	
+			<span class="glyphicon glyphicon-list"></span> Page	
 		</a>
 	</li>
 </ul>
