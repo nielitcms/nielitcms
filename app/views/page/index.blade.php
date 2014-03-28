@@ -4,7 +4,7 @@
 @if(Session::has('message'))
 <div class="col-sm-12">
 @endif
-	<h2><i class="glyphicon glyphicon-list", class="col-sm-9"></i> Page List</h2>
+	<h3><i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Page List</h3>
 	<hr>
 	@if(Session::has('message'))
 	<div class="alert alert-success">{{Session::get('message')}}</div>	
@@ -13,10 +13,9 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>ID</th>
+				<th>#</th>
 				<th>Title</th>
 				<th>Author</th>
-				<th>Category</th>
 				<th></th>
 			</tr>
 		</thead>
