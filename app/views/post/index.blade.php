@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="col-sm-12">
-	<h3><i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Post List</h3>
+	<h3><i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Posts</h3>
 	<hr>
 
 	@if(Session::has('message'))
@@ -16,16 +16,24 @@
 				<th>#</th>
 				<th>Title</th>
 				<th>Author</th>
+				<th>Status</th>
 				<th>Category</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($posts as $post)
+			@foreach($posts as $key => $post)
 			<tr>
-				<td>{{$post->id}}</td>
+				<td>{{$key+$index}}</td>
 				<td>{{$post->title}}</td>
 				<td>{{$post->author->display_name}}</td>
+				<td>
+					@if($post->status == 'published')
+					<span class="btn btn-success btn-xs">{{ucwords($post->status)}}</span>
+					@else
+					<span class="btn btn-warning btn-xs">{{ucwords($post->status)}}</span>
+					@endif
+				</td>
 				<td>{{implode(', ', $post->categories->lists('name'))}}</td>
 				
 				<td class="tools">
@@ -40,6 +48,8 @@
 			</tr>
 			@endforeach
 		</tbody>
-	</table>	
+	</table>
+
+	{{$posts->links()}}
 </div>
 @stop

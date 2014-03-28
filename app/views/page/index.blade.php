@@ -1,43 +1,46 @@
 @extends('layout.backend')
 
 @section('content')
-@if(Session::has('message'))
+
 <div class="col-sm-12">
-@endif
-	<h3><i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Page List</h3>
+	<h3><i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Pages</h3>
 	<hr>
+	
 	@if(Session::has('message'))
 	<div class="alert alert-success">{{Session::get('message')}}</div>	
 	@endif
 
-	<table class="table">
+	<table class="table table-condensed table-hover">
 		<thead>
 			<tr>
 				<th>#</th>
 				<th>Title</th>
 				<th>Author</th>
+				<th>Status</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($posts as $page)
+			@foreach($pages as $key => $page)
 			<tr>
-				<td>{{$page->id}}</td>
+				<td>{{$key+$index}}</td>
 				<td>{{$page->title}}</td>
-				<td>{{user::find($page->author_id)->username}}</td>
-				
-				<?php 
-					$post=Postcategory::where('post_id','=',$page->id)->get();
-				?>
-
-				@foreach($post as $p)
-				 	<td>{{Category::find($p->category_id)->name}}</td>
-				@endforeach
+				<td>{{$page->author->display_name}}</td>
 				<td>
-					<a href="{{url('page/edit', array($page->id))}}" class="btn btn-warning btn-xs">
-					<i class="glyphicon glyphicon-pencil"></i> Edit</a>
-					<a href="{{url('page/delete', array($page->id))}}" class="btn btn-danger btn-xs">
-					<i class="glyphicon glyphicon-trash"></i> Delete</a>
+					@if($page->status == 'published')
+					<span class="btn btn-success btn-xs">{{ucwords($page->status)}}</span>
+					@else
+					<span class="btn btn-warning btn-xs">{{ucwords($page->status)}}</span>
+					@endif
+				</td>
+				<td>
+					<a href="{{url('page/edit', array($page->id))}}" title="Edit Page" class="tooltip-top btn btn-warning btn-xs">
+						<i class="glyphicon glyphicon-edit"></i>
+					</a>
+
+					<a onclick="return confirm('Are you sure?');" href="{{url('page/delete', array($page->id))}}" title="Delete Page" class="tooltip-top btn btn-danger btn-xs">
+						<i class="glyphicon glyphicon-trash"></i>
+					</a>
 				</td>
 			</tr>
 			@endforeach

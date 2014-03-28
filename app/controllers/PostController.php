@@ -12,10 +12,13 @@ class PostController extends \BaseController {
 		$posts = Content::with('author', 'categories')
 			->where('type','=','post')
 			->orderBy('created_at', 'desc')
-			->paginate();
+			->paginate(2);
+
+		$index = $posts->getCurrentPage() > 1? (($posts->getCurrentPage()-1) * $posts->getPerPage())+1 : 1;
 
 		return View::make('post.index')->with(array(
-			'posts' => $posts
+			'posts' => $posts,
+			'index' => $index
 			));
 	}
 
@@ -56,6 +59,7 @@ class PostController extends \BaseController {
 		$content->content = Input::get('content');
 		$content->author_id = Auth::user()->id;
 		$content->type = 'post';
+		$content->status = Input::get('status');
 		$content->save();
 
 		$content->categories()->attach(Input::get('category'));
@@ -114,6 +118,7 @@ class PostController extends \BaseController {
 		$content->title = Input::get('title');
 		$content->content = Input::get('content');
 		$content->author_id = Auth::user()->id;
+		$content->status = Input::get('status');
 		$content->save();
 
 		$content->categories()->detach();

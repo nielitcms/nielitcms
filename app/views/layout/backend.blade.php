@@ -30,6 +30,7 @@
             <li><a href="/admin">Dashboard</a></li>
             <li><a href="/settings">Settings</a></li>
             <li><a href="/profile">Profile</a></li>
+            <li><a href="/profile/change-password">Change Password</a></li>
             <li><a href="/help">Help</a></li>
             <li><a href="/logout">Logout</a></li>
           </ul>

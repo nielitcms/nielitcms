@@ -18,6 +18,7 @@ class CreateContentsTable extends Migration {
 			$table->text('content')->nullable();
 			$table->integer('author_id')->unsigned();
 			$table->enum('type', array('post', 'page'))->default('post');
+			$table->enum('status', array('published', 'draft'))->default('draft');
 			$table->timestamps();
 			$table->softDeletes();
 		});

@@ -9,14 +9,17 @@ class PageController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Content::with('author', 'categories')
+		$pages = Content::with('author')
 			->where('type','=','page')
 			->orderBy('created_at', 'desc')
-			->get();
+			->paginate(2);
+
+		$index = $pages->getCurrentPage() > 1? (($pages->getCurrentPage()-1) * $pages->getPerPage())+1 : 1;
+
 		return View::make('page.index')->with(array(
-			'posts' => $posts
-			));
-	}
+			'pages' => $pages,
+			'index' => $index
+			));	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -25,10 +28,7 @@ class PageController extends \BaseController {
 	 */
 	public function create()
 	{
-		$categories = Category::orderBy('name', 'asc')->get()->lists('name', 'id');
-		return View::make('page.create')->with(array(
-			'categories' => $categories
-			));
+		return View::make('page.create');
 	}
 
 	/**
@@ -40,29 +40,24 @@ class PageController extends \BaseController {
 	{
 		$rules = array(
 			'title' => 'required',
-			'content' => 'required',
-			'category' => 'required'
+			'content' => 'required'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails())
-			return Redirect::to('post/create')->withErrors($validator);
+			return Redirect::to('page/create')
+				->withErrors($validator)
+				->withInput(Input::all());
 
 		$content = new Content();
 		$content->title = Input::get('title');
 		$content->content = Input::get('content');
 		$content->author_id = Auth::user()->id;
 		$content->type = 'page';
+		$content->status = Input::get('status');
 		$content->save();
 
-		foreach(Input::get('category') as $category) {
-			$page_category = new PostCategory();
-			$page_category->post_id = $content->id;
-			$page_category->category_id = $category;
-			$page_category->save();
-		}
-
-		return Redirect::to('page')->with('message', 'Post created successfully.');
+		return Redirect::to('page')->with('message', 'Page created successfully.');
 	}
 
 	/**
@@ -84,35 +79,12 @@ class PageController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		Page::destroy($id);
-		return Redirect::to('page')->with('message','User deleted Successfully');
-
+		$page = Content::with('author')->find($id);
+		return View::make('page.edit')
+			->with(array(
+				'page' => $page
+				));
 	}
-	public function postedit($id)
-	{
-		$rules = array(
-				'username'=> 'required|alpha_dash|between:4,20|unique:users,username,'.$id,
-
-				'display_name'=> 'required',
-
-				'role'=>'required');					
-
-				$validation= Validator::make(Input::all(), $rules);
-
-		if ($validation ->fails()) {
-			return Redirect::to('user/edit/'. $id)->withErrors($validation);
-		}
-
-	
-		$user = User::find($id);
-		$user->username = Input::get('username');
-		$user->display_name = Input::get('display_name');
-		$user->role = Input::get('role');
-		$user->save();
-		return Redirect::to('user')->with('message','User Edit Successfully');
-
-	}			
-	
 
 	/**
 	 * Update the specified resource in storage.
@@ -120,24 +92,40 @@ class PageController extends \BaseController {
 	  * @param  int  $id
 	 * @return Response
 	 */
-	// public function update($id)
-	// {
-	// 	//
-	// }
+	public function update($id)
+	{
+		$rules = array(
+			'title' => 'required',
+			'content' => 'required'
+			);
+		$validator = Validator::make(Input::all(), $rules);
 
+		if($validator->fails())
+			return Redirect::to('page/edit/' . $id)
+				->withErrors($validator)
+				->withInput(Input::all());
+
+		$content = Content::find($id);
+		$content->title = Input::get('title');
+		$content->content = Input::get('content');
+		$content->author_id = Auth::user()->id;
+		$content->type = 'page';
+		$content->status = Input::get('status');
+		$content->save();
+
+		return Redirect::to('page')->with('message', 'Page updated successfully.');
+	}			
+	
 	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function remove($id)
+	public function destroy($id)
 	{
-		Page::destroy($id);
+		Content::destroy($id);
 		return Redirect::to('page')->with('message','Page deleted Successfully');
-
 	}
-
-
 
 }

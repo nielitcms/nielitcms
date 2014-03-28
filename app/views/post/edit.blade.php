@@ -37,6 +37,15 @@
 		</div>
 
 		<div class="form-group">
+			{{Form::label('status', 'Status', array('class'=>'control-label'))}}
+			{{Form::select('status', array('draft'=>'Draft', 'published'=>'Published'),  Input::old('status', $post->status), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Publish Status'))}}
+
+			@if($errors->has('status'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('status')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
 			<button type="submit" name="submit" class="btn btn-sm btn-primary">Save</button>
 		</div>
 	{{Form::close()}}

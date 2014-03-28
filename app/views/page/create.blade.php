@@ -9,7 +9,7 @@
 	<form class="form-vertical" action="/page/create" method="post">
 		<div class="form-group">
 			{{Form::label('title', 'Title', array('class'=>'control-label'))}}
-			{{Form::text('title', '', array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Page Title', 'title'=>'Page Title'))}}
+			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Page Title', 'title'=>'Page Title'))}}
 			
 			@if($errors->has('title'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('title')}}</span></p>
@@ -17,13 +17,22 @@
 		</div>
 
 		<div class="form-group">
-			{{Form::label('content', 'Post Content', array('class'=>'control-label'))}}
-			{{Form::textarea('content', '', array('class'=>'input-sm form-control', 'rows'=>8))}}
+			{{Form::label('content', 'Page Content', array('class'=>'control-label'))}}
+			{{Form::textarea('content', Input::old('content'), array('class'=>'input-sm form-control', 'rows'=>8))}}
 
 			@if($errors->has('content'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('content')}}</span></p>
 			@endif
 			<script type="text/javascript">CKEDITOR.replace('content');</script>
+		</div>
+
+		<div class="form-group">
+			{{Form::label('status', 'Status', array('class'=>'control-label'))}}
+			{{Form::select('status', array('draft'=>'Draft', 'published'=>'Published'),  Input::old('status'), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Publish Status'))}}
+
+			@if($errors->has('status'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('status')}}</span></p>
+			@endif
 		</div>
 
 		<div class="form-group">

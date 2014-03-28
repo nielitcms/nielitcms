@@ -39,9 +39,9 @@ Route::get('/post/delete/{id}', array('uses'=>'PostController@destroy', 'before'
 Route::get('/page/create', 'PageController@create');
 Route::post('/page/create', 'PageController@store');
 Route::get('/page', 'PageController@index');
-Route::get('/page/delete/{id}', 'PageController@remove');
-Route::get('/page', 'PageController@index');
-Route::get('/pageshow', 'PageController@show');
+Route::get('/page/delete/{id}', 'PageController@destroy');
+Route::get('/page/edit/{id}', 'PageController@edit');
+Route::post('/page/edit/{id}', 'PageController@update');
 
 Route::get('/admin', array('uses'=>'AdminController@getIndex', 'before'=>'auth'));
 
@@ -51,3 +51,8 @@ Route::get('/logout', 'AuthController@logout');
 
 Route::get('/settings', array('uses'=>'SettingController@index', 'before'=>'auth'));
 Route::post('/settings', array('uses'=>'SettingController@store', 'before'=>'auth'));
+
+Route::get('/profile', array('uses'=>'ProfileController@index', 'before'=>'auth'));
+Route::post('/profile', array('uses'=>'ProfileController@store', 'before'=>'auth'));
+Route::get('/profile/change-password', array('uses'=>'ProfileController@changepassword', 'before'=>'auth'));
+Route::post('/profile/change-password', array('uses'=>'ProfileController@storepassword', 'before'=>'auth'));
