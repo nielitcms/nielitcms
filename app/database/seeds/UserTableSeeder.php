@@ -6,9 +6,9 @@ class UserTableSeeder extends Seeder {
         DB::table('users')->truncate();
 
         DB::table('users')->insert(array(
-        	'username' => 'rema',
+        	'username' => 'admin',
         	'display_name' => 'Administrator',
-        	'password' => Hash::make('rema'),
+        	'password' => Hash::make('admin'),
         	'role' => 'administrator'
         	));
     }
