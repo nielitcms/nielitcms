@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Menus extends Migration {
+class CreateMenusTable extends Migration {
 
 	/**
 	 * Run the migrations.

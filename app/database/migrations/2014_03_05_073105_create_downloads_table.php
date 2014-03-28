@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Downloads extends Migration {
+class CreateDownloadsTable extends Migration {
 
 	/**
 	 * Run the migrations.

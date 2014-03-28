@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Content extends Migration {
+class CreateAlbumsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class Content extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('contents', function($table){
+		Schema::create('albums', function($table){
 			$table->increments('id')->unsigned();
-			$table->string('title', 400);
-			$table->text('content')->nullable();
-			$table->integer('author_id')->unsigned();
-			$table->enum('type', array('post', 'page'))->default('post');
+			$table->string('title');
+			$table->text('description')->nullable();
+			$table->integer('created_by')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -30,7 +29,7 @@ class Content extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('contents');
+		Schema::dropIfExists('albums');
 	}
 
 }

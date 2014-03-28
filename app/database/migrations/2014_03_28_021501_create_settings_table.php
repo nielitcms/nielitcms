@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Categories extends Migration {
+class CreateSettingsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class Categories extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('categories', function($table){
-			$table->increments('id')->unsigned();
-			$table->string('name');
+		Schema::create('settings', function($table){
+			$table->increments('id');
+			$table->string('setting_key');
+			$table->string('setting_title');
+			$table->string('setting_data')->nullable();
 			$table->timestamps();
-			$table->softDeletes();
 		});
 	}
 
@@ -27,7 +28,7 @@ class Categories extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('categories');
+		Schema::dropIfExists('settings');
 	}
 
 }

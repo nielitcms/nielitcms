@@ -1,6 +1,14 @@
 @extends('layout.backend')
 
 @section('content')
-<h1 class="page-header">Dashboard</h1>
-<p>Welcome Admin!</p>
+<div class="col-sm-12">
+	<h3><i class="glyphicon glyphicon-dashboard"></i> Dashboard</h3>
+	<hr>
+
+	<div class="col-md-12">
+		<div class="row">
+			<p>Welcome</p>
+		</div>
+	</div>
+</div>
 @stop

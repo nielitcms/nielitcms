@@ -9,7 +9,10 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Content::where('type','=','post')->orderBy('created_at', 'desc')->get();
+		$posts = Content::with('author', 'categories')
+			->where('type','=','post')
+			->orderBy('created_at', 'desc')
+			->get();
 		return View::make('post.index')->with(array(
 			'posts' => $posts
 			));
@@ -22,7 +25,7 @@ class PostController extends \BaseController {
 	 */
 	public function create()
 	{
-		$categories = Category::orderBy('name', 'asc')->get();	
+		$categories = Category::orderBy('name', 'asc')->get()->lists('name', 'id');
 		return View::make('post.create')->with(array(
 			'categories' => $categories
 			));
@@ -43,7 +46,9 @@ class PostController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails())
-			return Redirect::to('post/create')->withErrors($validator);
+			return Redirect::to('post/create')
+				->withErrors($validator)
+				->withInput(Input::all());
 
 		$content = new Content();
 		$content->title = Input::get('title');

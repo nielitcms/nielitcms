@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Albums extends Migration {
+class CreateCommentsTable extends Migration 
+{
 
 	/**
 	 * Run the migrations.
@@ -12,11 +13,12 @@ class Albums extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('albums', function($table){
+		Schema::create('comments', function($table)
+		{
 			$table->increments('id')->unsigned();
-			$table->string('title');
-			$table->text('description')->nullable();
-			$table->integer('created_by')->unsigned();
+			$table->text('comment_body');
+			$table->integer('author_id')->unsigned();
+			$table->integer('post_id')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -29,7 +31,7 @@ class Albums extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('albums');
+		Schema::dropIfExists('comments');
 	}
 
 }
