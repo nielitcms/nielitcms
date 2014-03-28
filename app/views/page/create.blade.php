@@ -8,45 +8,36 @@
 
 	<form class="form-horizontal" action="/page/create" method="post">
 		<div class="form-group">
-			<label for="title" class="col-sm-3 control-label">Title</label>
-			<div class="col-sm-9">
-				<input id="title" type="text" name="title" class="form-control" value="" />
-				@if($errors->has('title'))
-				<p class="help-block"><span class="text-danger">{{$errors->first('title')}}</span></p>
-				@endif
-			</div>
+			{{Form::label('title', 'Title', array('class'=>'control-label'))}}
+			{{Form::text('title', '', array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Page Title', 'title'=>'Page Title'))}}
+			
+			@if($errors->has('title'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('title')}}</span></p>
+			@endif
 		</div>
 
 		<div class="form-group">
-			<label for="content" class="col-sm-3 control-label">Content</label>
-			<div class="col-sm-9">
-				<textarea name="content" id="content" class="form-control" rows="8"></textarea>
-				@if($errors->has('content'))
-				<p class="help-block"><span class="text-danger">{{$errors->first('content')}}</span></p>
-				@endif
-				<script type="text/javascript">CKEDITOR.replace( 'content' );</script>
-			</div>
+			{{Form::label('content', 'Post Content', array('class'=>'control-label'))}}
+			{{Form::textarea('content', '', array('class'=>'input-sm form-control', 'rows'=>8))}}
+
+			@if($errors->has('content'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('content')}}</span></p>
+			@endif
+			<script type="text/javascript">CKEDITOR.replace('content');</script>
 		</div>
 
 		<div class="form-group">
-			<label for="category" class="col-sm-3 control-label">Category</label>
-			<div class="col-sm-9">
-				<select name="category[]" class="form-control" multiple="multiple">
-					@foreach($pages as $category)
-					<option value="{{$category->id}}">{{$category->name}}</option>
-					@endforeach
-				</select>
-				<p class="help-block">Press CTRL to select multiple categories</p>
-				@if($errors->has('category'))
-				<p class="help-block"><span class="text-danger">{{$errors->first('category')}}</span></p>
-				@endif
-			</div>
+			{{Form::label('category', 'Category', array('class'=>'control-label'))}}
+			{{Form::select('category[]', $categories, '', array('class'=>'tooltip-left input-sm form-control', 'multiple'=>'multiple', 'title'=>'Select categories'))}}
+			<p class="help-block">Press and hold CTRL to select multiple categories</p>
+
+			@if($errors->has('category'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('category')}}</span></p>
+			@endif
 		</div>
 
 		<div class="form-group">
-			<div class="col-sm-9 col-sm-offset-3">
-				<button type="submit" name="add" class="btn btn-primary">Create</button>
-			</div>
+			<button type="submit" name="submit" class="btn btn-sm btn-primary">Submit</button>
 		</div>
 	</form>
 </div>

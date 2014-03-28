@@ -1,27 +1,33 @@
 @extends('layout.backend')
+
 @section('content')
-<div class="col-sm-8">
-	<h2><i class="glyphicon glyphicon-plus"></i> Create New Category</h2>
+
+<div class="col-sm-12">
+	<h3><i class="glyphicon glyphicon-plus"></i> Create New Category</h3>
 	<hr>
 
-	<form action="/category/create" method="post">
-		<div class="form-group">
-			<label for="name" class="control-label">Name</label>
-			<input class="form-control" type="text" name="name" id="name" value="" placeholder="Enter category name" />
-			<span class="help-block">
-				<p class="text-danger">{{$errors->first('name')}}</p>
-			</span>
-		</div>
-		
-		<div class="form-group">
-			<button type="submit" name="create" value="Create" class="btn btn-primary">Create</button>
-		</div>
+	@if(Session::has('message'))
+	<div class="alert alert-success">{{Session::get('message')}}</div>	
+	@endif
 
-		<div class="form-group">
-			@if(Session::has('message'))
-			<div class="alert alert-success">{{Session::get('message')}}</div>	
-			@endif
+	<div class="col-sm-6">
+		<div class="row">
+			{{Form::open(array('url'=>'/category/create', 'method'=>'post'))}}
+				<div class="form-group">
+					{{Form::text('name', Input::old('name'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Enter Category Name', 'title'=>'Category name'))}}
+
+					@if($errors->has('name'))
+					<span class="help-block">
+						<p class="text-danger">{{$errors->first('name')}}</p>
+					</span>
+					@endif
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-sm btn-primary">Submit</button>		
+				</div>
+			{{Form::close()}}
 		</div>
-	</form>
+	</div>
+
 </div>
 @stop

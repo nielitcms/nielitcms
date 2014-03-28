@@ -9,7 +9,10 @@ class PageController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Content::where('type','=','page')->orderBy('created_at', 'desc')->get();
+		$posts = Content::with('author', 'categories')
+			->where('type','=','page')
+			->orderBy('created_at', 'desc')
+			->get();
 		return View::make('page.index')->with(array(
 			'posts' => $posts
 			));
@@ -22,9 +25,9 @@ class PageController extends \BaseController {
 	 */
 	public function create()
 	{
-		$pages = category::orderBy('name', 'asc')->get();	
+		$categories = Category::orderBy('name', 'asc')->get()->lists('name', 'id');
 		return View::make('page.create')->with(array(
-			'pages' => $pages
+			'categories' => $categories
 			));
 	}
 

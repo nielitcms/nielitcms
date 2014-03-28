@@ -1,6 +1,19 @@
 <?php
 class CategoryController extends BaseController {
 
+	public function index()
+	{
+		$categories = Category::paginate(4);
+
+		$index = $categories->getCurrentPage() > 1? (($categories->getCurrentPage()-1) * $categories->getPerPage())+1 : 1;
+		return View::make('category.index')
+			->with(array(
+				'categories' => $categories,
+				'index' => $index
+				));
+	}
+
+
 	public function create()
 	{
 		return View::make('category.create');
@@ -24,13 +37,7 @@ class CategoryController extends BaseController {
 		return Redirect::to('category/create')->with('message','Category created successfully');
 	}
 
-	public function index()
-	{
-
-		$categories=Category::all();
-		return View::make('category.index')->with('cats',$categories);
-	}
-
+	
 	public function remove($id)
 	{
 		category::destroy($id);
