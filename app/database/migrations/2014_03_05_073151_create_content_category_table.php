@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostCategoriesTable extends Migration {
+class CreateContentCategoryTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class CreatePostCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('post_categories', function($table)
+		Schema::create('content_category', function($table)
 		{
 			$table->increments('id')->unsigned();
-			$table->integer('post_id')->unsigned();
+			$table->integer('content_id')->unsigned();
 			$table->integer('category_id')->unsigned();
 		});
 	}
@@ -27,7 +27,7 @@ class CreatePostCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('post_categories');
+		Schema::dropIfExists('content_category');
 	}
 
 }

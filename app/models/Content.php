@@ -10,6 +10,6 @@ class Content extends Eloquent
 
 	public function categories()
 	{
-		return $this->belongsToMany('PostCategory', 'post_categories', 'post_id', 'id');//->withPivot('category_id');
+		return $this->belongsToMany('Category', 'content_category', 'content_id', 'category_id');
 	}
 }

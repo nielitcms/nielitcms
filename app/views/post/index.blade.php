@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="col-sm-12">
-	<h3><i class="glyphicon glyphicon-list", class="col-sm-9"></i> Post List</h3>
+	<h3><i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Post List</h3>
 	<hr>
 
 	@if(Session::has('message'))
@@ -26,12 +26,7 @@
 				<td>{{$post->id}}</td>
 				<td>{{$post->title}}</td>
 				<td>{{$post->author->display_name}}</td>
-				<td>
-					<?php // $categories = Postcategory::where('post_id','=',$post->id)->get(); ?>
-					{{--@foreach($categories as $p)--}}
-				 	{{--(Category::find($p->category_id)->name)--}}
-					{{-- @endforeach--}}
-				</td>
+				<td>{{implode(', ', $post->categories->lists('name'))}}</td>
 				
 				<td class="tools">
 					<a title="Edit Post" href="{{url('post/edit', array($post->id))}}" class="btn btn-warning btn-xs">

@@ -12,7 +12,8 @@ class PostController extends \BaseController {
 		$posts = Content::with('author', 'categories')
 			->where('type','=','post')
 			->orderBy('created_at', 'desc')
-			->get();
+			->paginate();
+
 		return View::make('post.index')->with(array(
 			'posts' => $posts
 			));
@@ -58,8 +59,8 @@ class PostController extends \BaseController {
 		$content->save();
 
 		foreach(Input::get('category') as $category) {
-			$post_category = new PostCategory();
-			$post_category->post_id = $content->id;
+			$post_category = new ContentCategory();
+			$post_category->content_id = $content->id;
 			$post_category->category_id = $category;
 			$post_category->save();
 		}
