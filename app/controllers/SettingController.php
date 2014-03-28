@@ -9,7 +9,7 @@ class SettingController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('setting.index');
 	}
 
 	/**
@@ -29,7 +29,25 @@ class SettingController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = array(
+			'site_title' => 'required'
+			);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails())
+			return Redirect::to('/settings')
+				->withErrors($validator)
+				->withInput(Input::all());
+
+		$site_title = Input::get('site_title');
+		Setting::where('setting_key', '=', 'site_title')
+			->update(array('setting_data'=>$site_title));
+
+		$admin_site_title = Input::get('admin_site_title');
+		Setting::where('setting_key', '=', 'admin_site_title')
+			->update(array('setting_data'=>$admin_site_title));
+
+		return Redirect::to('/settings')->with('message', 'Settings updated succesfully');
 	}
 
 	/**
@@ -62,7 +80,6 @@ class SettingController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
 	}
 
 	/**
