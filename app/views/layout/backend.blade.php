@@ -27,10 +27,10 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/help">Help</a></li>
             <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
