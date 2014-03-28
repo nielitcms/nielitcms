@@ -58,12 +58,7 @@ class PostController extends \BaseController {
 		$content->type = 'post';
 		$content->save();
 
-		foreach(Input::get('category') as $category) {
-			$post_category = new ContentCategory();
-			$post_category->content_id = $content->id;
-			$post_category->category_id = $category;
-			$post_category->save();
-		}
+		$content->categories()->attach(Input::get('category'));
 
 		return Redirect::to('post')->with('message', 'Post created successfully.');
 	}
