@@ -12,10 +12,6 @@
 */
 
 Route::get('/', 'HomeController@welcome');
-Route::get('/test1', 'HomeController@test1');
-Route::get('/hello', 'HomeController@hello');
-Route::get('/helloagain', 'HomeController@helloagain');
-Route::post('/hello', 'HomeController@postHello');
 
 Route::get('/user/create', array('uses'=>'UserController@create', 'before'=>'auth'));
 Route::post('/user/create', array('uses'=>'UserController@createUser', 'before'=>'auth'));
@@ -36,6 +32,9 @@ Route::post('/category/edit/{id}', array('uses'=>'CategoryController@postedit', 
 Route::get('/post/create', 'PostController@create');
 Route::post('/post/create', 'PostController@store');
 Route::get('/post', 'PostController@index');
+Route::get('/post/edit/{id}', array('uses'=>'PostController@edit', 'before'=>'auth'));
+Route::post('/post/edit/{id}', array('uses'=>'PostController@update', 'before'=>'auth'));
+Route::get('/post/delete/{id}', array('uses'=>'PostController@destroy', 'before'=>'auth'));
 
 Route::get('/page/create', 'PageController@create');
 Route::post('/page/create', 'PageController@store');
