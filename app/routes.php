@@ -56,3 +56,12 @@ Route::get('/profile', array('uses'=>'ProfileController@index', 'before'=>'auth'
 Route::post('/profile', array('uses'=>'ProfileController@store', 'before'=>'auth'));
 Route::get('/profile/change-password', array('uses'=>'ProfileController@changepassword', 'before'=>'auth'));
 Route::post('/profile/change-password', array('uses'=>'ProfileController@storepassword', 'before'=>'auth'));
+
+Route::get('/download/create', 'DownloadController@create');
+Route::post('/download/create', 'DownloadController@store');
+Route::get('/download', 'DownloadController@index');
+Route::get('/download/delete/{id}', 'DownloadController@destroy');
+Route::get('/download/edit/{id}', 'DownloadController@edit');
+Route::post('/download/edit/{id}', 'DownloadController@update');
+Route::get('/download/{id}', 'DownloadController@show');
+

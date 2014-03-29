@@ -45,6 +45,8 @@
 			</tr>
 			@endforeach
 		</tbody>
-	</table>	
+	</table>
+
+	{{$pages->links()}}
 </div>
 @stop
