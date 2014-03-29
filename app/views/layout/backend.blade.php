@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="{{asset('lib/jquery/jquery-1.11.0.min.js')}}"></script>
   <script type="text/javascript" src="{{asset('lib/bootstrap-3.1.1-dist/js/bootstrap.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('lib/ckeditor/ckeditor.js')}}"></script>
-  <script type="text/javascript" src="{{asset('templates/frontend/js/script.js')}}"></script>
+  <script type="text/javascript" src="{{asset('templates/backend/js/script.js')}}"></script>
 </head>
 <body>
 	<div class="nielit-nav navbar navbar-default navbar-fixed-top" role="navigation">
