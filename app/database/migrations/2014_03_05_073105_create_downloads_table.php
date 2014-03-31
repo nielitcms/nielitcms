@@ -12,12 +12,13 @@ class CreateDownloadsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('download', function($table)
+		Schema::create('downloads', function($table)
 		{
 			$table->increments('id')->unsigned();
 			$table->string('title', 400);
 			$table->integer('created_by')->unsigned();
-			$table->string('file_part')->nullable();
+			$table->string('file_path')->nullable();
+			$table->enum('status', array('active', 'inactive'))->default('inactive');
 			$table->timestamps();
 			$table->softDeletes();
 		});
@@ -30,7 +31,7 @@ class CreateDownloadsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('download');
+		Schema::dropIfExists('downloads');
 	}
 
 }
