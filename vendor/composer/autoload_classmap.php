@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AdminController' => $baseDir . '/app/controllers/AdminController.php',
     'Album' => $baseDir . '/app/models/Album.php',
-    'AlbumController' => $baseDir . '/app/controllers/AlbumConrtoller.php',
+    'AlbumController' => $baseDir . '/app/controllers/AlbumController.php',
     'AuthController' => $baseDir . '/app/controllers/AuthController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',

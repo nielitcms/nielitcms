@@ -56,17 +56,30 @@
 </ul>
 
 <ul class="nav nav-sidebar">
-	<li>
-		<a href="{{url('user/create')}}">
-			<span class="glyphicon glyphicon-plus"></span> Add User
+	<li {{(Request::path() == 'album/create')?'class="active"':''}}>
+		<a href="{{url('album/create')}}">
+			<span class="glyphicon glyphicon-plus"></span> Add Album
 		</a>
 	</li>
-	<li>
-		<a href="{{url('user')}}">
-			<span class="glyphicon glyphicon-list"></span> Users	
+	<li {{(Request::path() == 'album')?'class="active"':''}}>
+		<a href="{{url('album')}}">
+			<span class="glyphicon glyphicon-list"></span> Albums	
 		</a>
 	</li>
 </ul>
 
 
+<ul class="nav nav-sidebar">
+	<li {{(Request::path() == 'user/create')?'class="active"':''}}>
+		<a href="{{url('user/create')}}">
+			<span class="glyphicon glyphicon-plus"></span> Add User
+		</a>
+	</li>
+	<li {{(Request::path() == 'user')?'class="active"':''}}>
+		<a href="{{url('user')}}">
+			<span class="glyphicon glyphicon-list"></span> Users	
+		</a>
+	</li>
+
+</ul>
 

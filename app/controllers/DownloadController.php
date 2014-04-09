@@ -160,4 +160,9 @@ class DownloadController extends \BaseController {
 		return Redirect::to('download')->with('message', 'Download deleted successfully.');
 	}
 
+	public function album()
+	{
+		return View::make('album.create');
+	}
+	
 }

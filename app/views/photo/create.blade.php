@@ -1,27 +1,56 @@
 @extends('layout.backend')
+
 @section('content')
-<div class="col-sm-8">
-	<h2><i class="glyphicon glyphicon-plus"></i> Create New Photo</h2>
+
+@if(Session::has('message'))
+	<div class="alert alert-success">{{Session::get('message')}}</div>	
+	@endif
+
+<div class="col-sm-12">
+	<h3><i class="glyphicon glyphicon-plus"></i> Add Photos</h3>
 	<hr>
 
-	<form action="/photo/create" method="post">
+	{{Form::open(array('url'=>'photo/add/'. $id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
 		<div class="form-group">
-			<label for="name" class="control-label">Name</label>
-			<input class="form-control" type="text" name="name" id="name" value="" placeholder="Enter Photo name" />
-			<span class="help-block">
-				<p class="text-danger">{{$errors->first('name')}}</p>
-			</span>
-		</div>
-		
-		<div class="form-group">
-			<button type="submit" name="create" value="Create" class="btn btn-primary">Create</button>
+			{{Form::label('title', 'File Title', array('class'=>'control-label'))}}
+			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 
+			'placeholder'=>'File Title', 'title'=>'File Title'))}}
+			
+			@if($errors->has('title'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('title')}}</span></p>
+			@endif
 		</div>
 
 		<div class="form-group">
-			@if(Session::has('message'))
-			<div class="alert alert-success">{{Session::get('message')}}</div>	
+			{{Form::label('photo_path', 'File', array('class'=>'control-label'))}}
+			{{Form::file('photo_path', array('class'=>'form-control input-sm'))}}
+
+			@if($errors->has('photo_path'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('photo')}}</span></p>
 			@endif
 		</div>
-	</form>
+
+
+		<div class="form-group">
+			<button type="submit" name="submit" class="btn btn-sm btn-primary">Submit</button>
+		</div>
+	{{Form::close()}}
 </div>
+
+
 @stop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,7 +9,8 @@
 	{{Form::open(array('url'=>'download/create', 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
 		<div class="form-group">
 			{{Form::label('title', 'File Title', array('class'=>'control-label'))}}
-			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'File Title', 'title'=>'File Title'))}}
+			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 
+			'placeholder'=>'File Title', 'title'=>'File Title'))}}
 			
 			@if($errors->has('title'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('title')}}</span></p>

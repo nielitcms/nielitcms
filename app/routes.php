@@ -29,6 +29,7 @@ Route::get('/category/delete/{id}', array('uses'=>'CategoryController@remove', '
 Route::get('/category/edit/{id}', array('uses'=>'CategoryController@edit', 'before'=>'auth'));
 Route::post('/category/edit/{id}', array('uses'=>'CategoryController@postedit', 'before'=>'auth'));
 
+
 Route::get('/post/create', 'PostController@create');
 Route::post('/post/create', 'PostController@store');
 Route::get('/post', 'PostController@index');
@@ -64,4 +65,21 @@ Route::get('/download/delete/{id}', 'DownloadController@destroy');
 Route::get('/download/edit/{id}', 'DownloadController@edit');
 Route::post('/download/edit/{id}', 'DownloadController@update');
 Route::get('/download/{id}', 'DownloadController@show');
+
+Route::get('/album/create', 'AlbumController@create');	
+Route::post('/album/create', 'AlbumController@store');
+Route::get('/album', 'AlbumController@index');
+Route::get('/album/edit/{id}', 'AlbumController@edit');
+Route::post('/album/edit/{id}', 'AlbumController@store');
+Route::get('/album/delete/{id}', 'AlbumController@destroy');
+
+Route::get('/photo/add/{id}', 'PhotoController@create');
+Route::post('/photo/add/{id}', 'PhotoController@store');
+Route::get('/album/photo/{id}', 'PhotoController@index');
+Route::get('/photo/{id}', 'PhotoController@show');
+Route::get('/photo/delete/{id}', 'PhotoController@destroy');
+// Route::get('/photo/{id}', 'PhotoController@show');
+// Route::get('/photo/delete/{id}', 'PhotoController@destroy');
+// Route::get('/photo/edit/{id}', 'PhotoController@edit');
+// Route::post('/photo/edit/{id}', 'PhotoController@update');
 
