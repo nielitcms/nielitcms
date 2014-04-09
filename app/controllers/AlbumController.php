@@ -79,7 +79,8 @@ class AlbumController extends \BaseController {
 		$album->description = Input::get('description');
 		$album->created_by = Auth::User()->id;
 		$album->save();
-		return Redirect::to('album')->with('message','Album created successfully');
+
+		return Redirect::to('photo/add/' . $album->id)->with('message','Album created successfully');
 	}
 
 	
@@ -88,40 +89,40 @@ class AlbumController extends \BaseController {
 // 	 * @param  int  $id
 // 	 * @return Response
 // 	 */
-// 	public function edit($id)
-// 	{
-// 		$album=Album::find($id);
-// 		return View::make('album.edit')
-// 			->with('album',$album);
-// 	}
+	public function edit($id)
+	{
+		$album=Album::find($id);
+		return View::make('album.edit')
+			->with('album',$album);
+	}
 
 
 // 	/**      * Update the specified resource in storage.      *      * @param
 // int  $id      * @return Response      */     
-// 	public function update($id)
-// 	{
-// 		$rules=array(
-// 			'title'=>'required',
-// 			'description'=>'required');	
+	public function update($id)
+	{
+		$rules=array(
+			'title'=>'required',
+			'description'=>'required');	
 
-// 		$validation= Validator::make(Input::all(), $rules);
+		$validation= Validator::make(Input::all(), $rules);
 
-// 		if($validation1 ->fails()) {
+		if($validation ->fails()) {
 
-// 			return Redirect::to('album/create')
-// 			->withErrors($validation)
-// 			->withInput()Input::all());
-// 		}
+			return Redirect::to('album/edit/'.$id)
+			->withErrors($validation)
+			->withInput(Input::all());
+		}
 
 
-// 			$album = Album::find($id);
-// 			$album->title = Input::get('title');
-// 			$album->description = Input::get('description');
-// 			$album->created_by = Auth::User()->id;
-// 			$album->save();
+		$album = Album::find($id);
+		$album->title = Input::get('title');
+		$album->description = Input::get('description');
+		$album->created_by = Auth::User()->id;
+		$album->save();
 
-// 			return Redirect::to('album')->with('message','Album updated successfully');
-// 	}
+		return Redirect::to('album')->with('message','Album updated successfully');
+	}
 
 
 

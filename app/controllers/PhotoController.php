@@ -12,10 +12,14 @@ class PhotoController extends \BaseController {
 		$photos = Photo::where('album_id', '=',$id)
 			->orderBy('created_at', 'desc')
 			->paginate(2);
+
+		$album = Album::find($id);
+
 		$index = $photos->getCurrentPage() > 1? (($photos->getCurrentPage()-1) * $photos->getPerPage())+1 : 1;
 		
 		return View::make('photo.index')
 			->with(array(
+				'album' => $album,
 				'photos' => $photos,
 				'index' => $index
 				));
@@ -28,8 +32,12 @@ class PhotoController extends \BaseController {
 	 */
 	public function create($id)
 	{
-			return View::make('photo.create')
-			->with(array('id'=>$id));
+		$album = Album::find($id);
+
+		return View::make('photo.create')
+			->with(array(
+				'album' => $album
+				));
 	}
 	
 
@@ -64,8 +72,8 @@ class PhotoController extends \BaseController {
 		$photo->photo_path = 'photos/' . $fileName;
 		$photo->save();
 
-		return Redirect::to('album')
-			->with('message','File uploaded successfully');
+		return Redirect::to('album/photo/' . $id)
+			->with('message','Photo uploaded successfully');
 	
 	}
 
@@ -92,8 +100,17 @@ class PhotoController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit()
+	public function edit($id)
 	{
+		$photo=Photo::find($id);
+		$album=Album::find($photo->album_id);
+		return View::make('photo.edit')
+			->with(
+				array(
+					'photo'=>$photo,
+					'album'=>$album
+					)
+				);
 		
 	}
 
@@ -105,8 +122,25 @@ class PhotoController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
-	}
+		$rules = array(
+			'title'=> 'required',
+			);	
+
+		$validation= Validator::make(Input::all(), $rules);
+
+		if ($validation ->fails()) {
+			return Redirect::to('photo/edit/'.$id)
+				->withErrors($validation)
+				->withInput(array(Input::get('title')));
+		}
+		
+		$photo =Photo::find($id);
+		$photo->title = Input::get('title');
+		$photo->save();
+		
+		return Redirect::to('album/photo/' . $photo->album_id)
+			->with('message','Photo edited successfully');
+		}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -117,15 +151,12 @@ class PhotoController extends \BaseController {
 	public function destroy($id)
 	{
 		$photo = Photo::find($id);
+		$albumid=$photo->album_id;
 		File::delete(public_path().'/'.$photo->photo_path);
 		$photo->delete();
 		
-		return Redirect::to('album')->with('message', 'Photo deleted successfully.');
+		return Redirect::to('album/photo/' . $albumid)->with('message', 'Photo deleted successfully.');
 	
 	}
 
 }
-
-
-
-

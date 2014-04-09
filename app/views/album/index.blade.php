@@ -33,8 +33,12 @@
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					
-					<a title="Add Photo" href="{{url('photo/add', array($album->id))}}" class="btn btn-warning btn-xs">
+					<a title="Add Photo" href="{{url('photo/add', array($album->id))}}" class="btn btn-success btn-xs">
 						<i class="glyphicon glyphicon-plus"></i>
+					</a>
+					
+					<a title="Photo List" href="{{url('album/photo', array($album->id))}}" class="btn btn-primary btn-xs">
+						<i class="glyphicon glyphicon-picture"></i>
 					</a>
 					
 					<a onclick="return confirm('Are you sure?');" title="Delete Album" href="{{url('album/delete', array($album->id))}}" class="btn btn-danger btn-xs">

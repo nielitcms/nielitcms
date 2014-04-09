@@ -70,7 +70,7 @@ Route::get('/album/create', 'AlbumController@create');
 Route::post('/album/create', 'AlbumController@store');
 Route::get('/album', 'AlbumController@index');
 Route::get('/album/edit/{id}', 'AlbumController@edit');
-Route::post('/album/edit/{id}', 'AlbumController@store');
+Route::post('/album/edit/{id}', 'AlbumController@update');
 Route::get('/album/delete/{id}', 'AlbumController@destroy');
 
 Route::get('/photo/add/{id}', 'PhotoController@create');
@@ -80,6 +80,6 @@ Route::get('/photo/{id}', 'PhotoController@show');
 Route::get('/photo/delete/{id}', 'PhotoController@destroy');
 // Route::get('/photo/{id}', 'PhotoController@show');
 // Route::get('/photo/delete/{id}', 'PhotoController@destroy');
-// Route::get('/photo/edit/{id}', 'PhotoController@edit');
-// Route::post('/photo/edit/{id}', 'PhotoController@update');
+Route::get('/photo/edit/{id}', 'PhotoController@edit');
+Route::post('/photo/edit/{id}', 'PhotoController@update'); 
 

@@ -3,7 +3,12 @@
 @section('content')
 
 <div class="col-sm-12">
-	<h3><i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Photo List</h3>
+	<h3>
+		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> {{$album->title}} &raquo; Photo List
+		<a title="Add Photo" href="{{url('photo/add', array($album->id))}}" class="btn btn-success btn-xs pull-right">
+			<i class="glyphicon glyphicon-plus"></i> ADD PHOTO
+		</a>
+	</h3>
 	<hr>
 
 	@if(Session::has('message'))
