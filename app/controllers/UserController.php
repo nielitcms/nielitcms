@@ -4,6 +4,9 @@ class UserController extends BaseController {
 
 	public function index()
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$users = user::paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $users->getCurrentPage() > 1? (($users->getCurrentPage()-1) * $users->getPerPage())+1 : 1;
@@ -21,11 +24,17 @@ class UserController extends BaseController {
 
 	public function create()
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		return View::make('user.create');
 	}
 
 	public function createUser()
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+		
 		$rules = array(
 			'username'=> 'required|alpha_dash|between:4,8|unique:users,username',
 			'display_name'=> 'required',
@@ -55,7 +64,9 @@ class UserController extends BaseController {
 
 	public function remove($id)
 	{
-		
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		User::destroy($id);
 		return Redirect::to('user')
 			->with('message','User deleted Successfully');
@@ -63,6 +74,9 @@ class UserController extends BaseController {
 
 	public function edit($id)
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$user=User::find($id);
 		return View::make('user.edit')
 			->with('user',$user);
@@ -70,6 +84,9 @@ class UserController extends BaseController {
 
 	public function postEdit($id)
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$rules = array(
 			'username'=> 'required|alpha_dash|between:4,20|unique:users,username,'.$id,
 			'display_name'=> 'required',

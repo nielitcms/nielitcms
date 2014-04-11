@@ -37,6 +37,9 @@ class MenuController extends BaseController {
 
 	public function create($menulocation)
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$parent = array('0' => 'No Parent') + Menu::where('parent', '=', 0)->orderBy('title', 'asc')->get()->lists('title', 'id');
 		return View::make('menu.create')
 			->with(array(
@@ -48,6 +51,9 @@ class MenuController extends BaseController {
 
 	public function store($menulocation)
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$rules = array(
 			'title'=> 'required',
 			'url'=>'required|url'
@@ -74,7 +80,10 @@ class MenuController extends BaseController {
 	}
 
 	public function destroy($id)
-	{		
+	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+		
 		$menulocation=Menu::find($id)->position;
 		Menu::destroy($id);
 		return Redirect::to('menu/list/'.$menulocation)
@@ -83,6 +92,9 @@ class MenuController extends BaseController {
 
 	public function edit($id)
 	{ 
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$parent = array('0' => 'No Parent') + Menu::where('parent', '=', 0)->orderBy('title', 'asc')->get()->lists('title', 'id');
 		$menu=Menu::find($id);
 		return View::make('menu.edit')
@@ -94,6 +106,9 @@ class MenuController extends BaseController {
 
 	public function update($id)
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$rules=array(
 			'title'=>'required',
 			'url'=>'required'

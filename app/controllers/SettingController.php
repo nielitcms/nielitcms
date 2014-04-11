@@ -9,6 +9,9 @@ class SettingController extends \BaseController {
 	 */
 	public function index()
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		return View::make('setting.index');
 	}
 
@@ -29,6 +32,9 @@ class SettingController extends \BaseController {
 	 */
 	public function store()
 	{
+		if(in_array(Auth::user()->role, array('editor')))
+			return Redirect::to('denied');
+
 		$rules = array(
 			'site_title' => 'required',
 			'no_of_item_perpage'=> 'required|integer|min:1|max:10'

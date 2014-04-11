@@ -4,6 +4,7 @@
 			<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 		</a>
 	</li>
+	@if(in_array(Auth::user()->role, array('administrator')))
 	<li {{(Request::path() == 'menu/list/top')?'class="active"':''}}>
 		<a href="{{url('menu/list/top')}}">
 			<span class="glyphicon glyphicon-tasks"></span> Top Menu
@@ -19,6 +20,7 @@
 			<span class="glyphicon glyphicon-tasks"></span> Sidebar Menu	
 		</a>
 	</li>
+	@endif
 </ul>
 
 <ul class="nav nav-sidebar">
@@ -76,7 +78,6 @@
 			<span class="glyphicon glyphicon-plus"></span> Add Album
 		</a>
 	</li>
-
 	<li {{(Request::path() == 'album')?'class="active"':''}}>
 		<a href="{{url('album')}}">
 			<span class="glyphicon glyphicon-list"></span> Albums	
@@ -86,6 +87,7 @@
 
 
 <ul class="nav nav-sidebar">
+	@if(in_array(Auth::user()->role, array('administrator')))
 	<li {{(Request::path() == 'user/create')?'class="active"':''}}>
 		<a href="{{url('user/create')}}">
 			<span class="glyphicon glyphicon-plus"></span> Add User
@@ -96,6 +98,7 @@
 			<span class="glyphicon glyphicon-list"></span> Users	
 		</a>
 	</li>
+	@endif
 
 </ul>
 
