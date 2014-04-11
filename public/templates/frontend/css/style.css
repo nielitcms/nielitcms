@@ -1,15 +1,26 @@
 body {
-	background: #dadada;
+	background: #ffffff;
 }
-.navbar-default {
-	background-color: #4F66C0;
+.header {
+	width: 100%;
 }
-.navbar-default .navbar-brand {
-	color: #ffffff;
+.header .logo {
+	margin:20px 0 0;
 }
-.navbar-default .navbar-nav>li>a {
-	color: #ffffff;
+.top-navigation {
+	width: 100%;
+	background: transparent url(../images/top-navigation-bg.jpg) repeat-x 0 20px;
 }
+.top-navigation .nav {
+	margin-top: 20px;
+}
+.top-navigation .nav.navbar-nav>li>a {
+	font-family: 'bebas_neueregular';
+	font-size: 18px;
+	color: #2d2f31;
+	font-weight: 600;
+}
+
 .main-area {
 	margin-bottom: 80px;
 }

@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="{{asset('lib/jquery/jquery-1.11.0.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('lib/bootstrap-3.1.1-dist/js/bootstrap.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('templates/frontend/js/script.js')}}"></script>
+	<link type="text/css" href="{{asset('lib/fonts/bebasneue_regular_macroman/stylesheet.css')}}" rel="stylesheet" />
 </head>
 <!-- <body onload="sayHello()"> -->
 <body>

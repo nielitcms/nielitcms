@@ -39,9 +39,24 @@
 				<td>{{$photo->album->title}}</td>
 
 				<td class="tools">
-					<a title="View Photo" href="{{url('photo/edit', array($photo->id))}}" class="btn btn-success btn-xs">
-						<i class="glyphicon glyphicon-picture"></i>
+					<a data-toggle="modal" data-target="#myModal{{$photo->id}}" title="View Photo" href="{{url('photo/show', array($photo->id))}}" class="btn btn-success btn-xs">
+						<i class="glyphicon glyphicon-eye-open"></i>
 					</a>
+
+					<!-- Modal -->
+					<div class="modal fade" id="myModal{{$photo->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">{{$photo->title}}</h4>
+								</div>
+								<div class="modal-body text-center">
+									<img width="550px" src="{{asset($photo->photo_path)}}" title="{{$photo->title}}" alt="{{$photo->title}}" />
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<a title="Edit Photo" href="{{url('photo/edit', array($photo->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>

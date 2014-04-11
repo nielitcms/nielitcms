@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@welcome');
+Route::get('/', array('uses'=>'HomeController@index'));
 
 Route::get('/user/create', array('uses'=>'UserController@create', 'before'=>'auth'));
 Route::post('/user/create', array('uses'=>'UserController@createUser', 'before'=>'auth'));
