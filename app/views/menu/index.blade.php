@@ -7,21 +7,21 @@
 	<h3>
 		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Top Menu List
 		<a title="Add Top Menu" href="{{url('menu/create/top')}}" class="btn btn-success btn-xs pull-right">
-			<i class="glyphicon glyphicon-plus"></i> TOP MENU LIST
+			<i class="glyphicon glyphicon-plus"></i> ADD TOP MENU
 		</a>
 	</h3>
 	@elseif($menulocation == 'bottom')
 	<h3>
 		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Bottom Menu List
 		<a title="Add Top Menu" href="{{url('menu/create/bottom')}}" class="btn btn-success btn-xs pull-right">
-			<i class="glyphicon glyphicon-plus"></i> BOTTOM MENU  LIST
+			<i class="glyphicon glyphicon-plus"></i> ADD BOTTOM MENU
 		</a>
 	</h3>
 	@elseif($menulocation == 'sidebar')
 	<h3>
 		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Sidebar Menu List
 		<a title="Add Top Menu" href="{{url('menu/create/sidebar')}}" class="btn btn-success btn-xs pull-right">
-			<i class="glyphicon glyphicon-plus"></i> SIDEBAR MENU LIST
+			<i class="glyphicon glyphicon-plus"></i> ADD SIDEBAR MENU
 		</a>
 	</h3>
 	@endif
