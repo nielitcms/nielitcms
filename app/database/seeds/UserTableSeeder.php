@@ -9,7 +9,8 @@ class UserTableSeeder extends Seeder {
         	'username' => 'admin',
         	'display_name' => 'Administrator',
         	'password' => Hash::make('admin'),
-        	'role' => 'administrator'
+        	'role' => 'administrator',
+            'status'=>'active'
         	));
     }
 

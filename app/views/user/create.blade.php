@@ -74,7 +74,7 @@
 				</div>
 
 				<div class="form-group">
-					{{Form::select('status', array(''=>'Select Status', 'pending'=>'pending', 'active'=>'active', 'inactive'=>'inactive' ), Input::old('status'), array('class'=>'input-sm form-control tooltip-right', 'title'=>'Status'))}}
+					{{Form::select('status', array(''=>'Select Status', 'pending'=>'Pending', 'active'=>'Active', 'inactive'=>'Inactive' ), Input::old('status'), array('class'=>'input-sm form-control tooltip-right', 'title'=>'Status'))}}
 					
 					@if($errors->has('status'))
 					<span class="help-block">
