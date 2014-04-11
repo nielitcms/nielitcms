@@ -12,7 +12,7 @@ class PostController extends \BaseController {
 		$posts = Content::with('author', 'categories')
 			->where('type','=','post')
 			->orderBy('created_at', 'desc')
-			->paginate(2);
+			->paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $posts->getCurrentPage() > 1? (($posts->getCurrentPage()-1) * $posts->getPerPage())+1 : 1;
 

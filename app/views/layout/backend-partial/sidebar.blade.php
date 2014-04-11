@@ -4,6 +4,21 @@
 			<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 		</a>
 	</li>
+	<li {{(Request::path() == 'menu/list/top')?'class="active"':''}}>
+		<a href="{{url('menu/list/top')}}">
+			<span class="glyphicon glyphicon-tasks"></span> Top Menu
+		</a>
+	</li>
+	<li {{(Request::path() == 'menu/list/bottom')?'class="active"':''}}>
+		<a href="{{url('menu/list/bottom')}}">
+			<span class="glyphicon glyphicon-tasks"></span> Bottom Menu
+		</a>
+	</li>
+	<li {{(Request::path() == 'menu/list/sidebar')?'class="active"':''}}>
+		<a href="{{url('menu/list/sidebar')}}">
+			<span class="glyphicon glyphicon-tasks"></span> Sidebar Menu	
+		</a>
+	</li>
 </ul>
 
 <ul class="nav nav-sidebar">
@@ -61,6 +76,7 @@
 			<span class="glyphicon glyphicon-plus"></span> Add Album
 		</a>
 	</li>
+
 	<li {{(Request::path() == 'album')?'class="active"':''}}>
 		<a href="{{url('album')}}">
 			<span class="glyphicon glyphicon-list"></span> Albums	

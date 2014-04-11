@@ -12,9 +12,9 @@
 
 	{{Form::open(array('url'=>'photo/add/'. $album->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
 		<div class="form-group">
-			{{Form::label('title', 'File Title', array('class'=>'control-label'))}}
+			{{Form::label('title', 'Photo Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 
-			'placeholder'=>'File Title', 'title'=>'File Title'))}}
+			'placeholder'=>'Photo Title', 'title'=>'Photo Title'))}}
 			
 			@if($errors->has('title'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('title')}}</span></p>
@@ -23,10 +23,10 @@
 
 		<div class="form-group">
 			{{Form::label('photo_path', 'File', array('class'=>'control-label'))}}
-			{{Form::file('photo_path', array('class'=>'form-control input-sm'))}}
+			{{Form::file('photo_path', array('class'=>''))}}
 
 			@if($errors->has('photo_path'))
-			<p class="help-block"><span class="text-danger">{{$errors->first('photo')}}</span></p>
+			<p class="help-block"><span class="text-danger">{{$errors->first('photo_path')}}</span></p>
 			@endif
 		</div>
 
@@ -36,8 +36,6 @@
 		</div>
 	{{Form::close()}}
 </div>
-
-
 @stop
 
 

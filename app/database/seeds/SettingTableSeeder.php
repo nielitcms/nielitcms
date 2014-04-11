@@ -22,6 +22,13 @@ class SettingTableSeeder extends Seeder {
             'setting_title' => 'Allowed File Extension',
         	'setting_data' => 'jpg,jpeg,bmp,gif,png,pdf,docx,doc,xls,xlsx,txt',
         	));
+
+        DB::table('settings')->insert(array(
+            'setting_key' => 'no_of_item_perpage',
+            'setting_title' => 'No Of Item Per Page',
+            'setting_data' => '1',
+            ));
+
     }
 
 }

@@ -9,10 +9,9 @@ class AlbumController extends \BaseController {
 	//  */
 	public function index()
 	{
-
 		$albums= Album::with('creator', 'photos')
 			->orderBy('created_at', 'desc')
-			->paginate(2);
+			->paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $albums->getCurrentPage() > 1? (($albums->getCurrentPage()-1) * $albums->getPerPage())+1 : 1;
 		return View::make('album.index')

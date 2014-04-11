@@ -12,7 +12,7 @@ class PageController extends \BaseController {
 		$pages = Content::with('author')
 			->where('type','=','page')
 			->orderBy('created_at', 'desc')
-			->paginate(2);
+			->paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $pages->getCurrentPage() > 1? (($pages->getCurrentPage()-1) * $pages->getPerPage())+1 : 1;
 

@@ -31,7 +31,7 @@
 					@if($post->status == 'published')
 					<span class="btn btn-success btn-xs">{{ucwords($post->status)}}</span>
 					@else
-					<span class="btn btn-warning btn-xs">{{ucwords($post->status)}}</span>
+					<span class="btn btn-primary btn-xs">{{ucwords($post->status)}}</span>
 					@endif
 				</td>
 				<td>{{implode(', ', $post->categories->lists('name'))}}</td>

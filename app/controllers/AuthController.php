@@ -12,7 +12,7 @@ class AuthController extends BaseController
 		$password = Input::get('password');
 
 		if (Auth::attempt(array('username' => $username, 'password' => $password))) {
-			return Redirect::intended('/admin');
+			return Redirect::to('/admin');
 		}
 		else
 			return Redirect::to('login')->with('message', 'Incorrect username or password');
@@ -22,5 +22,10 @@ class AuthController extends BaseController
 	{
 		Auth::logout();
 		return Redirect::to('login');
+	}
+
+	public function denied()
+	{
+		return View::make('auth.denied');
 	}
 }

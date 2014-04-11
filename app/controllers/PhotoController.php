@@ -11,7 +11,7 @@ class PhotoController extends \BaseController {
 	{
 		$photos = Photo::where('album_id', '=',$id)
 			->orderBy('created_at', 'desc')
-			->paginate(2);
+			->paginate(Setting::getData('no_of_item_perpage'));
 
 		$album = Album::find($id);
 
@@ -50,15 +50,15 @@ class PhotoController extends \BaseController {
 	{
 		$rules = array(
 			'title'=> 'required',
-			'photo_path' => 'required|mimes:' . Setting::getData('allowed_file_extension')
-		);	
+			'photo_path' => 'required|image|max:10000');
+		
 
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
 			return Redirect::to('photo/add/'.$id)
 				->withErrors($validation)
-				->withInput(array(Input::get('title')));
+				->withInput(array('title'=>Input::get('title')));
 		}
 
 		$file = Input::file('photo_path');

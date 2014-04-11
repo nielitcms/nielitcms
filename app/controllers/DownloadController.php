@@ -11,7 +11,7 @@ class DownloadController extends \BaseController {
 	{
 		$downloads = Download::with('creator')
 			->orderBy('created_at', 'desc')
-			->paginate(2);
+			->paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $downloads->getCurrentPage() > 1? (($downloads->getCurrentPage()-1) * $downloads->getPerPage())+1 : 1;
 		
@@ -50,7 +50,7 @@ class DownloadController extends \BaseController {
 		if ($validation ->fails()) {
 			return Redirect::to('download/create')
 				->withErrors($validation)
-				->withInput(array(Input::get('title'), Input::get('status')));
+				->withInput(array('title'=>Input::get('title'), 'status'=>Input::get('status')));
 		}
 
 		$file = Input::file('file_path');

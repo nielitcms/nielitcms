@@ -3,7 +3,7 @@ class CategoryController extends BaseController {
 
 	public function index()
 	{
-		$categories = Category::paginate(3);
+		$categories = Category::paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $categories->getCurrentPage() > 1? (($categories->getCurrentPage()-1) * $categories->getPerPage())+1 : 1;
 		return View::make('category.index')

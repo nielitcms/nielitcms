@@ -30,7 +30,8 @@ class SettingController extends \BaseController {
 	public function store()
 	{
 		$rules = array(
-			'site_title' => 'required'
+			'site_title' => 'required',
+			'no_of_item_perpage'=> 'required|integer|min:1|max:10'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -50,6 +51,10 @@ class SettingController extends \BaseController {
 		$allowed_file_extension = Input::get('allowed_file_extension');
 		Setting::where('setting_key', '=', 'allowed_file_extension')
 			->update(array('setting_data'=>$allowed_file_extension));
+
+		$no_of_item_perpage = Input::get('no_of_item_perpage');
+		Setting::where('setting_key', '=', 'no_of_item_perpage')
+			->update(array('setting_data'=>$no_of_item_perpage));
 
 		return Redirect::to('/settings')->with('message', 'Settings updated succesfully');
 	}

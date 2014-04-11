@@ -4,7 +4,7 @@ class UserController extends BaseController {
 
 	public function index()
 	{
-		$users = user::paginate(2);
+		$users = user::paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $users->getCurrentPage() > 1? (($users->getCurrentPage()-1) * $users->getPerPage())+1 : 1;
 		return View::make('user.index')
