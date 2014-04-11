@@ -19,6 +19,7 @@ class CreateMenusTable extends Migration {
 				$table->string('url')->nullable();
 				$table->enum('position', array('top', 'sidebar','bottom'))->default('top');
 				$table->integer('parent')->unsigned();
+				$table->integer('display_order')->unsigned();
 				$table->timestamps();
 				$table->softDeletes();
 			});

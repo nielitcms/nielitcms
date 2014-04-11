@@ -6,6 +6,11 @@
 	<h3><i class="glyphicon glyphicon-wrench"></i> Setting</h3>
 	<hr>
 
+	@if(Session::has('message'))
+	<div class="alert alert-success">{{Session::get('message')}}</div>	
+	@endif
+
+
 	<form class="form-vertical" action="/settings" method="post">
 		<div class="form-group">
 			{{Form::label('site_title', Setting::getTitle('site_title'), array('class'=>'control-label'))}}

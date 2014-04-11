@@ -43,6 +43,16 @@
 		</div>
 
 		<div class="form-group">
+			{{Form::label('display_order', 'Display Order', array('class'=>'control-label'))}}
+			{{Form::text('display_order', Input::old('display_order'), array('class'=>'form-control input-sm tooltip-left', 
+			'placeholder'=>'Display Order', 'title'=>'Display Order'))}}
+			
+			@if($errors->has('display_order'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('display_order')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
 			<button type="submit" name="submit" class="btn btn-sm btn-primary">Submit</button>
 		</div>
 	{{Form::close()}}

@@ -21,7 +21,7 @@ class MenuController extends BaseController {
 			return Redirect::to('denied');
 	
 		$menus = Menu::with('parent_menu')->where('position', '=',$menulocation)
-			->orderBy('created_at', 'desc')
+			->orderBy('title', 'asc')
 			->paginate(Setting::getData('no_of_item_perpage'));
 			
 		$index = $menus->getCurrentPage() > 1? (($menus->getCurrentPage()-1) * $menus->getPerPage())+1 : 1;
@@ -56,8 +56,8 @@ class MenuController extends BaseController {
 
 		$rules = array(
 			'title'=> 'required',
-			'url'=>'required|url'
-			
+			'url'=>'required|url',
+			'display_order'=>'required|numeric|min:1'
 		);	
 
 		$validation= Validator::make(Input::all(), $rules);
@@ -72,6 +72,7 @@ class MenuController extends BaseController {
 		$menu->title = Input::get('title');
 		$menu->url = Input::get('url');
 		$menu->parent = Input::get('parent');
+		$menu->display_order = Input::get('display_order');
 		$menu->position = $menulocation;
 		$menu->save();
 
@@ -111,7 +112,8 @@ class MenuController extends BaseController {
 
 		$rules=array(
 			'title'=>'required',
-			'url'=>'required'
+			'url'=>'required',
+			'display_order'=>'required|numeric|min:1'
 			);	
 
 		$validation= Validator::make(Input::all(), $rules);
@@ -128,6 +130,7 @@ class MenuController extends BaseController {
 		$menu->title = Input::get('title');
 		$menu->url = Input::get('url');
 		$menu->parent = Input::get('parent');
+		$menu->display_order = Input::get('display_order');
 		$menu->save();
 
 		return Redirect::to('menu/list/' .$menu->position)->with('message','Menu updated successfully');

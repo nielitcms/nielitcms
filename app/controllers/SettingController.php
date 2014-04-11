@@ -37,7 +37,7 @@ class SettingController extends \BaseController {
 
 		$rules = array(
 			'site_title' => 'required',
-			'no_of_item_perpage'=> 'required|integer|min:1|max:10'
+			'no_of_item_perpage'=> 'required|integer|min:1'
 			);
 		$validator = Validator::make(Input::all(), $rules);
 

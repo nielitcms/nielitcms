@@ -40,12 +40,13 @@
 				<th>Title</th>
 				<th>Url</th>
 				<th>Parent</th>
+				<th>Display Order</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			@if(!$menus->count())
-			<tr><td colspan="5" align="center"><i>Empty</i></td></tr>
+			<tr><td colspan="6" align="center"><i>Empty</i></td></tr>
 			@endif
 			
 			@foreach($menus as $key => $menu)
@@ -54,6 +55,7 @@
 				<td>{{$menu->title}}</td>
 				<td>{{$menu->url}}</td>
 				<td>{{($menu->parent != 0)?$menu->parent_menu->title:'No Parent'}}</td>
+				<td>{{$menu->display_order}}</td>
 				<td class="tools">
 					<a title="Edit Menu Title" href="{{url('menu/edit', array($menu->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
