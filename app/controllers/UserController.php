@@ -36,12 +36,13 @@ class UserController extends BaseController {
 			return Redirect::to('denied');
 		
 		$rules = array(
-			'username'=> 'required|alpha_dash|between:4,8|unique:users,username',
+			'username'=> 'required|alpha_dash|min:3|unique:users,username',
 			'display_name'=> 'required',
 			'email'=>'email',
 			'password'=> 'required',
 			'repeat_password'=> 'required|same:password',
-			'role'=> 'required'
+			'role'=> 'required',
+			'status'=> 'required'
 		);	
 
 		$validation= Validator::make(Input::all(), $rules);
@@ -91,10 +92,11 @@ class UserController extends BaseController {
 			return Redirect::to('denied');
 
 		$rules = array(
-			'username'=> 'required|alpha_dash|between:4,20|unique:users,username,'.$id,
+			'username'=> 'required|alpha_dash|min:3|unique:users,username,'.$id,
 			'display_name'=> 'required',
 			'email'=>'email',
-			'role'=>'required'
+			'role'=>'required',
+			'status'=>'required'
 		);
 
 		$validation= Validator::make(Input::all(), $rules);

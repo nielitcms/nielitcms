@@ -54,7 +54,7 @@
 				</div>
 
 				<div class="form-group">
-					{{Form::text('email', Input::old('email'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Email_id', 'title'=>'Email_id'))}}
+					{{Form::text('email', Input::old('email'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Email Id', 'title'=>'Email Id'))}}
 
 					@if($errors->has('email'))
 					<span class="help-block">
