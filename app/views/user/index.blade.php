@@ -31,8 +31,8 @@
 				<td>{{$user->username}}</td>
 				<td>{{$user->display_name}}</td>
 				<td>{{$user->email}}</td>
-				<td>{{$user->role}}</td>
-				<td>{{$user->status}}</td>
+				<td>{{ucwords($user->role)}}</td>
+				<td>{{ucwords($user->status)}}</td>
 				<td class="tools">
 					<a title="Edit User" href="{{url('user/edit', array($user->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
