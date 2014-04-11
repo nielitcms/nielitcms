@@ -30,11 +30,31 @@
 				</div>
 
 				<div class="form-group">
+					{{Form::text('email', Input::old('email', $user->email), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Email_id', 'title'=>'Email_id'))}}
+
+					@if($errors->has('email'))
+					<span class="help-block">
+						<p class="text-danger">{{$errors->first('email')}}</p>
+					</span>
+					@endif
+				</div>
+
+				<div class="form-group">
 					{{Form::select('role', array(''=>'Select Role', 'administrator'=>'Administrator', 'editor'=>'Editor'), Input::old('role', $user->role), array('class'=>'input-sm form-control tooltip-right', 'title'=>'Role'))}}
 					
 					@if($errors->has('role'))
 					<span class="help-block">
 						<p class="text-danger">{{$errors->first('role')}}</p>
+					</span>
+					@endif
+				</div>
+
+				<div class="form-group">
+					{{Form::select('status', array(''=>'Select Status', 'pending'=>'pending', 'active'=>'active', 'inactive'=>'inactive' ), Input::old('status', $user->status), array('class'=>'input-sm form-control tooltip-right', 'title'=>'Status'))}}
+					
+					@if($errors->has('status'))
+					<span class="help-block">
+						<p class="text-danger">{{$errors->first('status')}}</p>
 					</span>
 					@endif
 				</div>

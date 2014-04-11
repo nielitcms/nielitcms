@@ -18,7 +18,12 @@ class CreateUsersTable extends Migration {
 				$table->string('username');
 				$table->string('display_name')->nullable();
 				$table->string('password');
+				$table->string('email')->nullable();
 				$table->enum('role', array('administrator', 'editor'))->default('editor');
+				$table->string('token')->nullable();
+				$table->string('token_expiry_time')->nullable();
+				$table->enum('status', array('active', 'inactive', 'pending'))->default('pending');
+			
 				$table->timestamps();
 				$table->softDeletes();
 			});
