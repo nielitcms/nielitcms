@@ -38,6 +38,7 @@ class UserController extends BaseController {
 		$rules = array(
 			'username'=> 'required|alpha_dash|between:4,8|unique:users,username',
 			'display_name'=> 'required',
+			'email'=>'email',
 			'password'=> 'required',
 			'repeat_password'=> 'required|same:password',
 			'role'=> 'required'
@@ -55,7 +56,9 @@ class UserController extends BaseController {
 		$user->username = Input::get('username');
 		$user->password = Hash::make(Input::get('password'));
 		$user->display_name = Input::get('display_name');
+		$user->email = Input::get('email');
 		$user->role = Input::get('role');
+		$user->status = Input::get('status');
 		$user->save();
 
 		return Redirect::to('user')
@@ -90,6 +93,7 @@ class UserController extends BaseController {
 		$rules = array(
 			'username'=> 'required|alpha_dash|between:4,20|unique:users,username,'.$id,
 			'display_name'=> 'required',
+			'email'=>'email',
 			'role'=>'required'
 		);
 
@@ -104,7 +108,9 @@ class UserController extends BaseController {
 		$user = User::find($id);
 		$user->username = Input::get('username');
 		$user->display_name = Input::get('display_name');
+		$user->email = Input::get('email');
 		$user->role = Input::get('role');
+		$user->status = Input::get('status');
 		$user->save();
 		
 		return Redirect::to('user')

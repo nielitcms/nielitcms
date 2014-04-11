@@ -64,7 +64,7 @@
 				</div>
 
 				<div class="form-group">
-					{{Form::select('role', array(''=>'Select Role', 'administrator'=>'Administrator', 'editor'=>'Editor'), Input::old('role'), array('class'=>'input-sm form-control tooltip-right', 'title'=>'Role'))}}
+					{{Form::select('role', array(''=>'Select Role', 'administrator'=>'Administrator', 'editor'=>'Editor' , 'user'=>'User'), Input::old('role'), array('class'=>'input-sm form-control tooltip-right', 'title'=>'Role'))}}
 					
 					@if($errors->has('role'))
 					<span class="help-block">
