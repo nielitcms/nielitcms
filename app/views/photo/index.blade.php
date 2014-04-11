@@ -39,6 +39,10 @@
 				<td>{{$photo->album->title}}</td>
 
 				<td class="tools">
+					<a title="View Photo" href="{{url('photo/edit', array($photo->id))}}" class="btn btn-success btn-xs">
+						<i class="glyphicon glyphicon-picture"></i>
+					</a>
+
 					<a title="Edit Photo" href="{{url('photo/edit', array($photo->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
