@@ -26,6 +26,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$photos->count())
+			<tr><td colspan="5" align="center"><i>Empty</i></td></tr>
+			@endif
+			
 			@foreach($photos as $key => $photo)
 			<tr>
 				<td>{{$key+$index}}</td>

@@ -22,6 +22,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$posts->count())
+			<tr><td colspan="6" align="center"><i>Empty</i></td></tr>
+			@endif
+			
 			@foreach($posts as $key => $post)
 			<tr>
 				<td>{{$key+$index}}</td>

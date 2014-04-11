@@ -21,6 +21,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$pages->count())
+			<tr><td colspan="5" align="center"><i>Empty</i></td></tr>
+			@endif
+			
 			@foreach($pages as $key => $page)
 			<tr>
 				<td>{{$key+$index}}</td>

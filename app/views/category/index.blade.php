@@ -18,6 +18,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$categories->count())
+			<tr><td colspan="3" align="center"><i>Empty</i></td></tr>
+			@endif
+			
 			@foreach ($categories as $key => $category)
 			<tr>
 				<td>{{$key+$index}}</td>

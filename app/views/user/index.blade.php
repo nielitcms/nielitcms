@@ -22,6 +22,9 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$users->count())
+			<tr><td colspan="7" align="center"><i>Empty</i></td></tr>
+			@endif
 			@foreach ($users as $key => $user)
 			<tr>
 				<td>{{$key+$index}}</td>

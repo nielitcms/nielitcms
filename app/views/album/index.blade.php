@@ -21,6 +21,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$albums->count())
+			<tr><td colspan="6" align="center"><i>Empty</i></td></tr>
+			@endif
+			
 			@foreach ($albums as $key => $album)
 			<tr>
 				<td>{{$key+$index}}</td>

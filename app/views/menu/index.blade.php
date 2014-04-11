@@ -10,13 +10,15 @@
 			<i class="glyphicon glyphicon-plus"></i> ADD TOP MENU
 		</a>
 	</h3>
+	<hr>
 	@elseif($menulocation == 'bottom')
 	<h3>
-		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Bottom Menu List
+			<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Bottom Menu List
 		<a title="Add Top Menu" href="{{url('menu/create/bottom')}}" class="btn btn-success btn-xs pull-right">
 			<i class="glyphicon glyphicon-plus"></i> ADD BOTTOM MENU
 		</a>
 	</h3>
+	<hr>
 	@elseif($menulocation == 'sidebar')
 	<h3>
 		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Sidebar Menu List
@@ -24,6 +26,7 @@
 			<i class="glyphicon glyphicon-plus"></i> ADD SIDEBAR MENU
 		</a>
 	</h3>
+	<hr>
 	@endif
 
 	@if(Session::has('message'))

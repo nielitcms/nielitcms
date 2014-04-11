@@ -22,6 +22,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$downloads->count())
+			<tr><td colspan="6" align="center"><i>Empty</i></td></tr>
+			@endif
+			
 			@foreach($downloads as $key => $download)
 			<tr>
 				<td>{{$key+$index}}</td>
