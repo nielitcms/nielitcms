@@ -41,6 +41,10 @@
 			</tr>
 		</thead>
 		<tbody>
+			@if(!$menus->count())
+			<tr><td colspan="5" align="center"><i>Empty</i></td></tr>
+			@endif
+			
 			@foreach($menus as $key => $menu)
 			<tr>
 				<td>{{$key+$index}}</td>
