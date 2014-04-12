@@ -90,3 +90,7 @@ Route::get('/menu/delete/{id}', array('uses'=>'MenuController@destroy','before'=
 
 Route::get('denied', array('uses'=>'AuthController@denied'));
 
+
+Route::get('/register', 'RegisterController@create');
+Route::post('/register', 'RegisterController@store');
+
