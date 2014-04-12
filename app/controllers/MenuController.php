@@ -89,14 +89,25 @@ class MenuController extends BaseController {
 	public function destroy($id)
 	{
 		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('editor')))
-			return Redirect::to('denied');
+		return Redirect::to('denied');
+
+		$page = Input::get('page');
 		
+		$count=Menu::count();
+		if($count%Setting::getData('no_of_item_perpage')==1)
+			$page=$page-1;
 		$menulocation=Menu::find($id)->position;
 		Menu::destroy($id);
-		return Redirect::to('menu/list/'.$menulocation)
-			->with('message','Menu deleted successfully');		
+		
+		if($page)
+			return Redirect::to('menu/list/'.$menulocation.'?page=' . $page)->with('message', 'Menu deleted successfully.');
+		else
+			return Redirect::to('menu/list/'.$menulocation)->with('message', 'Menu deleted successfully.');
+
+
+
+
+
 	}
 
 	public function edit($id)

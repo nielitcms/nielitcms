@@ -45,7 +45,7 @@
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					
-					<a onclick="return confirm('Are you sure?');" title="Delete Post" href="{{url('post/delete', array($post->id))}}" class="btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" title="Delete Post" href="{{url('post/delete', array($post->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>

@@ -46,12 +46,28 @@ class CategoryController extends BaseController {
 	
 	public function remove($id)
 	{
+		
 		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
+		return Redirect::to('denied');
+
+		$page = Input::get('page');
+		
+		$count=Category::count();
+		if($count%Setting::getData('no_of_item_perpage')==1)
+			$page=$page-1;
 		$category = Category::find($id);
 		$category->posts()->detach();
 		Category::destroy($id);
-		return Redirect::to('category')->with('message','Category deleted successfully');
+		
+		if($page)
+			return Redirect::to('category/?page=' . $page)->with('message', 'Category deleted successfully.');
+		else
+			return Redirect::to('category/')->with('message', 'Category deleted successfully.');	
+
+
+
+
+
 	}
 
 	public function edit($id)
@@ -79,4 +95,3 @@ class CategoryController extends BaseController {
 	return Redirect::to('category')->with('message', 'Category updated successfully');
 	}
 }
-?>

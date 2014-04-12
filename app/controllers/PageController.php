@@ -135,8 +135,21 @@ class PageController extends \BaseController {
 	public function destroy($id)
 	{
 		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
+		return Redirect::to('denied');
+
+		$page = Input::get('page');
+		
+		$count=Content::count();
+		if($count%Setting::getData('no_of_item_perpage')==1)
+			$page=$page-1;
 		Content::destroy($id);
-		return Redirect::to('page')->with('message','Page deleted Successfully');
+		
+		if($page)
+			return Redirect::to('page/?page=' . $page)->with('message', 'Page deleted successfully.');
+		else
+			return Redirect::to('page/')->with('message', 'Page deleted successfully.');
+
+
+
 	}
 }

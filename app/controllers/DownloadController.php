@@ -166,12 +166,22 @@ class DownloadController extends \BaseController {
 	public function destroy($id)
 	{
 		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
+		return Redirect::to('denied');
+
+		$page = Input::get('page');
+		
+		$count=Download::count();
+		if($count%Setting::getData('no_of_item_perpage')==1)
+			$page=$page-1;
 		$download = Download::find($id);
 		File::delete(public_path().'/'.$download->file_path);
 		$download->delete();
 		
-		return Redirect::to('download')->with('message', 'Download deleted successfully.');
+		if($page)
+			return Redirect::to('download/?page=' . $page)->with('message', 'Download deleted successfully.');
+		else
+			return Redirect::to('download/')->with('message', 'Download deleted successfully.');
+
 	}
 
 	public function album()

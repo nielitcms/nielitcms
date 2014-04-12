@@ -71,12 +71,23 @@ class UserController extends BaseController {
 
 	public function remove($id)
 	{
-		if(in_array(Auth::user()->role, array('editor','user')))
-			return Redirect::to('denied');
+		if(in_array(Auth::user()->role, array('user')))
+		return Redirect::to('denied');
 
+		$page = Input::get('page');
+		
+		$count=User::count();
+		if($count%Setting::getData('no_of_item_perpage')==1)
+			$page=$page-1;
 		User::destroy($id);
-		return Redirect::to('user')
-			->with('message','User deleted Successfully');
+		
+		if($page)
+			return Redirect::to('user/?page=' . $page)->with('message', 'User deleted successfully.');
+		else
+			return Redirect::to('user/')->with('message', 'User deleted successfully.');
+
+
+
 	}
 
 	public function edit($id)

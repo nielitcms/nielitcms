@@ -146,12 +146,24 @@ class PostController extends \BaseController {
 	public function destroy($id)
 	{
 		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
+		return Redirect::to('denied');
+
+		$page = Input::get('page');
+		
+		$count=Content::count();
+		if($count%Setting::getData('no_of_item_perpage')==1)
+			$page=$page-1;
 		$content = Content::find($id);
 		$content->categories()->detach();
 		$content->delete();
 		
-		return Redirect::to('post')->with('message', 'Post deleted successfully.');
+		if($page)
+			return Redirect::to('post/?page=' . $page)->with('message', 'Post deleted successfully.');
+		else
+			return Redirect::to('post/')->with('message', 'Post deleted successfully.');
+
+
+
 	}
 
 }
