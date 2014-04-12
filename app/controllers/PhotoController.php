@@ -162,14 +162,22 @@ class PhotoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+<<<<<<< HEAD
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
+=======
+		$page = Input::get('page');
+
+>>>>>>> f34e8428cdc31f4eaec4554445439323775a9e40
 		$photo = Photo::find($id);
 		$albumid=$photo->album_id;
 		File::delete(public_path().'/'.$photo->photo_path);
 		$photo->delete();
 		
-		return Redirect::to('album/photo/' . $albumid)->with('message', 'Photo deleted successfully.');
+		if($page)
+			return Redirect::to('album/photo/' . $albumid . '?page=' . $page)->with('message', 'Photo deleted successfully.');
+		else
+			return Redirect::to('album/photo/' . $albumid)->with('message', 'Photo deleted successfully.');
 	
 	}
 
