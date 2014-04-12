@@ -45,7 +45,7 @@
 						<i class="glyphicon glyphicon-picture"></i>
 					</a>
 					
-					<a onclick="return confirm('Are you sure?');" title="Delete Album" href="{{url('album/delete', array($album->id))}}" class="btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" title="Delete Album" href="{{url('album/delete', array($album->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>
