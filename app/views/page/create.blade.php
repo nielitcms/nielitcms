@@ -6,7 +6,7 @@
 	<h3><i class="glyphicon glyphicon-plus"></i> Add New Page</h3>
 	<hr>
 
-	<form class="form-vertical" action="" method="post">
+	{{Form::open(array('url'=>'admin/page/create', 'method'=>'post', 'class'=>'form-vertical'))}}
 		<div class="form-group">
 			{{Form::label('title', 'Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Page Title', 'title'=>'Page Title'))}}
@@ -37,7 +37,7 @@
 		<div class="form-group">
 			<button type="submit" name="submit" class="btn btn-sm btn-primary">Submit</button>
 		</div>
-	</form>
+	{{Form::close()}}
 </div>
 
 @stop

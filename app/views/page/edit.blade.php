@@ -6,8 +6,8 @@
 	<h3><i class="glyphicon glyphicon-edit"></i> Edit Page</h3>
 	<hr>
 
-	<form class="form-vertical" action="admin/page/edit/{{$page->id}}" method="post">
-		<div class="form-group">
+	{{Form::open(array('url'=>'admin/page/edit/'.$page->id, 'method'=>'post', 'class'=>'form-vertical'))}}
+			<div class="form-group">
 			{{Form::label('title', 'Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title', $page->title), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Page Title', 'title'=>'Page Title'))}}
 			
@@ -37,7 +37,7 @@
 		<div class="form-group">
 			<button type="submit" name="submit" class="btn btn-sm btn-primary">Save</button>
 		</div>
-	</form>
+	{{Form::close()}}
 </div>
 
 @stop
