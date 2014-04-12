@@ -6,7 +6,7 @@
 	<h3><i class="glyphicon glyphicon-edit"></i> Edit Download</h3>
 	<hr>
 
-	{{Form::open(array('url'=>'download/edit/' . $download->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
+	{{Form::open(array('url'=>'admin/download/edit/' . $download->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
 		<div class="form-group">
 			{{Form::label('title', 'File Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title', $download->title), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'File Title', 'title'=>'File Title'))}}

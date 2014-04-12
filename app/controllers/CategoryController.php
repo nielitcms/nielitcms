@@ -33,14 +33,14 @@ class CategoryController extends BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if($validation ->fails()) {
-			return Redirect::to('category/create')->withErrors($validation);
+			return Redirect::to('/admin/category/create')->withErrors($validation);
 		}
 
 		$category = new Category;
 		$category->name = Input::get('name');
 		$category->save();
 		
-		return Redirect::to('category')->with('message','Category created successfully');
+		return Redirect::to('/admin/category')->with('message','Category created successfully');
 	}
 
 	public function show($id)
@@ -86,9 +86,9 @@ class CategoryController extends BaseController {
 		Category::destroy($id);
 		
 		if($page)
-			return Redirect::to('category/?page=' . $page)->with('message', 'Category deleted successfully.');
+			return Redirect::to('/admin/category/?page=' . $page)->with('message', 'Category deleted successfully.');
 		else
-			return Redirect::to('category/')->with('message', 'Category deleted successfully.');	
+			return Redirect::to('/admin/category/')->with('message', 'Category deleted successfully.');	
 	}
 
 	public function edit($id)
@@ -122,12 +122,12 @@ class CategoryController extends BaseController {
 		$validation = Validator::make(Input::all(), $rules);
 
 		if($validation ->fails()) {
-			return Redirect::to('category/edit/'. $id)->withErrors($validation);
+			return Redirect::to('/admin/category/edit/'. $id)->withErrors($validation);
 		}
 
 		$category = Category::find($id);
 		$category->name = Input::get('name');
 		$category->save();
-		return Redirect::to('category')->with('message', 'Category updated successfully');
+		return Redirect::to('/admin/category')->with('message', 'Category updated successfully');
 	}
 }

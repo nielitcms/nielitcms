@@ -30,7 +30,7 @@
 			<tr>
 				<td>{{$key+$index}}</td>
 				<td>{{$download->title}}</td>
-				<td><a href="{{url('download/' . $download->id)}}" target="_blank" class="btn btn-xs btn-primary">
+				<td><a href="{{url('admin/download/' . $download->id)}}" target="_blank" class="btn btn-xs btn-primary">
 					<i class="glyphicon glyphicon-download"></i> Download</a></td>
 				<td>
 					@if($download->status == 'active')
@@ -42,11 +42,11 @@
 				<td>{{$download->creator->display_name}}</td>
 
 				<td class="tools">
-					<a title="Edit Download" href="{{url('download/edit', array($download->id))}}" class="btn btn-warning btn-xs">
+					<a title="Edit Download" href="{{url('admin/download/edit', array($download->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					
-					<a onclick="return confirm('Are you sure?');" title="Delete Download" href="{{url('download/delete', array($download->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" title="Delete Download" href="{{url('admin/download/delete', array($download->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>

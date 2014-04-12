@@ -38,11 +38,11 @@
 					@endif
 				</td>
 				<td>
-					<a href="{{url('page/edit', array($page->id))}}" title="Edit Page" class="tooltip-top btn btn-warning btn-xs">
+					<a href="{{url('admin/page/edit', array($page->id))}}" title="Edit Page" class="tooltip-top btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 
-					<a onclick="return confirm('Are you sure?');" href="{{url('page/delete', array($page->id))}}?page={{Input::get('page')}}" title="Delete Page" class="tooltip-top btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" href="{{url('admin/page/delete', array($page->id))}}?page={{Input::get('page')}}" title="Delete Page" class="tooltip-top btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>

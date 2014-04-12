@@ -6,7 +6,7 @@
 	<h3><i class="glyphicon glyphicon-edit"></i> Edit Page</h3>
 	<hr>
 
-	<form class="form-vertical" action="/page/edit/{{$page->id}}" method="post">
+	<form class="form-vertical" action="admin/page/edit/{{$page->id}}" method="post">
 		<div class="form-group">
 			{{Form::label('title', 'Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title', $page->title), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Page Title', 'title'=>'Page Title'))}}

@@ -51,7 +51,7 @@ class UserController extends BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('user/create')
+			return Redirect::to('/admin/user/create')
 				->withErrors($validation)
 				->withInput(Input::all());
 		}
@@ -65,7 +65,7 @@ class UserController extends BaseController {
 		$user->status = Input::get('status');
 		$user->save();
 
-		return Redirect::to('user')
+		return Redirect::to('/admin/user')
 			->with('message','User Created Successfully');
 	}
 
@@ -82,9 +82,9 @@ class UserController extends BaseController {
 		User::destroy($id);
 		
 		if($page)
-			return Redirect::to('user/?page=' . $page)->with('message', 'User deleted successfully.');
+			return Redirect::to('/admin/user/?page=' . $page)->with('message', 'User deleted successfully.');
 		else
-			return Redirect::to('user/')->with('message', 'User deleted successfully.');
+			return Redirect::to('/admin/user/')->with('message', 'User deleted successfully.');
 
 
 
@@ -116,7 +116,7 @@ class UserController extends BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('user/edit/'. $id)
+			return Redirect::to('/admin/user/edit/'. $id)
 				->withErrors($validation)
 				->withInput(Input::all());
 		}
@@ -129,7 +129,7 @@ class UserController extends BaseController {
 		$user->status = Input::get('status');
 		$user->save();
 		
-		return Redirect::to('user')
+		return Redirect::to('/admin/user')
 			->with('message','User Edit Successfully');
 	}
 
@@ -149,7 +149,7 @@ class UserController extends BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('user/changepassword/'. $id)
+			return Redirect::to('/admin/user/changepassword/'. $id)
 				->withErrors($validation);
 		}
 
@@ -157,7 +157,7 @@ class UserController extends BaseController {
 		$user->password = Hash::make(Input::get('password'));
 		$user->save();
 		
-		return Redirect::to('user')
+		return Redirect::to('/admin/user')
 			->with('message','User password updated successfully');
 	}
 }

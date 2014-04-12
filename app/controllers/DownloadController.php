@@ -54,7 +54,7 @@ class DownloadController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('download/create')
+			return Redirect::to('/admin/download/create')
 				->withErrors($validation)
 				->withInput(array('title'=>Input::get('title'), 'status'=>Input::get('status')));
 		}
@@ -71,7 +71,7 @@ class DownloadController extends \BaseController {
 		$download->file_path = 'downloads/' . $fileName;
 		$download->save();
 
-		return Redirect::to('download')
+		return Redirect::to('/admin/download')
 			->with('message','File uploaded successfully');
 	}
 
@@ -130,7 +130,7 @@ class DownloadController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('download/edit/' . $id)
+			return Redirect::to('/admin/download/edit/' . $id)
 				->withErrors($validation)
 				->withInput(array(Input::get('title'), Input::get('status')));
 		}
@@ -153,7 +153,7 @@ class DownloadController extends \BaseController {
 		
 		$download->save();
 
-		return Redirect::to('download')
+		return Redirect::to('/admin/download')
 			->with('message','File updated successfully');
 	}
 
@@ -178,9 +178,9 @@ class DownloadController extends \BaseController {
 		$download->delete();
 		
 		if($page)
-			return Redirect::to('download/?page=' . $page)->with('message', 'Download deleted successfully.');
+			return Redirect::to('/admin/download/?page=' . $page)->with('message', 'Download deleted successfully.');
 		else
-			return Redirect::to('download/')->with('message', 'Download deleted successfully.');
+			return Redirect::to('/admin/download/')->with('message', 'Download deleted successfully.');
 
 	}
 

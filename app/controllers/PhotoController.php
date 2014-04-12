@@ -62,7 +62,7 @@ class PhotoController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('photo/add/'.$id)
+			return Redirect::to('/admin/photo/add/'.$id)
 				->withErrors($validation)
 				->withInput(array('title'=>Input::get('title')));
 		}
@@ -78,7 +78,7 @@ class PhotoController extends \BaseController {
 		$photo->photo_path = 'photos/' . $fileName;
 		$photo->save();
 
-		return Redirect::to('album/photo/' . $id)
+		return Redirect::to('/admin/album/photo/' . $id)
 			->with('message','Photo uploaded successfully');
 	
 	}
@@ -99,7 +99,7 @@ class PhotoController extends \BaseController {
 		if(File::exists($photo_path))
 			return Response::download($photo_path, $photo->title);
 		else
-			return View::make('album');
+			return View::make('/admin/album');
 	}
 
 	/**
@@ -141,7 +141,7 @@ class PhotoController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('photo/edit/'.$id)
+			return Redirect::to('/admin/photo/edit/'.$id)
 				->withErrors($validation)
 				->withInput(array(Input::get('title')));
 		}
@@ -150,7 +150,7 @@ class PhotoController extends \BaseController {
 		$photo->title = Input::get('title');
 		$photo->save();
 		
-		return Redirect::to('album/photo/' . $photo->album_id)
+		return Redirect::to('/admin/album/photo/' . $photo->album_id)
 			->with('message','Photo edited successfully');
 		}
 
@@ -178,9 +178,9 @@ class PhotoController extends \BaseController {
 		$photo->delete();
 		
 		if($page)
-			return Redirect::to('album/photo/' . $albumid . '?page=' . $page)->with('message', 'Photo deleted successfully.');
+			return Redirect::to('/admin/album/photo/' . $albumid . '?page=' . $page)->with('message', 'Photo deleted successfully.');
 		else
-			return Redirect::to('album/photo/' . $albumid)->with('message', 'Photo deleted successfully.');
+			return Redirect::to('/admin/album/photo/' . $albumid)->with('message', 'Photo deleted successfully.');
 	
 	}
 

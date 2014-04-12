@@ -12,7 +12,7 @@
 
 	<div class="col-sm-6">
 		<div class="row">
-			{{Form::open(array('url'=>'/user/create', 'method'=>'post'))}}
+			{{Form::open(array('url'=>'admin/user/create', 'method'=>'post'))}}
 				<div class="form-group">
 					{{Form::text('username', Input::old('username'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Username', 'title'=>'Username'))}}
 

@@ -12,7 +12,7 @@
 	<div class="col-sm-6">
 		<div class="row">
 
-			{{Form::open(array('url'=>'album/edit/' . $album->id, 'method'=>'post'))}}
+			{{Form::open(array('url'=>'admin/album/edit/' . $album->id, 'method'=>'post'))}}
 				<div class="form-group">
 					{{Form::text('title', Input::old('title',$album->title), array('class'=>'input-sm form-control tooltip-right', 
 					'placeholder'=>'Enter Album Title', 'title'=>'Album Title'))}}

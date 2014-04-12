@@ -56,7 +56,7 @@ class PostController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails())
-			return Redirect::to('post/create')
+			return Redirect::to('/admin/post/create')
 				->withErrors($validator)
 				->withInput(Input::all());
 
@@ -70,7 +70,7 @@ class PostController extends \BaseController {
 
 		$content->categories()->attach(Input::get('category'));
 
-		return Redirect::to('post')->with('message', 'Post created successfully.');
+		return Redirect::to('/admin/post')->with('message', 'Post created successfully.');
 	}
 
 	/**
@@ -124,7 +124,7 @@ class PostController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails())
-			return Redirect::to('post/edit/' . $id)
+			return Redirect::to('/admin/post/edit/' . $id)
 				->withErrors($validator)
 				->withInput(Input::all());
 
@@ -138,7 +138,7 @@ class PostController extends \BaseController {
 		$content->categories()->detach();
 		$content->categories()->attach(Input::get('category'));
 
-		return Redirect::to('post')->with('message', 'Post updated successfully.');
+		return Redirect::to('/admin/post')->with('message', 'Post updated successfully.');
 	}
 
 	/**
@@ -162,9 +162,9 @@ class PostController extends \BaseController {
 		$content->delete();
 		
 		if($page)
-			return Redirect::to('post/?page=' . $page)->with('message', 'Post deleted successfully.');
+			return Redirect::to('/admin/post/?page=' . $page)->with('message', 'Post deleted successfully.');
 		else
-			return Redirect::to('post/')->with('message', 'Post deleted successfully.');
+			return Redirect::to('/admin/post/')->with('message', 'Post deleted successfully.');
 
 
 

@@ -28,24 +28,24 @@
 			@foreach ($albums as $key => $album)
 			<tr>
 				<td>{{$key+$index}}</td>
-				<td><a href="{{url('album/photo', array($album->id))}}">{{$album->title}}</a></td>
+				<td><a href="{{url('admin/album/photo', array($album->id))}}">{{$album->title}}</a></td>
 				<td>{{$album->description}}</td>
-				<td><a href="{{url('album/photo', array($album->id))}}">{{$album->photos->count()}}</a></td>
+				<td><a href="{{url('admin/album/photo', array($album->id))}}">{{$album->photos->count()}}</a></td>
 				<td>{{$album->creator->display_name}}</td>
 				<td class="tools">
-					<a title="Edit Album" href="{{url('album/edit', array($album->id))}}" class="btn btn-warning btn-xs">
+					<a title="Edit Album" href="{{url('admin/album/edit', array($album->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					
-					<a title="Add Photo" href="{{url('photo/add', array($album->id))}}" class="btn btn-success btn-xs">
+					<a title="Add Photo" href="{{url('admin/photo/add', array($album->id))}}" class="btn btn-success btn-xs">
 						<i class="glyphicon glyphicon-plus"></i>
 					</a>
 					
-					<a title="Photo List" href="{{url('album/photo', array($album->id))}}" class="btn btn-primary btn-xs">
+					<a title="Photo List" href="{{url('admin/album/photo', array($album->id))}}" class="btn btn-primary btn-xs">
 						<i class="glyphicon glyphicon-picture"></i>
 					</a>
 					
-					<a onclick="return confirm('Are you sure?');" title="Delete Album" href="{{url('album/delete', array($album->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" title="Delete Album" href="{{url('admin/album/delete', array($album->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>

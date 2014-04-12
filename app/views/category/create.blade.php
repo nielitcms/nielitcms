@@ -12,7 +12,7 @@
 
 	<div class="col-sm-6">
 		<div class="row">
-			{{Form::open(array('url'=>'/category/create', 'method'=>'post'))}}
+			{{Form::open(array('url'=>'admin/category/create', 'method'=>'post'))}}
 				<div class="form-group">
 					{{Form::text('name', Input::old('name'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Enter Category Name', 'title'=>'Category name'))}}
 
@@ -28,6 +28,5 @@
 			{{Form::close()}}
 		</div>
 	</div>
-
 </div>
 @stop

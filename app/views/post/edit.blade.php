@@ -6,7 +6,7 @@
 	<h3><i class="glyphicon glyphicon-edit"></i> Edit Post</h3>
 	<hr>
 
-	{{Form::open(array('url'=>'post/edit/' . $post->id, 'method'=>'post', 'class'=>'form-vertical'))}}
+	{{Form::open(array('url'=>'admin/post/edit/' . $post->id, 'method'=>'post', 'class'=>'form-vertical'))}}
 		<div class="form-group">
 			{{Form::label('title', 'Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title', $post->title), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Post Title', 'title'=>'Post Title'))}}

@@ -34,15 +34,15 @@
 				<td>{{ucwords($user->role)}}</td>
 				<td>{{ucwords($user->status)}}</td>
 				<td class="tools">
-					<a title="Edit User" href="{{url('user/edit', array($user->id))}}" class="btn btn-warning btn-xs">
+					<a title="Edit User" href="{{url('admin/user/edit', array($user->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					
-					<a onclick="return confirm('Are you sure?');" title="Delete User" href="{{url('user/delete', array($user->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" title="Delete User" href="{{url('admin/user/delete', array($user->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 					
-					<a title="Change Password" href="{{url('user/changepassword', array($user->id))}}" class="btn btn-primary btn-xs">
+					<a title="Change Password" href="{{url('admin/user/changepassword', array($user->id))}}" class="btn btn-primary btn-xs">
 						<i class="glyphicon glyphicon-cog"></i>
 					</a>
 				</td>

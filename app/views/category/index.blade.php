@@ -29,11 +29,11 @@
 						<td>{{$key+$index}}</td>
 						<td>{{$category->name}}</td>
 						<td class="tools">
-							<a title="Edit Category" href="{{url('category/edit', array($category->id))}}" class="btn btn-warning btn-xs">
+							<a title="Edit Category" href="{{url('admin/category/edit', array($category->id))}}" class="btn btn-warning btn-xs">
 								<i class="glyphicon glyphicon-edit"></i>
 							</a>
 							
-							<a onclick="return confirm('Are you sure?');" title="Delete Category" href="{{url('category/delete', array($category->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
+							<a onclick="return confirm('Are you sure?');" title="Delete Category" href="{{url('admin/category/delete', array($category->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 								<i class="glyphicon glyphicon-trash"></i>
 							</a>		
 							
@@ -49,7 +49,7 @@
 			<div class="row">
 				<h3><i class="glyphicon glyphicon-plus"></i> Add Category</h3>
 				<hr>
-				{{Form::open(array('url'=>'/category/create', 'method'=>'post'))}}
+				{{Form::open(array('url'=>'admin/category/create', 'method'=>'post'))}}
 					<div class="form-group">
 						{{Form::text('name', Input::old('name'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Enter Category Name', 'title'=>'Category name'))}}
 

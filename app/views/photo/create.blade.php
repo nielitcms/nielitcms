@@ -10,7 +10,7 @@
 	<h3><i class="glyphicon glyphicon-plus"></i> <a href="/album/photo/{{$album->id}}">{{$album->title}}</a> &raquo; Add Photo</h3>
 	<hr>
 
-	{{Form::open(array('url'=>'photo/add/'. $album->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
+	{{Form::open(array('url'=>'admin/photo/add/'. $album->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
 		<div class="form-group">
 			{{Form::label('title', 'Photo Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 

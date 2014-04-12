@@ -6,7 +6,7 @@
 	<h3><i class="glyphicon glyphicon-plus"></i> Add New Post</h3>
 	<hr>
 
-	<form class="form-vertical" action="/post/create" method="post">
+	<form class="form-vertical" action="" method='post'>
 		<div class="form-group">
 			{{Form::label('title', 'Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>'Enter Post Title', 'title'=>'Post Title'))}}

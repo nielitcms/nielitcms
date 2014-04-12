@@ -5,7 +5,7 @@
 <div class="col-sm-12">
 	<h3>
 		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> {{$album->title}} &raquo; Photo List
-		<a title="Add Photo" href="{{url('photo/add', array($album->id))}}" class="btn btn-success btn-xs pull-right">
+		<a title="Add Photo" href="{{url('admin/photo/add', array($album->id))}}" class="btn btn-success btn-xs pull-right">
 			<i class="glyphicon glyphicon-plus"></i> ADD PHOTO
 		</a>
 	</h3>
@@ -34,12 +34,12 @@
 			<tr>
 				<td>{{$key+$index}}</td>
 				<td>{{$photo->title}}</td>
-				<td><a href="{{url('photo/' . $photo->id)}}" target="_blank" class="btn btn-xs btn-primary">
+				<td><a href="{{url('admin/photo/' . $photo->id)}}" target="_blank" class="btn btn-xs btn-primary">
 					<i class="glyphicon glyphicon-download"></i> Downloads</a></td>
 				<td>{{$photo->album->title}}</td>
 
 				<td class="tools">
-					<a data-toggle="modal" data-target="#myModal{{$photo->id}}" title="View Photo" href="{{url('photo/show', array($photo->id))}}" class="btn btn-success btn-xs">
+					<a data-toggle="modal" data-target="#myModal{{$photo->id}}" title="View Photo" href="{{url('admin/photo/show', array($photo->id))}}" class="btn btn-success btn-xs">
 						<i class="glyphicon glyphicon-eye-open"></i>
 					</a>
 
@@ -58,11 +58,11 @@
 						</div>
 					</div>
 
-					<a title="Edit Photo" href="{{url('photo/edit', array($photo->id))}}" class="btn btn-warning btn-xs">
+					<a title="Edit Photo" href="{{url('admin/photo/edit', array($photo->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					
-					<a onclick="return confirm('Are you sure?');" title="Delete Photo" href="{{url('photo/delete', array($photo->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" title="Delete Photo" href="{{url('admin/photo/delete', array($photo->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>

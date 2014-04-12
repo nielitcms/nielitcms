@@ -51,7 +51,7 @@ class PageController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails())
-			return Redirect::to('page/create')
+			return Redirect::to('/admin/page/create')
 				->withErrors($validator)
 				->withInput(Input::all());
 
@@ -63,7 +63,7 @@ class PageController extends \BaseController {
 		$content->status = Input::get('status');
 		$content->save();
 
-		return Redirect::to('page')->with('message', 'Page created successfully.');
+		return Redirect::to('/admin/page')->with('message', 'Page created successfully.');
 	}
 
 	/**
@@ -111,7 +111,7 @@ class PageController extends \BaseController {
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails())
-			return Redirect::to('page/edit/' . $id)
+			return Redirect::to('/admin/page/edit/' . $id)
 				->withErrors($validator)
 				->withInput(Input::all());
 
@@ -123,7 +123,7 @@ class PageController extends \BaseController {
 		$content->status = Input::get('status');
 		$content->save();
 
-		return Redirect::to('page')->with('message', 'Page updated successfully.');
+		return Redirect::to('/admin/page')->with('message', 'Page updated successfully.');
 	}			
 	
 	/**
@@ -145,9 +145,9 @@ class PageController extends \BaseController {
 		Content::destroy($id);
 		
 		if($page)
-			return Redirect::to('page/?page=' . $page)->with('message', 'Page deleted successfully.');
+			return Redirect::to('/admin/page/?page=' . $page)->with('message', 'Page deleted successfully.');
 		else
-			return Redirect::to('page/')->with('message', 'Page deleted successfully.');
+			return Redirect::to('/admin/page/')->with('message', 'Page deleted successfully.');
 
 
 

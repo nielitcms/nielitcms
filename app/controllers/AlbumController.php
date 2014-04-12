@@ -35,24 +35,6 @@ class AlbumController extends \BaseController {
 		return View::make('album.create');
 	}
 	
-// 	public function postcreate()
-// 	{
-// 		$rules = array(
-// 			'title'=>'required|unique:albums,title');
-// 		$validation=Validator::make(input::all(), $rules);
-
-// 		if($validation ->fails()){
-// 			return Redirect::to('album/create')->withErrors($validation);
-// 		}
-
-// 		$album = new Album;
-// 		$albums->title = Input::get('title');
-// 		$albums->description = Input::get('description');
-// 		$save->save();
-		
-// 		return Redirect::to('album/create')->with('message', 'Album create successfully');
-// 	}
-
 	
 // 	/**
 // 	 * Store a newly created resource in storage.
@@ -75,7 +57,7 @@ class AlbumController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if($validation ->fails()){
-			return Redirect::to('album/create')
+			return Redirect::to('/admin/album/create')
 			->withErrors($validation)
 			->withInput(Input::all());
 		}
@@ -86,7 +68,7 @@ class AlbumController extends \BaseController {
 		$album->created_by = Auth::User()->id;
 		$album->save();
 
-		return Redirect::to('photo/add/' . $album->id)->with('message','Album created successfully');
+		return Redirect::to('/admin/photo/add/' . $album->id)->with('message','Album created successfully');
 	}
 
 	
@@ -122,8 +104,7 @@ class AlbumController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if($validation ->fails()) {
-
-			return Redirect::to('album/edit/'.$id)
+			return Redirect::to('/admin/album/edit/'.$id)
 			->withErrors($validation)
 			->withInput(Input::all());
 		}
@@ -135,7 +116,7 @@ class AlbumController extends \BaseController {
 		$album->created_by = Auth::User()->id;
 		$album->save();
 
-		return Redirect::to('album')->with('message','Album updated successfully');
+		return Redirect::to('/admin/album')->with('message','Album updated successfully');
 	}
 
 
@@ -160,9 +141,9 @@ class AlbumController extends \BaseController {
 		Album::destroy($id);
 		
 		if($page)
-			return Redirect::to('album/?page=' . $page)->with('message', 'Album deleted successfully.');
+			return Redirect::to('/admin/album/?page=' . $page)->with('message', 'Album deleted successfully.');
 		else
-			return Redirect::to('album/')->with('message', 'Album deleted successfully.');	
+			return Redirect::to('/admin/album/')->with('message', 'Album deleted successfully.');	
 
 	
 
