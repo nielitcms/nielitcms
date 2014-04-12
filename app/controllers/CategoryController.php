@@ -5,6 +5,7 @@ class CategoryController extends BaseController {
 	{
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
+
 		$categories = Category::paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $categories->getCurrentPage() > 1? (($categories->getCurrentPage()-1) * $categories->getPerPage())+1 : 1;
@@ -14,7 +15,6 @@ class CategoryController extends BaseController {
 				'index' => $index
 				));
 	}
-
 
 	public function create()
 	{
@@ -40,10 +40,36 @@ class CategoryController extends BaseController {
 		$category->name = Input::get('name');
 		$category->save();
 		
-		return Redirect::to('category/create')->with('message','Category created successfully');
+		return Redirect::to('category')->with('message','Category created successfully');
 	}
 
-	
+	public function show($id)
+	{
+		Session::put('category_id', $id);
+		$category = Category::find($id);
+		if(!$category)
+			return Redirect::to('/');
+
+		$posts = Content::with('author','categories')
+			->where('type', '=', 'post')
+			->where(function($query){
+				$category_id = Session::get('category_id');
+				$post_ids = ContentCategory::where('category_id', '=', $category_id)->get()->lists('content_id');
+				if(!empty($post_ids))
+					$query->whereIn('id', $post_ids);
+				else
+					$query->whereIn('id', array(0));
+				Session::forget('category_id');
+			})
+			->paginate(Setting::getData('no_of_post'));
+
+		return View::make('category.show')
+			->with(array(
+				'posts' => $posts,
+				'category' => $category
+				));
+	}
+
 	public function remove($id)
 	{
 		
@@ -63,35 +89,45 @@ class CategoryController extends BaseController {
 			return Redirect::to('category/?page=' . $page)->with('message', 'Category deleted successfully.');
 		else
 			return Redirect::to('category/')->with('message', 'Category deleted successfully.');	
-
-
-
-
-
 	}
 
 	public function edit($id)
 	{
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
-		$category=Category::find($id);
-		return View::make('category.edit')->with('category',$category);
+
+		$categories = Category::paginate(Setting::getData('no_of_item_perpage'));
+
+		$index = $categories->getCurrentPage() > 1? (($categories->getCurrentPage()-1) * $categories->getPerPage())+1 : 1;
+
+		$current_category=Category::find($id);
+		
+		return View::make('category.edit')
+			->with(array(
+				'categories' => $categories,
+				'current_category' => $current_category,
+				'index' => $index
+				));
+
 	}
 
 	public function postedit($id)
 	{
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
+		
 		$rules=array(
 			'name'=> 'required|alpha_dash|between:4,20|unique:categories,name,'.$id);
-		$validation= Validator::make(Input::all(), $rules);
-	if($validation ->fails()) {
-		return Redirect::to('category/edit/'. $id)->withErrors($validation);
-	}
+		
+		$validation = Validator::make(Input::all(), $rules);
 
-	$category = Category::find($id);
-	$category->name = Input::get('name');
-	$category->save();
-	return Redirect::to('category')->with('message', 'Category updated successfully');
+		if($validation ->fails()) {
+			return Redirect::to('category/edit/'. $id)->withErrors($validation);
+		}
+
+		$category = Category::find($id);
+		$category->name = Input::get('name');
+		$category->save();
+		return Redirect::to('category')->with('message', 'Category updated successfully');
 	}
 }

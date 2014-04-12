@@ -81,7 +81,11 @@ class PostController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$post = Content::with('author','categories')->find($id);
+		return View::make('post.show')
+			->with(array(
+				'post' => $post
+				));
 	}
 
 	/**

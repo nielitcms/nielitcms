@@ -6,7 +6,7 @@
 	@if($menulocation == 'top')
 	<h3>
 		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Top Menu List
-		<a title="Add Top Menu" href="{{url('menu/create/top')}}" class="btn btn-success btn-xs pull-right">
+		<a title="Add Top Menu" href="{{url('admin/menu/create/top')}}" class="btn btn-success btn-xs pull-right">
 			<i class="glyphicon glyphicon-plus"></i> ADD TOP MENU
 		</a>
 	</h3>
@@ -14,7 +14,7 @@
 	@elseif($menulocation == 'bottom')
 	<h3>
 			<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Bottom Menu List
-		<a title="Add Top Menu" href="{{url('menu/create/bottom')}}" class="btn btn-success btn-xs pull-right">
+		<a title="Add Top Menu" href="{{url('admin/menu/create/bottom')}}" class="btn btn-success btn-xs pull-right">
 			<i class="glyphicon glyphicon-plus"></i> ADD BOTTOM MENU
 		</a>
 	</h3>
@@ -22,7 +22,7 @@
 	@elseif($menulocation == 'sidebar')
 	<h3>
 		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Sidebar Menu List
-		<a title="Add Top Menu" href="{{url('menu/create/sidebar')}}" class="btn btn-success btn-xs pull-right">
+		<a title="Add Top Menu" href="{{url('admin/menu/create/sidebar')}}" class="btn btn-success btn-xs pull-right">
 			<i class="glyphicon glyphicon-plus"></i> ADD SIDEBAR MENU
 		</a>
 	</h3>
@@ -57,11 +57,11 @@
 				<td>{{($menu->parent != 0)?$menu->parent_menu->title:'No Parent'}}</td>
 				<td>{{$menu->display_order}}</td>
 				<td class="tools">
-					<a title="Edit Menu Title" href="{{url('menu/edit', array($menu->id))}}" class="btn btn-warning btn-xs">
+					<a title="Edit Menu Title" href="{{url('admin/menu/edit', array($menu->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					
-					<a onclick="return confirm('Are you sure?');" title="Delete Menu" href="{{url('menu/delete', array($menu->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
+					<a onclick="return confirm('Are you sure?');" title="Delete Menu" href="{{url('admin/menu/delete', array($menu->id))}}?page={{Input::get('page')}}" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>

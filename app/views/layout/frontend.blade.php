@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Welcome :: Homepage</title>
+	<title>{{Setting::getData('site_title')}}</title>
 
 	<link href="{{asset('lib/bootstrap-3.1.1-dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('templates/frontend/css/style.css')}}" rel="stylesheet" type="text/css" />

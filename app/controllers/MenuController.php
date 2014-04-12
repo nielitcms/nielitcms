@@ -44,7 +44,14 @@ class MenuController extends BaseController {
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 
-		$parent = array('0' => 'No Parent') + Menu::where('parent', '=', 0)->orderBy('title', 'asc')->get()->lists('title', 'id');
+		$parent = Menu::where('parent', '=', 0)
+			->where('position', '=', $menulocation)
+			->orderBy('title', 'asc')
+			->get()
+			->lists('title', 'id');
+
+		$parent = array('0' => 'No Parent') + $parent;
+		
 		return View::make('menu.create')
 			->with(array(
 				'menulocation'=>$menulocation,
@@ -69,7 +76,7 @@ class MenuController extends BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('menu/create/'.$menulocation)
+			return Redirect::to('admin/menu/create/'.$menulocation)
 				->withErrors($validation)
 				->withInput(array('title'=>Input::get('title'), 'url'=>Input::get('url')));
 		}
@@ -77,13 +84,13 @@ class MenuController extends BaseController {
 		$menu = new Menu;
 		$menu->title = Input::get('title');
 		$menu->url = Input::get('url');
-		$menu->parent = Input::get('parent');
+		$menu->parent = Input::get('parent', 0);
 		$menu->display_order = Input::get('display_order');
 		$menu->position = $menulocation;
 		$menu->save();
 
-		return Redirect::to('menu/list/' . $menulocation)
-			->with('message','Menu Added successfully');
+		return Redirect::to('admin/menu/list/' . $menulocation)
+			->with('message','Menu added successfully');
 	}
 
 	public function destroy($id)
@@ -100,9 +107,9 @@ class MenuController extends BaseController {
 		Menu::destroy($id);
 		
 		if($page)
-			return Redirect::to('menu/list/'.$menulocation.'?page=' . $page)->with('message', 'Menu deleted successfully.');
+			return Redirect::to('admin/menu/list/'.$menulocation.'?page=' . $page)->with('message', 'Menu deleted successfully.');
 		else
-			return Redirect::to('menu/list/'.$menulocation)->with('message', 'Menu deleted successfully.');
+			return Redirect::to('admin/menu/list/'.$menulocation)->with('message', 'Menu deleted successfully.');
 
 
 
@@ -117,8 +124,15 @@ class MenuController extends BaseController {
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 
-		$parent = array('0' => 'No Parent') + Menu::where('parent', '=', 0)->orderBy('title', 'asc')->get()->lists('title', 'id');
 		$menu=Menu::find($id);
+
+		$parent = Menu::where('parent', '=', 0)
+			->where('position', '=', $menu->position)
+			->orderBy('title', 'asc')
+			->get()
+			->lists('title', 'id');
+		$parent = array('0' => 'No Parent') + $parent;
+		
 		return View::make('menu.edit')
 			->with(array(
 				'menu'=>$menu,
@@ -143,7 +157,7 @@ class MenuController extends BaseController {
 
 		if($validation ->fails()) {
 
-			return Redirect::to('menu/edit/'.$id)
+			return Redirect::to('admin/menu/edit/'.$id)
 			->withErrors($validation)
 			->withInput(Input::all());
 		}
@@ -156,6 +170,6 @@ class MenuController extends BaseController {
 		$menu->display_order = Input::get('display_order');
 		$menu->save();
 
-		return Redirect::to('menu/list/' .$menu->position)->with('message','Menu updated successfully');
+		return Redirect::to('admin/menu/list/' .$menu->position)->with('message','Menu updated successfully');
 	}
 }

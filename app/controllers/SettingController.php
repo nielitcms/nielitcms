@@ -9,10 +9,15 @@ class SettingController extends \BaseController {
 	 */
 	public function index()
 	{
+		$albums = Album::orderBy('title', 'asc')->get()->lists('title', 'id');
+		$albums = array(0 => 'No Banner') + $albums;
 		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
-		return View::make('setting.index');
+		return View::make('setting.index')
+			->with(array(
+				'albums' => $albums
+				));
 	}
 
 	/**
@@ -37,12 +42,17 @@ class SettingController extends \BaseController {
 
 		$rules = array(
 			'site_title' => 'required',
-			'no_of_item_perpage'=> 'required|integer|min:1'
+			'admin_site_title' => 'required',
+			'allowed_file_extension'=> 'required',
+			'no_of_item_perpage'=> 'required|integer|min:1',
+			'no_of_post'=> 'required|integer|min:1',
+			'footer_copyright_text'=> 'required',
+			'banner_image' => 'required',
 			);
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails())
-			return Redirect::to('/settings')
+			return Redirect::to('/admin/settings')
 				->withErrors($validator)
 				->withInput(Input::all());
 
@@ -62,7 +72,19 @@ class SettingController extends \BaseController {
 		Setting::where('setting_key', '=', 'no_of_item_perpage')
 			->update(array('setting_data'=>$no_of_item_perpage));
 
-		return Redirect::to('/settings')->with('message', 'Settings updated succesfully');
+		$no_of_post = Input::get('no_of_post');
+		Setting::where('setting_key', '=', 'no_of_post')
+			->update(array('setting_data'=>$no_of_post));
+
+		$footer_copyright_text = Input::get('footer_copyright_text');
+		Setting::where('setting_key', '=', 'footer_copyright_text')
+			->update(array('setting_data'=>$footer_copyright_text));
+
+		$banner_image = Input::get('banner_image');
+		Setting::where('setting_key', '=', 'banner_image')
+			->update(array('setting_data'=>$banner_image));
+
+		return Redirect::to('/admin/settings')->with('message', 'Settings updated succesfully');
 	}
 
 	/**

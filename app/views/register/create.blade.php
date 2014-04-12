@@ -1,9 +1,9 @@
-@extends('layout.backend')
+@extends('layout.frontend')
 
 @section('content')
 
 <div class="col-sm-12">
-	<h3><i class="glyphicon glyphicon-plus"></i> Create Account</h3>
+	<h3>Register Account</h3>
 	<hr>
 
 	@if(Session::has('message'))

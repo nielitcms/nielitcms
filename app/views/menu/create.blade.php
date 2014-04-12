@@ -12,7 +12,7 @@
 
 	<hr>
 
-	{{Form::open(array('url'=>'menu/create/' . $menulocation, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
+	{{Form::open(array('url'=>'admin/menu/create/' . $menulocation, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
 		<div class="form-group">
 			{{Form::label('title', 'Menu Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title'), array('class'=>'form-control input-sm tooltip-left', 
@@ -33,6 +33,7 @@
 			@endif
 		</div>
 		
+		@if($menulocation != 'bottom')
 		<div class="form-group">
 			{{Form::label('parent', 'Parent', array('class'=>'control-label'))}}
 			{{Form::select('parent', $parent,  Input::old('parent'), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Parent'))}}
@@ -41,6 +42,7 @@
 			<p class="help-block"><span class="text-danger">{{$errors->first('parent')}}</span></p>
 			@endif
 		</div>
+		@endif
 
 		<div class="form-group">
 			{{Form::label('display_order', 'Display Order', array('class'=>'control-label'))}}
@@ -50,6 +52,7 @@
 			@if($errors->has('display_order'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('display_order')}}</span></p>
 			@endif
+			<p class="help-block">Enter number here to be used for sorting the menu. Ex: Menu with display order 1 will be displayed first.</p>
 		</div>
 
 		<div class="form-group">

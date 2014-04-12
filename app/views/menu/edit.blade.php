@@ -12,7 +12,7 @@
  
 	<hr>
 
-	{{Form::open(array('url'=>'menu/edit/' . $menu->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
+	{{Form::open(array('url'=>'admin/menu/edit/' . $menu->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}
 		<div class="form-group">
 			{{Form::label('title', 'Menu Title', array('class'=>'control-label'))}}
 			{{Form::text('title', Input::old('title',$menu->title), array('class'=>'form-control input-sm tooltip-left', 

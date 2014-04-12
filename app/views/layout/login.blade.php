@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-book"></i> NIELIT CMS Dashboard</a>
+          <a class="navbar-brand" href="{{url('/')}}"><i class="glyphicon glyphicon-book"></i> NIELIT CMS Dashboard</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">

@@ -26,7 +26,25 @@ class SettingTableSeeder extends Seeder {
         DB::table('settings')->insert(array(
             'setting_key' => 'no_of_item_perpage',
             'setting_title' => 'No Of Item Per Page',
-            'setting_data' => '1',
+            'setting_data' => '10',
+            ));
+
+        DB::table('settings')->insert(array(
+            'setting_key' => 'no_of_post',
+            'setting_title' => 'No Of Post To Display in Homepage',
+            'setting_data' => '10',
+            ));
+
+        DB::table('settings')->insert(array(
+            'setting_key' => 'footer_copyright_text',
+            'setting_title' => 'Footer Copyright Text',
+            'setting_data' => 'Copyright &copy; 2014, Nielit,Aizawl, Mizoram',
+            ));
+
+        DB::table('settings')->insert(array(
+            'setting_key' => 'banner_image',
+            'setting_title' => 'Banner Image',
+            'setting_data' => '0',
             ));
 
     }

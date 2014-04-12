@@ -41,6 +41,10 @@
 				<td>{{implode(', ', $post->categories->lists('name'))}}</td>
 				
 				<td class="tools">
+					<a title="Edit Post" href="{{url('post', array($post->id))}}" class="btn btn-success btn-xs" target="_blank">
+						<i class="glyphicon glyphicon-eye-open"></i>
+					</a>
+
 					<a title="Edit Post" href="{{url('post/edit', array($post->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
