@@ -162,15 +162,18 @@ class PhotoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-<<<<<<< HEAD
+
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
-=======
+
 		$page = Input::get('page');
 
->>>>>>> f34e8428cdc31f4eaec4554445439323775a9e40
 		$photo = Photo::find($id);
 		$albumid=$photo->album_id;
+		$album=Album::find($albumid);
+		$count=$album->photos->count();
+		if($count%Setting::getData('no_of_item_perpage')==1)
+			$page=$page-1;
 		File::delete(public_path().'/'.$photo->photo_path);
 		$photo->delete();
 		
