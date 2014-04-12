@@ -9,6 +9,8 @@ class DownloadController extends \BaseController {
 	 */
 	public function index()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$downloads = Download::with('creator')
 			->orderBy('created_at', 'desc')
 			->paginate(Setting::getData('no_of_item_perpage'));
@@ -29,6 +31,8 @@ class DownloadController extends \BaseController {
 	 */
 	public function create()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		return View::make('download.create');
 	}
 
@@ -39,6 +43,8 @@ class DownloadController extends \BaseController {
 	 */
 	public function store()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title'=> 'required',
 			'file_path' => 'required|mimes:' . Setting::getData('allowed_file_extension'),
@@ -77,6 +83,8 @@ class DownloadController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$download = Download::find($id);
 		$file_path = public_path() . '/' . $download->file_path;
 		
@@ -94,6 +102,8 @@ class DownloadController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$download = Download::with('creator')->find($id);
 		return View::make('download.edit')
 			->with(array(
@@ -109,6 +119,8 @@ class DownloadController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title'=> 'required',
 			'file_path' => 'mimes:' . Setting::getData('allowed_file_extension'),
@@ -153,6 +165,8 @@ class DownloadController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$download = Download::find($id);
 		File::delete(public_path().'/'.$download->file_path);
 		$download->delete();
@@ -162,6 +176,8 @@ class DownloadController extends \BaseController {
 
 	public function album()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		return View::make('album.create');
 	}
 	

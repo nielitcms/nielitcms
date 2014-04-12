@@ -9,6 +9,8 @@ class AlbumController extends \BaseController {
 	//  */
 	public function index()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$albums= Album::with('creator', 'photos')
 			->orderBy('created_at', 'desc')
 			->paginate(Setting::getData('no_of_item_perpage'));
@@ -28,6 +30,8 @@ class AlbumController extends \BaseController {
 	//  */
 	public function create()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		return View::make('album.create');
 	}
 	
@@ -59,7 +63,10 @@ class AlbumController extends \BaseController {
 
 	public function store()
 	{
-
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title'=>'required',
 			'description'=>'required');
@@ -90,6 +97,10 @@ class AlbumController extends \BaseController {
 // 	 */
 	public function edit($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$album=Album::find($id);
 		return View::make('album.edit')
 			->with('album',$album);
@@ -100,6 +111,10 @@ class AlbumController extends \BaseController {
 // int  $id      * @return Response      */     
 	public function update($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules=array(
 			'title'=>'required',
 			'description'=>'required');	
@@ -132,7 +147,11 @@ class AlbumController extends \BaseController {
 // 	 * @return Response
 // 		 */
 	public function destroy($id)
-	{		
+	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');		
 		Album::destroy($id);
 		return Redirect::to('album')
 			->with('message','Album deleted successfully');		

@@ -9,6 +9,8 @@ class PageController extends \BaseController {
 	 */
 	public function index()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$pages = Content::with('author')
 			->where('type','=','page')
 			->orderBy('created_at', 'desc')
@@ -28,6 +30,8 @@ class PageController extends \BaseController {
 	 */
 	public function create()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		return View::make('page.create');
 	}
 
@@ -38,6 +42,8 @@ class PageController extends \BaseController {
 	 */
 	public function store()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title' => 'required',
 			'content' => 'required'
@@ -79,6 +85,8 @@ class PageController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$page = Content::with('author')->find($id);
 		return View::make('page.edit')
 			->with(array(
@@ -94,6 +102,8 @@ class PageController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title' => 'required',
 			'content' => 'required'
@@ -124,8 +134,9 @@ class PageController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		Content::destroy($id);
 		return Redirect::to('page')->with('message','Page deleted Successfully');
 	}
-
 }

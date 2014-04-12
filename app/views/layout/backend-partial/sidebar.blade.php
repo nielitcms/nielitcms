@@ -1,9 +1,14 @@
+
 <ul class="nav nav-sidebar">
 	<li {{(Request::path() == 'admin')?'class="active"':''}}>
 		<a href="/admin">	
 			<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 		</a>
 	</li>
+	@if(in_array(Auth::user()->role, array('user')))
+	
+	@else
+
 	@if(in_array(Auth::user()->role, array('administrator')))
 	<li {{(Request::path() == 'menu/list/top')?'class="active"':''}}>
 		<a href="{{url('menu/list/top')}}">
@@ -99,6 +104,6 @@
 		</a>
 	</li>
 	@endif
-
+	@endif
 </ul>
 

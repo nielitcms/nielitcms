@@ -17,6 +17,8 @@ class MenuController extends BaseController {
 
 	public function index($menulocation)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 	
@@ -37,6 +39,8 @@ class MenuController extends BaseController {
 
 	public function create($menulocation)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 
@@ -51,6 +55,8 @@ class MenuController extends BaseController {
 
 	public function store($menulocation)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 
@@ -82,6 +88,8 @@ class MenuController extends BaseController {
 
 	public function destroy($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 		
@@ -93,6 +101,8 @@ class MenuController extends BaseController {
 
 	public function edit($id)
 	{ 
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 
@@ -107,6 +117,8 @@ class MenuController extends BaseController {
 
 	public function update($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		if(in_array(Auth::user()->role, array('editor')))
 			return Redirect::to('denied');
 
@@ -135,7 +147,4 @@ class MenuController extends BaseController {
 
 		return Redirect::to('menu/list/' .$menu->position)->with('message','Menu updated successfully');
 	}
-
-
-
 }

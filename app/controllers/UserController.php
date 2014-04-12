@@ -4,7 +4,7 @@ class UserController extends BaseController {
 
 	public function index()
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
 		$users = user::paginate(Setting::getData('no_of_item_perpage'));
@@ -19,12 +19,15 @@ class UserController extends BaseController {
 
 	public function receiveUser()
 	{
+		if(in_array(Auth::user()->role, array('editor','user')))
+			return Redirect::to('denied');
+
 		exit('User post here');
 	}
 
 	public function create()
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
 		return View::make('user.create');
@@ -32,9 +35,9 @@ class UserController extends BaseController {
 
 	public function createUser()
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
-		
+
 		$rules = array(
 			'username'=> 'required|alpha_dash|min:3|unique:users,username',
 			'display_name'=> 'required',
@@ -68,7 +71,7 @@ class UserController extends BaseController {
 
 	public function remove($id)
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
 		User::destroy($id);
@@ -78,7 +81,7 @@ class UserController extends BaseController {
 
 	public function edit($id)
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
 		$user=User::find($id);
@@ -88,7 +91,7 @@ class UserController extends BaseController {
 
 	public function postEdit($id)
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
 		$rules = array(

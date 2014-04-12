@@ -3,6 +3,8 @@ class CategoryController extends BaseController {
 
 	public function index()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$categories = Category::paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $categories->getCurrentPage() > 1? (($categories->getCurrentPage()-1) * $categories->getPerPage())+1 : 1;
@@ -16,11 +18,15 @@ class CategoryController extends BaseController {
 
 	public function create()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		return View::make('category.create');
 	}
 	
 	public function postCreate()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'name'=>'required|unique:categories,name');
 
@@ -40,6 +46,8 @@ class CategoryController extends BaseController {
 	
 	public function remove($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$category = Category::find($id);
 		$category->posts()->detach();
 		Category::destroy($id);
@@ -48,12 +56,16 @@ class CategoryController extends BaseController {
 
 	public function edit($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$category=Category::find($id);
 		return View::make('category.edit')->with('category',$category);
 	}
 
 	public function postedit($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules=array(
 			'name'=> 'required|alpha_dash|between:4,20|unique:categories,name,'.$id);
 		$validation= Validator::make(Input::all(), $rules);

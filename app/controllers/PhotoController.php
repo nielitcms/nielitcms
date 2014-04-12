@@ -9,6 +9,8 @@ class PhotoController extends \BaseController {
 	 */
 	public function index($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$photos = Photo::where('album_id', '=',$id)
 			->orderBy('created_at', 'desc')
 			->paginate(Setting::getData('no_of_item_perpage'));
@@ -32,6 +34,8 @@ class PhotoController extends \BaseController {
 	 */
 	public function create($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$album = Album::find($id);
 
 		return View::make('photo.create')
@@ -48,6 +52,8 @@ class PhotoController extends \BaseController {
 	 */
 	public function store($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title'=> 'required',
 			'photo_path' => 'required|image|max:10000');
@@ -85,6 +91,8 @@ class PhotoController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$photo = Photo::find($id);
 		$photo_path = public_path() . '/' . $photo->photo_path;
 		
@@ -102,6 +110,8 @@ class PhotoController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$photo=Photo::find($id);
 		$album=Album::find($photo->album_id);
 		return View::make('photo.edit')
@@ -122,6 +132,8 @@ class PhotoController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title'=> 'required',
 			);	
@@ -150,6 +162,8 @@ class PhotoController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$photo = Photo::find($id);
 		$albumid=$photo->album_id;
 		File::delete(public_path().'/'.$photo->photo_path);

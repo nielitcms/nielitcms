@@ -9,7 +9,7 @@ class SettingController extends \BaseController {
 	 */
 	public function index()
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
 		return View::make('setting.index');
@@ -32,7 +32,7 @@ class SettingController extends \BaseController {
 	 */
 	public function store()
 	{
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
 		$rules = array(

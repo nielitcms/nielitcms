@@ -9,6 +9,8 @@ class PostController extends \BaseController {
 	 */
 	public function index()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$posts = Content::with('author', 'categories')
 			->where('type','=','post')
 			->orderBy('created_at', 'desc')
@@ -29,6 +31,8 @@ class PostController extends \BaseController {
 	 */
 	public function create()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$categories = Category::orderBy('name', 'asc')->get()->lists('name', 'id');
 		return View::make('post.create')->with(array(
 			'categories' => $categories
@@ -42,6 +46,8 @@ class PostController extends \BaseController {
 	 */
 	public function store()
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title' => 'required',
 			'content' => 'required',
@@ -86,6 +92,8 @@ class PostController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$categories = Category::orderBy('name', 'asc')->get()->lists('name', 'id');
 		$post = Content::with('categories')->find($id);
 		return View::make('post.edit')->with(array(
@@ -102,6 +110,8 @@ class PostController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$rules = array(
 			'title' => 'required',
 			'content' => 'required',
@@ -135,6 +145,8 @@ class PostController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		if(in_array(Auth::user()->role, array('user')))
+			return Redirect::to('denied');
 		$content = Content::find($id);
 		$content->categories()->detach();
 		$content->delete();
