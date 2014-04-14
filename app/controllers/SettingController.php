@@ -9,14 +9,18 @@ class SettingController extends \BaseController {
 	 */
 	public function index()
 	{
-		$albums = Album::orderBy('title', 'asc')->get()->lists('title', 'id');
-		$albums = array(0 => 'No Banner') + $albums;
 		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
+		$albums = Album::orderBy('title', 'asc')->get()->lists('title', 'id');
+		$albums = array(0 => 'No Banner') + $albums;
+		$categories = Category::orderBy('name', 'asc')->get()->lists('name', 'id');
+		$categories = array(0 => 'No Category') + $categories;
+
 		return View::make('setting.index')
 			->with(array(
-				'albums' => $albums
+				'albums' => $albums,
+				'categories' => $categories
 				));
 	}
 
@@ -48,6 +52,7 @@ class SettingController extends \BaseController {
 			'no_of_post'=> 'required|integer|min:1',
 			'footer_copyright_text'=> 'required',
 			'banner_image' => 'required',
+			'sidebar_notice' => 'required',
 			);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -83,6 +88,14 @@ class SettingController extends \BaseController {
 		$banner_image = Input::get('banner_image');
 		Setting::where('setting_key', '=', 'banner_image')
 			->update(array('setting_data'=>$banner_image));
+
+		$sidebar_notice = Input::get('sidebar_notice');
+		Setting::where('setting_key', '=', 'sidebar_notice')
+			->update(array('setting_data'=>$sidebar_notice));
+
+		$comment_allowed_categories = Input::get('comment_allowed_categories');
+		Setting::where('setting_key', '=', 'comment_allowed_categories')
+			->update(array('setting_data'=>serialize($comment_allowed_categories)));
 
 		return Redirect::to('/admin/settings')->with('message', 'Settings updated succesfully');
 	}

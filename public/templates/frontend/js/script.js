@@ -16,4 +16,9 @@ $(function(){
 		'placement': 'right'
 	});
 
+	$(".photo a").colorbox({
+		rel:'albumPhoto',
+		transition: "elastic",
+		maxWidth: "800px"
+	});
 });

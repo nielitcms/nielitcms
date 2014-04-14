@@ -43,4 +43,9 @@ class AuthController extends BaseController
 	{
 		return View::make('auth.front-denied');
 	}
+
+	public function frontNotfound()
+	{
+		return View::make('auth.front-notfound');
+	}
 }

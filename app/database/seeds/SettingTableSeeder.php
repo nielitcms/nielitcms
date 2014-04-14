@@ -47,6 +47,18 @@ class SettingTableSeeder extends Seeder {
             'setting_data' => '0',
             ));
 
+        DB::table('settings')->insert(array(
+            'setting_key' => 'sidebar_notice',
+            'setting_title' => 'Notice Category',
+            'setting_data' => '0',
+            ));
+
+        DB::table('settings')->insert(array(
+            'setting_key' => 'comment_allowed_categories',
+            'setting_title' => 'Comment Allowed Categories',
+            'setting_data' => '',
+            ));
+
     }
 
 }

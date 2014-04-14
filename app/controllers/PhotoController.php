@@ -184,4 +184,18 @@ class PhotoController extends \BaseController {
 	
 	}
 
+	public function photolist($id)
+	{
+		$albumname = Album::find($id)->title;
+		$photos = Photo::where('album_id','=',$id)
+			->orderBy('created_at', 'asc')
+			->get();
+			
+		return View::make('photo.show')
+			->with(array(
+				'photos'=> $photos,
+				'albumname'=>$albumname
+			));
+	}
+
 }

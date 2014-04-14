@@ -81,7 +81,10 @@ class PostController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$post = Content::with('author','categories')->find($id);
+		$post = Content::with('author','categories','comments')
+			->where('type', '=', 'post')
+			->where('status', '=', 'published')
+			->find($id);
 		return View::make('post.show')
 			->with(array(
 				'post' => $post
@@ -165,9 +168,29 @@ class PostController extends \BaseController {
 			return Redirect::to('/admin/post/?page=' . $page)->with('message', 'Post deleted successfully.');
 		else
 			return Redirect::to('/admin/post/')->with('message', 'Post deleted successfully.');
+	}
 
+	public function comment($id)
+	{
 
+		$rules = array(
+			'comment_body'=> 'required'
+		);	
 
+		$validation= Validator::make(Input::all(), $rules);
+
+		if ($validation ->fails()) {
+			return Redirect::to('post/'.$id)
+				->withErrors($validation);
+		}
+		
+		$comment = new Comment;
+		$comment->comment_body = Input::get('comment_body');
+		$comment->author_id = Auth::user()->id;
+		$comment->post_id = $id;
+		$comment->save();
+
+		return Redirect::to('post/' . $id . '#comments');
 	}
 
 }

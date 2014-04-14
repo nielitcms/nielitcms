@@ -67,13 +67,31 @@
 			@endif
 		</div>
 
-
 		<div class="form-group">
 			{{Form::label('banner_image', Setting::getTitle('banner_image'), array('class'=>'control-label'))}}
 			{{Form::select('banner_image', $albums, Input::old('banner_image', Setting::getData('banner_image')), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select album to be used as banner slider'))}}
 			
 			@if($errors->has('banner_image'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('banner_image')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
+			{{Form::label('sidebar_notice', Setting::getTitle('sidebar_notice'), array('class'=>'control-label'))}}
+			{{Form::select('sidebar_notice', $categories, Input::old('sidebar_notice', Setting::getData('sidebar_notice')), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select notice category'))}}
+			
+			@if($errors->has('sidebar_notice'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('sidebar_notice')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
+			<?php unset($categories[0]); ?>
+			{{Form::label('comment_allowed_categories', Setting::getTitle('comment_allowed_categories'), array('class'=>'control-label'))}}
+			{{Form::select('comment_allowed_categories[]', $categories, Input::old('comment_allowed_categories', unserialize(Setting::getData('comment_allowed_categories'))), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select category', 'multiple'=>'multiple'))}}
+			
+			@if($errors->has('comment_allowed_categories'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('comment_allowed_categories')}}</span></p>
 			@endif
 		</div>
 

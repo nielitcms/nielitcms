@@ -39,7 +39,7 @@
 			<span class="glyphicon glyphicon-list"></span> Posts	
 		</a>
 	</li>
-	<li>
+	<li {{(Request::path() == 'admin/category')?'class="active"':''}}>
 		<a href="{{url('admin/category')}}">
 			<span class="glyphicon glyphicon-list"></span> Categories	
 		</a>

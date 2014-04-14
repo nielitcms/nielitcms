@@ -90,13 +90,28 @@ Route::post('/admin/menu/edit/{id}', array('uses'=>'MenuController@update','befo
 Route::get('/admin/menu/delete/{id}', array('uses'=>'MenuController@destroy','before'=>'auth'));
 
 Route::get('/admin/denied', array('uses'=>'AuthController@denied'));
+
 Route::get('/denied', array('uses'=>'AuthController@frontDenied'));
+Route::get('/notfound', array('uses'=>'AuthController@frontNotfound'));
 
 
 Route::get('/register', 'RegisterController@create');
 Route::post('/register', 'RegisterController@store');
 
 Route::get('/post/{id}', array('uses'=>'PostController@show'));
+Route::post('/post/{id}/comment', array('uses'=>'PostController@comment'));
+
 Route::get('/category/{id}', array('uses'=>'CategoryController@show'));
+
 Route::get('/gallery', array('uses'=>'GalleryController@index'));
 Route::get('/gallery/album/{id}', array('uses'=>'GalleryController@album'));
+
+Route::get('/download', array('uses'=>'DownloadController@lists'));
+
+Route::get('/album', array('uses'=>'AlbumController@show'));
+Route::get('album/photo/{id}', array('uses'=>'PhotoController@photolist'));
+
+Route::get('/page/{id}', array('uses'=>'PageController@show'));
+
+Route::get('/contact', array('uses'=>'ContactController@index'));
+Route::post('/contact', array('uses'=>'ContactController@send'));

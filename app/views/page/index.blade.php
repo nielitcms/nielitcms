@@ -37,7 +37,10 @@
 					<span class="btn btn-warning btn-xs">{{ucwords($page->status)}}</span>
 					@endif
 				</td>
-				<td>
+				<td class="tools">
+					<a title="View Page" href="{{url('page', array($page->id))}}" class="btn btn-success btn-xs" target="_blank">
+						<i class="glyphicon glyphicon-eye-open"></i>
+					</a>
 					<a href="{{url('admin/page/edit', array($page->id))}}" title="Edit Page" class="tooltip-top btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>

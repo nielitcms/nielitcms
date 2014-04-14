@@ -13,12 +13,24 @@
 	  	</div>
 	  	<div class="navbar-collapse collapse">
 	    	<ul class="nav navbar-nav navbar-right">
-		      	<li><a href="/admin">Dashboard</a></li>
-		      	<li><a href="/admin/settings">Settings</a></li>
-		      	<li><a href="/profile">Profile</a></li>
-		      	<li><a href="/profile/change-password">Change Password</a></li>
-		      	<li><a href="/help">Help</a></li>
-		      	<li><a href="/logout">Logout</a></li>
+		      	<li {{(Request::path() == 'admin')?'class="active"':''}}>
+		      		<a href="/admin">Dashboard</a>
+		      	</li>
+		      	<li {{(Request::path() == 'admin/settings')?'class="active"':''}}>
+		      		<a href="/admin/settings">Settings</a>
+		      	</li>
+		      	<li {{(Request::path() == 'admin/profile')?'class="active"':''}}>
+		      		<a href="/admin/profile">Profile</a>
+		      	</li>
+		      	<li {{(Request::path() == 'admin/profile/change-password')?'class="active"':''}}>
+		      		<a href="/admin/profile/change-password">Change Password</a>
+		      	</li>
+		      	<li {{(Request::path() == 'admin/help')?'class="active"':''}}>
+		      		<a href="/admin/help">Help</a>
+		      	</li>
+		      	<li {{(Request::path() == 'logout')?'class="active"':''}}>
+		      		<a href="/logout">Logout</a>
+		      	</li>
 	    	</ul>
 	  	</div>
 	</div>

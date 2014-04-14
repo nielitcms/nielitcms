@@ -74,7 +74,17 @@ class PageController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$page = Content::with('author')
+			->where('type', '=', 'page')
+			->where('status', '=', 'published')
+			->find($id);
+		if(!$page)
+			return Redirect::to('notfound');
+
+		return View::make('page.show')
+			->with(array(
+				'page' => $page
+				));
 	}
 
 	/**
@@ -87,6 +97,7 @@ class PageController extends \BaseController {
 	{
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
+		
 		$page = Content::with('author')->find($id);
 		return View::make('page.edit')
 			->with(array(

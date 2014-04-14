@@ -166,7 +166,7 @@ class DownloadController extends \BaseController {
 	public function destroy($id)
 	{
 		if(in_array(Auth::user()->role, array('user')))
-		return Redirect::to('denied');
+			return Redirect::to('denied');
 
 		$page = Input::get('page');
 		
@@ -184,11 +184,19 @@ class DownloadController extends \BaseController {
 
 	}
 
-	public function album()
+	public function lists()
 	{
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
-		return View::make('album.create');
+		$downloads = Download::orderBy('created_at', 'desc')
+			->where('status', '=', 'active')
+			->paginate(Setting::getData('no_of_post'));
+
+		$index = $downloads->getCurrentPage() > 1? (($downloads->getCurrentPage()-1) * $downloads->getPerPage())+1 : 1;
+
+		return View::make('download.list')
+			->with(array(
+				'downloads' => $downloads,
+				'index' => $index
+				));
 	}
 	
 }

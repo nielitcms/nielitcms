@@ -144,10 +144,20 @@ class AlbumController extends \BaseController {
 			return Redirect::to('/admin/album/?page=' . $page)->with('message', 'Album deleted successfully.');
 		else
 			return Redirect::to('/admin/album/')->with('message', 'Album deleted successfully.');	
+	}
+	public function show()
+	{
+		$albums = Album::orderBy('created_at', 'desc')
+			->where('id', '<>', Setting::getData('banner_image'))
+			->paginate(Setting::getData('no_of_post'));
 
-	
+		$index = $albums->getCurrentPage() > 1? (($albums->getCurrentPage()-1) * $albums->getPerPage())+1 : 1;
 
-
+		return View::make('album.show')
+			->with(array(
+				'albums'=>$albums,
+				'index'=>$index
+				));
 	}
 
 }

@@ -1,5 +1,7 @@
 body {
 	background: #ffffff;
+	font-size: 12px;
+	font-family: Arial;
 }
 a {
 	color: #2E93CC;
@@ -195,4 +197,98 @@ a:hover, a:focus {
 	font-size: 11px;
 	font-family: Arial;
 	font-weight: bold;
+}
+.download-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+}
+.download-list li {
+	margin: 0 0 4px;
+}
+.pagination {
+
+}
+.pagination li.disabled span,
+.pagination li.active span,
+.pagination li a {
+	padding: 3px 9px;
+}
+.comment-form {
+	margin-top: 25px;
+}
+.comment-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.comment-list li {
+	background-color: #F5FAFC;
+	margin: 0 0 3px;
+	padding: 8px 14px 12px;
+	border-radius: 8px;
+}
+.comment-list li span.comment-meta {
+	display: block;
+	color: #A8A8A8;
+	font-family: Arial;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+.comment-list li pre.comment-body {
+	display: block;
+	font-size: 10px;
+	margin: 10px 0 0;
+	font-family: Verdana;
+	line-height: 16px;
+	display: block;
+	padding: 0;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+}
+.album-list {
+
+}
+.album-list .album,
+.photo-list .photo {
+	margin-bottom: 18px;
+}
+.album-list .album a,
+.photo-list .photo a {
+	display: block;
+	text-decoration: none;
+}
+.album-list .album .album-cover,
+.photo-list .photo .photo-cover {
+	width: 100%;
+	min-height: 200px;
+	height: 200px;
+	background-color: #f7f7f7;
+	display: block;
+	margin-bottom: 10px;
+	color: #aaa;
+	text-align: center;
+	line-height: 200px;
+	position: relative;
+	overflow: hidden;
+}
+.album-list .album .album-cover img,
+.photo-list .photo .photo-cover img {
+	position: absolute;
+	left: 0;
+}
+.album-list .album .album-title,
+.photo-list .photo .photo-title {
+	display: block;
+	color: #555;
+	font-family: Arial;
+	font-size: 11px;
+	text-align: center;
+}
+.singlealbum .album-title {
+	margin-bottom: 30px;
 }

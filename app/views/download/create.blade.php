@@ -19,7 +19,7 @@
 
 		<div class="form-group">
 			{{Form::label('file_path', 'File', array('class'=>'control-label'))}}
-			{{Form::file('file_path', array('class'=>'form-control input-sm'))}}
+			{{Form::file('file_path', array('class'=>'input-sm'))}}
 
 			@if($errors->has('file_path'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('file_path')}}</span></p>

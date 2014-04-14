@@ -12,4 +12,19 @@ class Content extends Eloquent
 	{
 		return $this->belongsToMany('Category', 'content_category', 'content_id', 'category_id');
 	}
+
+	public function comments()
+	{
+		return $this->hasMany('Comment', 'post_id', 'id');
+	}
+
+	public static function inCategory($content_categories)
+	{
+		$allowed_categories = unserialize(Setting::getData('comment_allowed_categories'));
+		foreach ($content_categories as $category) {
+			if(in_array($category, $allowed_categories))
+				return true;
+		}
+		return false;
+	}
 }
