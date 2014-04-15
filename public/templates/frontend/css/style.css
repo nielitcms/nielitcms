@@ -309,3 +309,9 @@ a:hover, a:focus {
 	outline: none;
 	background-color: rgba(3,3,3,0.4);
 }
+.search-form {
+
+}
+.search-form .has-feedback .form-control-feedback {
+	top:0px;
+}

@@ -21,6 +21,9 @@ class CreatePhotosTable extends Migration {
 				$table->timestamps();
 				$table->softDeletes();
 			});
+
+		DB::statement('ALTER TABLE photos ADD FULLTEXT photosearch(title)');
+
 	}
 
 	/**
@@ -30,6 +33,10 @@ class CreatePhotosTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('photos', function($table) {
+            $table->dropIndex('photosearch');
+        });
+
 		Schema::dropIfExists('photos');
 	}
 

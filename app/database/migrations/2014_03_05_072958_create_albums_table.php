@@ -20,6 +20,8 @@ class CreateAlbumsTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 		});
+
+		DB::statement('ALTER TABLE albums ADD FULLTEXT albumsearch(title, description)');
 	}
 
 	/**
@@ -29,6 +31,10 @@ class CreateAlbumsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('albums', function($table) {
+            $table->dropIndex('albumsearch');
+        });
+
 		Schema::dropIfExists('albums');
 	}
 

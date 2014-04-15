@@ -66,6 +66,7 @@ Route::get('/admin/download/delete/{id}', array('uses'=>'DownloadController@dest
 Route::get('/admin/download/edit/{id}', array('uses'=>'DownloadController@edit','before'=>'auth'));
 Route::post('/admin/download/edit/{id}', array('uses'=>'DownloadController@update','before'=>'auth'));
 Route::get('/admin/download/{id}', array('uses'=>'DownloadController@show','before'=>'auth'));
+Route::get('/download/{id}', array('uses'=>'DownloadController@show'));
 
 Route::get('/admin/album/create', array('uses'=>'AlbumController@create','before'=>'auth'));	
 Route::post('/admin/album/create', array('uses'=>'AlbumController@store','before'=>'auth'));
@@ -115,3 +116,5 @@ Route::get('/page/{id}', array('uses'=>'PageController@show'));
 
 Route::get('/contact', array('uses'=>'ContactController@index'));
 Route::post('/contact', array('uses'=>'ContactController@send'));
+
+Route::get('/search', array('uses'=>'SearchController@index'));

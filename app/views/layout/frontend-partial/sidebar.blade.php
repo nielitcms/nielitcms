@@ -1,8 +1,19 @@
+<div class="sidebar-module">
+	<div class="module-content">
+		{{Form::open(array('url'=>'search', 'method'=>'get', 'class'=>'form search-form'))}}
+			<div class="form-group has-feedback">
+		  		{{Form::text('query', Input::old('query'), array('placeholder'=>'Search', 'class'=>'form-control'))}}
+		  		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+			</div>
+		{{Form::close()}}
+	</div>
+</div>
+
 <?php
 $sidebar_menus = Menu::where('position', '=', 'sidebar')
-						->where('parent', '=', 0)
-						->orderBy('display_order', 'asc')
-						->get();
+					->where('parent', '=', 0)
+					->orderBy('display_order', 'asc')
+					->get();
 ?>
 @if($sidebar_menus->count())
 <div class="sidebar-module">

@@ -21,7 +21,8 @@ class PageController extends \BaseController {
 		return View::make('page.index')->with(array(
 			'pages' => $pages,
 			'index' => $index
-			));	}
+			));
+	}
 
 	/**
 	 * Show the form for creating a new resource.

@@ -22,6 +22,8 @@ class CreateContentsTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 		});
+
+		DB::statement('ALTER TABLE contents ADD FULLTEXT contentsearch(title, content)');
 	}
 
 	/**
@@ -31,6 +33,10 @@ class CreateContentsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('contents', function($table) {
+            $table->dropIndex('contentsearch');
+        });
+
 		Schema::dropIfExists('contents');
 	}
 

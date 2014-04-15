@@ -22,6 +22,8 @@ class CreateDownloadsTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 		});
+
+		DB::statement('ALTER TABLE downloads ADD FULLTEXT downloadsearch(title)');
 	}
 
 	/**
@@ -31,6 +33,10 @@ class CreateDownloadsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('downloads', function($table) {
+            $table->dropIndex('downloadsearch');
+        });
+
 		Schema::dropIfExists('downloads');
 	}
 
