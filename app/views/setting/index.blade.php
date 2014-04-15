@@ -31,6 +31,15 @@
 		</div>
 
 		<div class="form-group">
+			{{Form::label('contact_us_email', Setting::getTitle('contact_us_email'), array('class'=>'control-label'))}}
+			{{Form::text('contact_us_email', Input::old('contact_us_email', Setting::getData('contact_us_email')), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>Setting::getTitle('contact_us_email'), 'title'=>Setting::getTitle('contact_us_email')))}}
+			
+			@if($errors->has('contact_us_email'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('contact_us_email')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
 			{{Form::label('allowed_file_extension', Setting::getTitle('allowed_file_extension'), array('class'=>'control-label'))}}
 			{{Form::text('allowed_file_extension', Input::old('allowed_file_extension', Setting::getData('allowed_file_extension')), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>Setting::getTitle('allowed_file_extension'), 'title'=>Setting::getTitle('allowed_file_extension')))}}
 			<p class="help-block">Enter file extension separated by comma. Ex: jpg,bmp,pdf.</p>

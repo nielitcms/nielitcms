@@ -7,7 +7,7 @@
 	@endif
 
 <div class="col-sm-12">
-	<h3><i class="glyphicon glyphicon-plus"></i> <a href="/album/photo/{{$album->id}}">{{$album->title}}</a> &raquo; Add Photo</h3>
+	<h3><i class="glyphicon glyphicon-plus"></i> <a href="/admin/album/photo/{{$album->id}}">{{$album->title}}</a> &raquo; Add Photo</h3>
 	<hr>
 
 	{{Form::open(array('url'=>'admin/photo/add/'. $album->id, 'method'=>'post', 'class'=>'form-vertical', 'enctype'=>'multipart/form-data'))}}

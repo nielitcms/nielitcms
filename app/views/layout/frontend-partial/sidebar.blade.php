@@ -66,15 +66,21 @@ $sidebar_menus = Menu::where('position', '=', 'sidebar')
 	@endif
 @endif
 
+
+<?php 
+	$comments=Comment::orderBy('created_at', 'desc')->get();
+ ?>
+@if($comments->count())
 <div class="sidebar-module">
-	<h3 class="module-title">Comments</h3>
+	<h3 class="module-title">Comment</h3>
 	<div class="module-content">
 		<ul class="list-group">
-			<li class="list-group-item"><a href="/">Cras justo odio</a></li>
-			<li class="list-group-item"><a href="/">Dapibus ac facilisis in</a></li>
-			<li class="list-group-item"><a href="/">Morbi leo risus</a></li>
-			<li class="list-group-item"><a href="/">Porta ac consectetur ac</a></li>
-			<li class="list-group-item"><a href="/">Vestibulum at eros</a></li>
+			@foreach($comments as $comment)
+			<li class="list-group-item">
+				<a href="{{url('/post/' . $comment->post_id .'#comments')}}">{{$comment->comment_body}}</a>
+			</li>
+			@endforeach
 		</ul>
 	</div>
 </div>
+@endif

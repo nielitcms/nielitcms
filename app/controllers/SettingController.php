@@ -47,6 +47,7 @@ class SettingController extends \BaseController {
 		$rules = array(
 			'site_title' => 'required',
 			'admin_site_title' => 'required',
+			'contact_us_email' => 'required|email',
 			'allowed_file_extension'=> 'required',
 			'no_of_item_perpage'=> 'required|integer|min:1',
 			'no_of_post'=> 'required|integer|min:1',
@@ -68,6 +69,10 @@ class SettingController extends \BaseController {
 		$admin_site_title = Input::get('admin_site_title');
 		Setting::where('setting_key', '=', 'admin_site_title')
 			->update(array('setting_data'=>$admin_site_title));
+
+		$contact_us_email = Input::get('contact_us_email');
+		Setting::where('setting_key', '=', 'contact_us_email')
+			->update(array('setting_data'=>$contact_us_email));
 
 		$allowed_file_extension = Input::get('allowed_file_extension');
 		Setting::where('setting_key', '=', 'allowed_file_extension')

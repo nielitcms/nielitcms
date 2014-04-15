@@ -7,9 +7,9 @@ class RegisterController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function contact()
 	{
-		//
+		return View::make('contact.contact');
 	}
 
 	/**

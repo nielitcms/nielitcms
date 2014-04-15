@@ -17,9 +17,7 @@ class MenuController extends BaseController {
 
 	public function index($menulocation)
 	{
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 	
 		$menus = Menu::with('parent_menu')->where('position', '=',$menulocation)
@@ -39,9 +37,7 @@ class MenuController extends BaseController {
 
 	public function create($menulocation)
 	{
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor', 'user')))
 			return Redirect::to('denied');
 
 		$parent = Menu::where('parent', '=', 0)
@@ -62,9 +58,7 @@ class MenuController extends BaseController {
 
 	public function store($menulocation)
 	{
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor', 'user')))
 			return Redirect::to('denied');
 
 		$rules = array(
@@ -119,9 +113,7 @@ class MenuController extends BaseController {
 
 	public function edit($id)
 	{ 
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor', 'user')))
 			return Redirect::to('denied');
 
 		$menu=Menu::find($id);
@@ -142,9 +134,7 @@ class MenuController extends BaseController {
 
 	public function update($id)
 	{
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('editor')))
+		if(in_array(Auth::user()->role, array('editor', 'user')))
 			return Redirect::to('denied');
 
 		$rules=array(

@@ -47,8 +47,6 @@ class AlbumController extends \BaseController {
 	{
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
 		$rules = array(
 			'title'=>'required',
 			'description'=>'required');
@@ -81,8 +79,6 @@ class AlbumController extends \BaseController {
 	{
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
 		$album=Album::find($id);
 		return View::make('album.edit')
 			->with('album',$album);
@@ -93,8 +89,6 @@ class AlbumController extends \BaseController {
 // int  $id      * @return Response      */     
 	public function update($id)
 	{
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
 		$rules=array(

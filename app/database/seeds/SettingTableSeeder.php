@@ -17,6 +17,13 @@ class SettingTableSeeder extends Seeder {
             'setting_data' => 'NIELIT CMS Administration',
             ));
 
+
+        DB::table('settings')->insert(array(
+            'setting_key' => 'contact_us_email',
+            'setting_title' => 'Contact Us Email Id',
+            'setting_data' => 'NIELIT CMS Administration',
+            ));
+
         DB::table('settings')->insert(array(
             'setting_key' => 'allowed_file_extension',
             'setting_title' => 'Allowed File Extension',
