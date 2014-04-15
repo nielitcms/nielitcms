@@ -22,3 +22,9 @@ $(function(){
 		maxWidth: "800px"
 	});
 });
+
+function goToTop() {
+	$("html, body").animate({
+		scrollTop: 0
+	}, 900);
+}

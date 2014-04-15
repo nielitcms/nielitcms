@@ -55,6 +55,7 @@
 		<h3 class="post-title"><a href="{{url('post/' . $latest_post->id)}}">{{$latest_post->title}}</a></h3>
 		<div class="post-author">by {{$latest_post->author->display_name}} on {{date('dS F, Y h:iA', strtotime($latest_post->created_at))}}</div>
 		<div class="post-content">{{substr($latest_post->content, 0, 400)}}... <a href="{{url('post/' . $latest_post->id)}}" class="readmore">Read More</a></div>
+
 		<div class="post-meta">Categories: {{implode(', ', $latest_post->categories->lists('name'))}}</div>
 	</div>
 	@endforeach

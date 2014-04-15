@@ -1,6 +1,7 @@
 <nav class="navbar navbar-default footer-navigation" role="navigation">
   	<div class="container" id="footer">
     	<div class="row">
+            <button class="go-to-top" onclick="return goToTop();">TOP</button>
             <?php
             $bottom_menus = Menu::where('position', '=', 'bottom')->orderBy('display_order', 'asc')->get();
             ?>

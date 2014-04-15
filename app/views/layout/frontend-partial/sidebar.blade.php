@@ -77,7 +77,7 @@ $sidebar_menus = Menu::where('position', '=', 'sidebar')
 		<ul class="list-group">
 			@foreach($comments as $comment)
 			<li class="list-group-item">
-				<a href="{{url('/post/' . $comment->post_id .'#comments')}}">{{$comment->comment_body}}</a>
+				<a href="{{url('/post/' . $comment->post_id .'#comments')}}">{{substr($comment->comment_body, 0, 80)}}</a>
 			</li>
 			@endforeach
 		</ul>

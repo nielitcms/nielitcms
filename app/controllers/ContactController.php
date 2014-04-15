@@ -20,26 +20,33 @@ class ContactController extends \BaseController {
 	public function send()
 	{
 		$rules= array(
-				'user_email'=>'required|email',
-				'subject'=>'required',
-				'message_body'=>'required'
-				
+				'name'=>'required',
+				'email'=>'required|email',
+				'message'=>'required'
 				);
 
-		$validation=Validator::make(Input::all(), $rules);
+		$validation = Validator::make(Input::all(), $rules);
 
-		if($validation->fails()){
-				return Redirect::to('/contact')
-					->withErrors($validation)
-					->withInput(Input::all());
-			}
+		if($validation->fails()) {
+			return Redirect::to('/contact')
+				->withErrors($validation)
+				->withInput(Input::all());
+		}
 
 		$to      = Setting::getData('contact_us_email');
-		$subject = Input::get('subject');
-		$message = Input::get('message_body');
-		$sender  = Input::get('user_email');
+		$subject = 'Website Contact Form Submission';
+		$message = "Name: " . Input::get('name') . "\n";
+		$message .= "Contact Number: " . Input::get('contact') . "\n";
+		$message .= "Message: \n" . Input::get('message');
+		$sender  = Input::get('email');
 	
-		mail($to, $subject, $message, $sender);
+		try {
+			mail($to, $subject, $message, $sender);
+		}
+		catch(Exception $e) {
+
+		}
+
 		return Redirect::to('/contact')->withMessage('Email Sent Successfully');
 		
 	}

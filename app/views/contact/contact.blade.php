@@ -14,31 +14,41 @@
 		<div class="row">
 			{{Form::open(array('url'=>'/contact', 'method'=>'post'))}}
 				<div class="form-group">
-					{{Form::text('user_email', Input::old('user_email'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'User Email Id', 'title'=>'User Email Id'))}}
+					{{Form::text('name', Input::old('name'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Enter Your Name', 'title'=>'Your Name'))}}
 
-					@if($errors->has('user_email'))
+					@if($errors->has('name'))
 					<span class="help-block">
-						<p class="text-danger">{{$errors->first('user_email')}}</p>
-					</span>
-					@endif
-				</div>
-
-				<div class="form-group">	
-					{{Form::text('subject', Input::old('subject'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Subject', 'title'=>'Subject'))}}
-					
-					@if($errors->has('subject'))
-					<span class="help-block">
-						<p class="text-danger">{{$errors->first('subject')}}</p>
+						<p class="text-danger">{{$errors->first('name')}}</p>
 					</span>
 					@endif
 				</div>
 
 				<div class="form-group">
-					{{Form::textarea('message_body', Input::old('message_body'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Type ur Message Here', 'title'=>'Message', 'rows'=>'6'))}}
-					
-					@if($errors->has('message_body'))
+					{{Form::text('email', Input::old('email'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Enter Your Email Address', 'title'=>'Your Email Address'))}}
+
+					@if($errors->has('email'))
 					<span class="help-block">
-						<p class="text-danger">{{$errors->first('message_body')}}</p>
+						<p class="text-danger">{{$errors->first('email')}}</p>
+					</span>
+					@endif
+				</div>
+
+				<div class="form-group">
+					{{Form::text('contact', Input::old('contact'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Enter Phone Number (Optional)', 'title'=>'Your Phone Number'))}}
+					
+					@if($errors->has('contact'))
+					<span class="help-block">
+						<p class="text-danger">{{$errors->first('contact')}}</p>
+					</span>
+					@endif
+				</div>
+
+				<div class="form-group">
+					{{Form::textarea('message', Input::old('message'), array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'Enter Your Message', 'title'=>'Enter Your Message', 'rows'=>'6'))}}
+					
+					@if($errors->has('message]'))
+					<span class="help-block">
+						<p class="text-danger">{{$errors->first('message')}}</p>
 					</span>
 					@endif
 				</div>
