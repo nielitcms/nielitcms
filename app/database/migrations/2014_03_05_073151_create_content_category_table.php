@@ -17,6 +17,7 @@ class CreateContentCategoryTable extends Migration {
 			$table->increments('id')->unsigned();
 			$table->integer('content_id')->unsigned();
 			$table->integer('category_id')->unsigned();
+			$table->engine='MyISAM';
 		});
 	}
 

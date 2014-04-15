@@ -19,6 +19,7 @@ class CreateAlbumsTable extends Migration {
 			$table->integer('created_by')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
+			$table->engine='MyISAM';
 		});
 
 		DB::statement('ALTER TABLE albums ADD FULLTEXT albumsearch(title, description)');

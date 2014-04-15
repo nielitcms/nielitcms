@@ -21,6 +21,7 @@ class CreateContentsTable extends Migration {
 			$table->enum('status', array('published', 'draft'))->default('draft');
 			$table->timestamps();
 			$table->softDeletes();
+			$table->engine='MyISAM';
 		});
 
 		DB::statement('ALTER TABLE contents ADD FULLTEXT contentsearch(title, content)');

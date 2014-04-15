@@ -20,6 +20,7 @@ class CreatePhotosTable extends Migration {
 				$table->integer('album_id')->unsigned();
 				$table->timestamps();
 				$table->softDeletes();
+				$table->engine='MyISAM';
 			});
 
 		DB::statement('ALTER TABLE photos ADD FULLTEXT photosearch(title)');

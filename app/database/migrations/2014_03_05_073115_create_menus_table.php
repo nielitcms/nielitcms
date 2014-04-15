@@ -22,6 +22,7 @@ class CreateMenusTable extends Migration {
 				$table->integer('display_order')->unsigned();
 				$table->timestamps();
 				$table->softDeletes();
+				$table->engine='MyISAM';
 			});
 	}
 

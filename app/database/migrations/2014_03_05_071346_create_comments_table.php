@@ -21,6 +21,7 @@ class CreateCommentsTable extends Migration
 			$table->integer('post_id')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
+			$table->engine='MyISAM';
 		});
 	}
 

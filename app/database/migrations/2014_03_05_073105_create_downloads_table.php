@@ -21,6 +21,7 @@ class CreateDownloadsTable extends Migration {
 			$table->enum('status', array('active', 'inactive'))->default('inactive');
 			$table->timestamps();
 			$table->softDeletes();
+			$table->engine='MyISAM';
 		});
 
 		DB::statement('ALTER TABLE downloads ADD FULLTEXT downloadsearch(title)');

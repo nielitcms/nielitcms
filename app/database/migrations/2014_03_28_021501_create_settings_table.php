@@ -17,6 +17,7 @@ class CreateSettingsTable extends Migration {
 			$table->string('setting_key');
 			$table->string('setting_title');
 			$table->string('setting_data')->nullable();
+			$table->engine='MyISAM';
 		});
 	}
 
