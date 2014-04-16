@@ -42,7 +42,7 @@ class ProfileController extends \BaseController {
 		$user->display_name = Input::get('display_name');
 		$user->save();
 		
-		return Redirect::to('profile')
+		return Redirect::to('admin/profile')
 			->with('message','Profile updated Successfully');
 	}
 
