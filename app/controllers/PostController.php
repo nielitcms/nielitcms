@@ -160,7 +160,10 @@ class PostController extends \BaseController {
 		$count=Content::count();
 		if($count%Setting::getData('no_of_item_perpage')==1)
 			$page=$page-1;
+
 		$content = Content::find($id);
+		$comments=Comment::where('post_id' , '=', $id);
+		$comments->delete();
 		$content->categories()->detach();
 		$content->delete();
 		
