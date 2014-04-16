@@ -12,7 +12,7 @@
 
 	<div class="col-sm-6">
 		<div class="row">
-			{{Form::open(array('url'=>'/profile/change-password', 'method'=>'post'))}}
+			{{Form::open(array('url'=>'/admin/profile/change-password', 'method'=>'post'))}}
 				<div class="form-group">
 					{{Form::password('password', array('class'=>'input-sm form-control tooltip-right', 'placeholder'=>'New Password', 'title'=>'New Password'))}}
 					

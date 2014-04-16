@@ -32,7 +32,7 @@ class ProfileController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('profile')
+			return Redirect::to('admin/profile')
 				->withErrors($validation)
 				->withInput(Input::all());
 		}
@@ -62,7 +62,7 @@ class ProfileController extends \BaseController {
 		$validation= Validator::make(Input::all(), $rules);
 
 		if ($validation ->fails()) {
-			return Redirect::to('profile/change-password')
+			return Redirect::to('/admin/profile/change-password')
 				->withErrors($validation);
 		}
 
@@ -70,7 +70,7 @@ class ProfileController extends \BaseController {
 		$user->password = Hash::make(Input::get('password'));
 		$user->save();
 		
-		return Redirect::to('profile/change-password')
+		return Redirect::to('/admin/profile/change-password')
 			->with('message','Password updated successfully');
 	}
 }
