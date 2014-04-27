@@ -82,9 +82,7 @@ class DownloadController extends \BaseController {
 	 * @return Response
 	 */
 	public function show($id)
-	{
-		if(in_array(Auth::user()->role, array('user')))
-			return Redirect::to('denied');
+	{		
 		$download = Download::find($id);
 		$file_path = public_path() . '/' . $download->file_path;
 		

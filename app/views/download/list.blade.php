@@ -4,17 +4,22 @@
 <div class="posts">
 	<h2>Downloads</h2>
 
-	
+	<table class="table table-condensed table-hover">
+	<tbody>
 	@if(!$downloads->count())
-	<p class="">There are no items</p>
+	<tr><td colspan="2" align="center"><p class="">There are no items</p></td></tr>
 	@else
-	<ul class="download-list">
+	
 		@foreach($downloads as $key => $download)
-		<li>{{$key+$index}}. <a href="{{url('admin/download/' . $download->id)}}" target="_blank" title="Click to download" class="tooltip-right">{{$download->title}}</a></li>
+		<tr>
+			<td>{{$key+$index}}. {{$download->title}}</a></td>
+			<td class="tools"><a href="{{url('download/' . $download->id)}}" target="_blank" class="btn btn-xs btn-success" title="Click to download">
+				<i class="glyphicon glyphicon-download-alt"> Download</i></a></td>
+		</tr>		
 		@endforeach
-	</ul>
+	
 	@endif
-
+	</table>
 	{{$downloads->links()}}
 </div>
 @stop
