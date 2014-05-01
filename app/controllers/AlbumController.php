@@ -145,6 +145,9 @@ class AlbumController extends \BaseController {
 			->where('id', '<>', Setting::getData('banner_image'))
 			->paginate(Setting::getData('no_of_post'));
 
+		if(!$albums)
+			return Redirect:: to('/notfound');
+
 		$index = $albums->getCurrentPage() > 1? (($albums->getCurrentPage()-1) * $albums->getPerPage())+1 : 1;
 
 		return View::make('album.show')

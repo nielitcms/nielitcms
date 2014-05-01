@@ -85,6 +85,10 @@ class PostController extends \BaseController {
 			->where('type', '=', 'post')
 			->where('status', '=', 'published')
 			->find($id);
+
+		if(!$post)
+			return Redirect:: to('/notfound');
+
 		return View::make('post.show')
 			->with(array(
 				'post' => $post

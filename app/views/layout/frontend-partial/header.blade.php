@@ -10,6 +10,10 @@
 				{{Form::hidden('redirect_to', Request::url())}}
 				{{Form::submit('Sign In', array('class'=>'btn btn-sm btn-success', 'name'=>'signin'))}}
 				<p class="help-block text-left"><a href="{{url('/register')}}">Register Account</a></p>
+				@if(Session::has('message'))
+					<div class="alert alert-success">{{Session::get('message')}}</div>
+				@endif
+
 			{{Form::close()}}
 			@endif
 

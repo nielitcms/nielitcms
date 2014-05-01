@@ -48,7 +48,7 @@ class CategoryController extends BaseController {
 		Session::put('category_id', $id);
 		$category = Category::find($id);
 		if(!$category)
-			return Redirect::to('/');
+			return Redirect::to('/notfound');
 
 		$posts = Content::with('author','categories')
 			->where('type', '=', 'post')

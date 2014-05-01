@@ -84,6 +84,9 @@ class DownloadController extends \BaseController {
 	public function show($id)
 	{		
 		$download = Download::find($id);
+		if(!$download)
+			return Redirect:: to('/notfound');
+
 		$file_path = public_path() . '/' . $download->file_path;
 		
 		if(File::exists($file_path))

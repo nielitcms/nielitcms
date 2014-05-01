@@ -94,6 +94,10 @@ class PhotoController extends \BaseController {
 		if(in_array(Auth::user()->role, array('user')))
 			return Redirect::to('denied');
 		$photo = Photo::find($id);
+
+		if(!$photo)
+			return Redirect:: to('/notfound');
+
 		$photo_path = public_path() . '/' . $photo->photo_path;
 		
 		if(File::exists($photo_path))
@@ -186,11 +190,17 @@ class PhotoController extends \BaseController {
 
 	public function photolist($id)
 	{
+		if(!$album=Album::find($id))
+			return Redirect:: to('/notfound');
+
 		$albumname = Album::find($id)->title;
 		$photos = Photo::where('album_id','=',$id)
 			->orderBy('created_at', 'asc')
 			->get();
-			
+		
+		if(!$photos)
+			return Redirect:: to('/notfound');
+
 		return View::make('photo.show')
 			->with(array(
 				'photos'=> $photos,

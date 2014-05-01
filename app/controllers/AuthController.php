@@ -12,14 +12,14 @@ class AuthController extends BaseController
 		$password = Input::get('password');
 		$redirect_to = Input::get('redirect_to');
 
-		if (Auth::attempt(array('username' => $username, 'password' => $password))) {
+		if (Auth::attempt(array('username' => $username, 'password' => $password, 'status'=> 'active'))) {
 			if($redirect_to)
 				return Redirect::to($redirect_to);
 			else
 				return Redirect::to('/admin');
 		}
 		else
-			return Redirect::to('login')->with('message', 'Incorrect username or password');
+			return Redirect::to('/')->with('message', 'Incorrect username or password');
 	}
 
 	public function logout()
