@@ -1,7 +1,9 @@
 <nav class="navbar navbar-default footer-navigation" role="navigation">
   	<div class="container" id="footer">
     	<div class="row">
-            <button class="go-to-top" onclick="return goToTop();">TOP</button>
+            <button class="go-to-top" onclick="return goToTop();">
+            <a href="{{url('/')}}"><img src="{{asset('templates/frontend/images/go-to-top.png')}}" width="30px" height="30px"></a>
+            </button>
             <?php
             $bottom_menus = Menu::where('position', '=', 'bottom')->orderBy('display_order', 'asc')->get();
             ?>

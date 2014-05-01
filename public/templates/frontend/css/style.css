@@ -4,7 +4,8 @@ body {
 	font-family: Arial;
 }
 a {
-	color: #6BBDC9;
+	color: #299CDD;
+	font-size: 12px;
 }
 a:hover, a:focus {
 	color: #2E93CC;
@@ -20,8 +21,9 @@ a:hover, a:focus {
 .header .logo form {
 	margin-top: 15px;
 }
-.header .logo form p {
-	font-size: 11px;
+.header .logo form p a{
+	font-size: 12px;
+	color: #ffffff;
 }
 .header .logo p.user-panel {
 	font-size: 12px;
@@ -62,7 +64,7 @@ a:hover, a:focus {
 .top-navigation .nav>li.active>a,
 .top-navigation .nav>li>a:hover,
 .top-navigation .nav>li>a:focus {
-	background-color: #6392C5;
+	background-color: #105b72;
 	color: #ffffff;
 }
 .top-navigation .nav .dropdown-menu>li>a {
@@ -114,6 +116,7 @@ a:hover, a:focus {
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 }
+
 #footer {
 	color: #ffffff;
 }
@@ -298,16 +301,16 @@ a:hover, a:focus {
 	position: relative;
 }
 #footer .go-to-top {
-	background-color: rgba(3,3,3,0.6);
+	background-color: transparent;
 	color: #ffffff;
 	padding: 4px 8px;
 	border: none;
 	position: fixed;
 	bottom: 25px;
-	left:25px;
+	right: 30px;
 }
 #footer .go-to-top:hover,
-#footer .go-to-top:focus {
+#footer .go-to-top:focus {	
 	outline: none;
 	background-color: rgba(3,3,3,0.4);
 }

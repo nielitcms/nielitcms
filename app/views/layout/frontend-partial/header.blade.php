@@ -17,7 +17,7 @@
 			{{Form::close()}}
 			@endif
 
-			<a href="{{url('/')}}"><img src="{{asset('templates/frontend/images/logo.png')}}" width="180px" height="79px" alt="{{Setting::getData('site_title')}}" title="{{Setting::getData('site_title')}}"></a>
+			<a href="{{url('/')}}"><img src="{{asset('templates/frontend/images/logo.png')}}" width="145px" height="75px" alt="{{Setting::getData('site_title')}}" title="{{Setting::getData('site_title')}}"></a>
 
 		</div>
 	</div>
