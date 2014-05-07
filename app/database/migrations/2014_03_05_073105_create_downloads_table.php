@@ -19,6 +19,7 @@ class CreateDownloadsTable extends Migration {
 			$table->integer('created_by')->unsigned();
 			$table->string('file_path')->nullable();
 			$table->enum('status', array('active', 'inactive'))->default('inactive');
+			$table->integer('no_of_download')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
 			$table->engine='MyISAM';

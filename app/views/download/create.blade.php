@@ -28,7 +28,7 @@
 
 		<div class="form-group">
 			{{Form::label('status', 'Status', array('class'=>'control-label'))}}
-			{{Form::select('status', array('inactive'=>'Inactive', 'active'=>'Active'),  Input::old('status'), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Download Status'))}}
+			{{Form::select('status', array('active'=>'Active', 'inactive'=>'Inactive'),  Input::old('status'), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Download Status'))}}
 
 			@if($errors->has('status'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('status')}}</span></p>

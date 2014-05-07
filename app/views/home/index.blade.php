@@ -45,21 +45,47 @@
 		@endif
 	@endif
 @endif
+@stop
 <!-- Banner Slider Ends -->
 
 <!-- Latest Post Start -->
+@section('content1')
 <div class="posts">
-	<h2>Latest Posts</h2>
+	<h2>NEWS</h2>
 	@foreach($latest_posts as $latest_post)
-	<div class="post">
-		<h3 class="post-title"><a href="{{url('post/' . $latest_post->id)}}">{{$latest_post->title}}</a></h3>
-		<div class="post-author">by {{$latest_post->author->display_name}} on {{date('dS F, Y h:iA', strtotime($latest_post->created_at))}}</div>
-		<div class="post-content">{{substr($latest_post->content, 0, 400)}}... <a href="{{url('post/' . $latest_post->id)}}" class="readmore">Read More</a></div>
 
-		<div class="post-meta">Categories: {{implode(', ', $latest_post->categories->lists('name'))}}</div>
-	</div>
+		@if(implode(', ', $latest_post->categories->lists('name'))=='news')
+			<div class="post">
+				<h3 class="post-title"><a href="{{url('post/' . $latest_post->id)}}">{{$latest_post->title}}</a></h3>
+				<div class="post-author">by {{$latest_post->author->display_name}} on {{date('dS F, Y h:iA', strtotime($latest_post->created_at))}}</div>
+				<div class="post-content">{{substr($latest_post->content, 0, 400)}}... <a href="{{url('post/' . $latest_post->id)}}" class="readmore">Read More</a></div>
+
+				<div class="post-meta">Categories: {{implode(', ', $latest_post->categories->lists('name'))}}</div>
+			</div>
+		@endif
 	@endforeach
 </div>
 <!-- Latest Post End -->
+@stop
 
+@section('content2')
+	<div class="posts">
+	<h2>Latest Posts</h2>
+	@foreach($latest_posts as $latest_post)
+		@if(implode(', ', $latest_post->categories->lists('name'))!='news')
+			<div class="post">
+				<h3 class="post-title"><a href="{{url('post/' . $latest_post->id)}}">{{$latest_post->title}}</a></h3>
+				<div class="post-author">by {{$latest_post->author->display_name}} on {{date('dS F, Y h:iA', strtotime($latest_post->created_at))}}</div>
+				<div class="post-content">{{substr($latest_post->content, 0, 400)}}... <a href="{{url('post/' . $latest_post->id)}}" class="readmore">Read More</a></div>
+
+				<div class="post-meta">Categories: {{implode(', ', $latest_post->categories->lists('name'))}}</div>
+			</div>
+		@endif
+	@endforeach
+</div>
+@stop
+
+@section('content3')
+
+this is news
 @stop

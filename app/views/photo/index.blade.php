@@ -21,7 +21,7 @@
 				<th>#</th>
 				<th>Title</th>
 				<th>File</th>
-				<th>Created By</th>
+				<th>Album Name</th>
 				<th></th>
 			</tr>
 		</thead>

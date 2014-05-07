@@ -16,19 +16,9 @@
 <body>
 	@include('layout.frontend-partial.header')
 	<div class="main-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-12" id="main">@yield('content')</div>
-					<div class="col-md-1" ></div>
-				</div>
-			</div>
-	</div>
-	<div class="main-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5" id="main">@yield('content1')</div>
-				<div class="col-md-5" id="main">@yield('content2')</div>
+				<div class="col-md-9" id="main">@yield('content')</div>
 				<div class="col-md-2" id="sidebar">
 					@include('layout.frontend-partial.sidebar')
 				</div>

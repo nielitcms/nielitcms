@@ -89,8 +89,11 @@ class DownloadController extends \BaseController {
 
 		$file_path = public_path() . '/' . $download->file_path;
 		
-		if(File::exists($file_path))
+		if(File::exists($file_path)){
+			$download->no_of_download=$download->no_of_download + 1;
+			$download->save();
 			return Response::download($file_path, $download->title);
+		}
 		else
 			return View::make('download.show');
 	}
