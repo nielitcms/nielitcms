@@ -69,11 +69,33 @@ a:hover, a:focus {
 }
 .top-navigation .nav .dropdown-menu>li>a {
 	font-size: 12px;
+	line-height: 20px;
+	transition: color .5s;
+	-moz-transition: color .5s;
+	-o-transition: color .5s;
+	-webkit-transition: color .5s;
+	white-space: nowrap;
 }
-.top-navigation .nav .dropdown-menu>li>a:hover,
+.top-navigation .nav .dropdown-menu>li>a:hover>ul{
+	visibility: visible;
+}
+.top-navigation .nav .dropdown-menu ul{
+	visibility: hidden;
+}
 .top-navigation .nav .dropdown-menu>li>a:focus {
 	background-color: #6392C5;
 	color: #fff;
+}
+
+.dropdown-menu { 
+  min-width: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 100%;
+  transition: max-height .5s .2s;
+  -moz-transition: max-height .5s .2s;
+  -o-transition: max-height .5s .2s;
+  -webkit-transition: max-height .5s .2s;
 }
 .main-area {
 	margin-bottom: 80px;
@@ -323,8 +345,8 @@ a:hover, a:focus {
 
 #element.style {
 }
-.main-area {
+/*.main-area {
 margin-bottom: 10px;
 margin-top: 20px;
 background: transparent url(../images/body-bg.jpg);
-}
+}*/
