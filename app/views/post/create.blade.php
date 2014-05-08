@@ -37,7 +37,7 @@
 
 		<div class="form-group">
 			{{Form::label('status', 'Status', array('class'=>'control-label'))}}
-			{{Form::select('status', array('draft'=>'Draft', 'published'=>'Published'),  Input::old('status'), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Publish Status'))}}
+			{{Form::select('status', array('published'=>'Published', 'draft'=>'Draft'),  Input::old('status'), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Publish Status'))}}
 
 			@if($errors->has('status'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('status')}}</span></p>
