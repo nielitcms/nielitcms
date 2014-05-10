@@ -22,7 +22,7 @@ class Content extends Eloquent
 	{
 		$allowed_categories = unserialize(Setting::getData('comment_allowed_categories'));
 		foreach ($content_categories as $category) {
-			if(in_array($category, $allowed_categories))
+			if(is_array($allowed_categories) && in_array($category, $allowed_categories))
 				return true;
 		}
 		return false;
