@@ -21,6 +21,7 @@ class MenuController extends BaseController {
 			return Redirect::to('denied');
 	
 		$menus = Menu::with('parent_menu')->where('position', '=',$menulocation)
+			->where('parent', '=','0')
 			->orderBy('title', 'asc')
 			->paginate(Setting::getData('no_of_item_perpage'));
 			
@@ -29,6 +30,26 @@ class MenuController extends BaseController {
 		return View::make('menu.index')
 			->with(array(
 				'menulocation'=>$menulocation,
+				'menus' => $menus,
+				'index' => $index,
+
+				));
+	}
+
+	public function child($id)
+	{
+		if(in_array(Auth::user()->role, array('editor','user')))
+			return Redirect::to('denied');
+	
+		$menus = Menu::with('parent_menu')
+			->where('parent', '=',$id)
+			->orderBy('title', 'asc')
+			->paginate(Setting::getData('no_of_item_perpage'));
+			
+		$index = $menus->getCurrentPage() > 1? (($menus->getCurrentPage()-1) * $menus->getPerPage())+1 : 1;
+		
+		return View::make('menu.child')
+			->with(array(
 				'menus' => $menus,
 				'index' => $index,
 

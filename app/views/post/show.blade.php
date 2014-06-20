@@ -1,4 +1,4 @@
-@extends('layout.frontend1')
+@extends('layout.frontend')
 
 @section('content')
 <div class="posts single">

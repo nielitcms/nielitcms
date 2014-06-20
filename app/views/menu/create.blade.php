@@ -7,7 +7,7 @@
 	@elseif($menulocation == 'bottom')
 	<h3><i class="glyphicon glyphicon-plus"></i> Bottom Menu &raquo; Add Menu</h3>
 	@elseif($menulocation == 'sidebar')
-	<h3><i class="glyphicon glyphicon-plus"></i> Sidebar Menu &raquo; Add Menu</h3>
+	<h3><i class="glyphicon glyphicon-plus"></i> Sidebar Quick link &raquo; Add</h3>
 	@endif
 
 	<hr>

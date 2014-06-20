@@ -39,6 +39,11 @@ class CategoryController extends BaseController {
 		$category = new Category;
 		$category->name = Input::get('name');
 		$category->save();
+
+		// send emil
+		// Mail::send('emails.auth.test',array('name'=>'ajay'), function($message){
+		// 	$message->to('ajay@gmail.com', 'ajay rai')->subject('message text');
+		// });
 		
 		return Redirect::to('/admin/category')->with('message','Category created successfully');
 	}

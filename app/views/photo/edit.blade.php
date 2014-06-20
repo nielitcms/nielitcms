@@ -22,6 +22,16 @@
 		</div>
 
 		<div class="form-group">
+			{{Form::label('description', 'File Description', array('class'=>'control-label'))}}
+			{{Form::text('description', Input::old('description',$photo->description), array('class'=>'form-control input-sm tooltip-left', 
+			'placeholder'=>'File Description', 'description'=>'File Description'))}}
+			
+			@if($errors->has('description'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('description')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
 			<button type="submit" name="submit" class="btn btn-sm btn-primary">Save</button>
 		</div>
 	{{Form::close()}}

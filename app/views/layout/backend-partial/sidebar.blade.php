@@ -22,7 +22,7 @@
 	</li>
 	<li {{(Request::path() == 'admin/menu/list/sidebar')?'class="active"':''}}>
 		<a href="{{url('admin/menu/list/sidebar')}}">
-			<span class="glyphicon glyphicon-tasks"></span> Sidebar Menu	
+			<span class="glyphicon glyphicon-tasks"></span> Sidebar Quick Link	
 		</a>
 	</li>
 	@endif
@@ -85,6 +85,19 @@
 	</li>
 </ul>
 
+<ul class="nav nav-sidebar">
+	<li {{(Request::path() == '/admin/contact/create')?'class="active"':''}}>
+		<a href="{{url('/admin/contact/create')}}">
+			<span class="glyphicon glyphicon-plus"></span> Add Contact
+		</a>
+	</li>
+	<li {{(Request::path() == '/admin/contact')?'class="active"':''}}>
+		<a href="{{url('/admin/contact')}}">
+			<span class="glyphicon glyphicon-list"></span> Contacts	
+		</a>
+	</li>
+</ul>
+
 
 <ul class="nav nav-sidebar">
 	@if(in_array(Auth::user()->role, array('administrator')))
@@ -96,6 +109,11 @@
 	<li {{(Request::path() == 'admin/user')?'class="active"':''}}>
 		<a href="{{url('admin/user')}}">
 			<span class="glyphicon glyphicon-list"></span> Users	
+		</a>
+	</li>
+	<li {{(Request::path() == 'admin/query')?'class="active"':''}}>
+		<a href="{{url('admin/query')}}">
+			<span class="glyphicon glyphicon-list"></span> Users Query	
 		</a>
 	</li>
 	@endif

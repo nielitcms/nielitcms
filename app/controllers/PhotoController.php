@@ -56,6 +56,7 @@ class PhotoController extends \BaseController {
 			return Redirect::to('denied');
 		$rules = array(
 			'title'=> 'required',
+			'description'=>'required',
 			'photo_path' => 'required|image|max:10000');
 		
 
@@ -74,6 +75,7 @@ class PhotoController extends \BaseController {
 		
 		$photo = new Photo;
 		$photo->title = Input::get('title');
+		$photo->description = Input::get('description');
 		$photo->album_id = $id;
 		$photo->photo_path = 'photos/' . $fileName;
 		$photo->save();
@@ -140,6 +142,7 @@ class PhotoController extends \BaseController {
 			return Redirect::to('denied');
 		$rules = array(
 			'title'=> 'required',
+			'description'=> 'required'
 			);	
 
 		$validation= Validator::make(Input::all(), $rules);
@@ -152,6 +155,7 @@ class PhotoController extends \BaseController {
 		
 		$photo =Photo::find($id);
 		$photo->title = Input::get('title');
+		$photo->description = Input::get('description');
 		$photo->save();
 		
 		return Redirect::to('/admin/album/photo/' . $photo->album_id)

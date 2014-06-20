@@ -21,6 +21,15 @@ Route::get('/admin/user/edit/{id}', array('uses'=>'UserController@edit', 'before
 Route::post('/admin/user/edit/{id}', array('uses'=>'UserController@postEdit', 'before'=>'auth'));
 Route::get('/admin/user/changepassword/{id}', array('uses'=>'UserController@ChangePassword', 'before'=>'auth'));
 Route::post('/admin/user/changepassword/{id}', array('uses'=>'UserController@PostChangePassword', 'before'=>'auth'));
+Route::get('/admin/forgetpassword', array('uses'=>'UserController@ForgetPassword'));
+Route::post('/admin/forgetpassword', array('uses'=>'UserController@PostForgetPassword'));
+
+
+Route::get('/admin/resetpassword/{token}', array('uses'=>'UserController@ResetPassword'));
+Route::post('/admin/resetpassword/{token}', array('uses'=>'UserController@savePassword'));
+
+
+Route::get('/admin/pendinguser', array('uses'=>'UserController@PendingUser', 'before'=>'auth'));
 
 Route::get('/admin/category/create', array('uses'=>'CategoryController@create', 'before'=>'auth'));
 Route::post('/admin/category/create', array('uses'=>'CategoryController@postCreate', 'before'=>'auth'));
@@ -67,6 +76,8 @@ Route::get('/admin/download/edit/{id}', array('uses'=>'DownloadController@edit',
 Route::post('/admin/download/edit/{id}', array('uses'=>'DownloadController@update','before'=>'auth'));
 Route::get('/admin/download/{id}', array('uses'=>'DownloadController@show','before'=>'auth'));
 Route::get('/download/{id}', array('uses'=>'DownloadController@show'));
+// Route::get('/download', array('uses'=>'DownloadController@aj'));
+Route::get('/download', array('uses'=>'DownloadController@lists'));
 
 Route::get('/admin/album/create', array('uses'=>'AlbumController@create','before'=>'auth'));	
 Route::post('/admin/album/create', array('uses'=>'AlbumController@store','before'=>'auth'));
@@ -83,6 +94,8 @@ Route::get('/admin/photo/delete/{id}', array('uses'=>'PhotoController@destroy','
 Route::get('/admin/photo/edit/{id}', array('uses'=>'PhotoController@edit','before'=>'auth'));
 Route::post('/admin/photo/edit/{id}', array('uses'=>'PhotoController@update','before'=>'auth')); 
 
+Route::get('/admin/menu/list/child/{id}', array('uses'=>'MenuController@child','before'=>'auth'));
+
 Route::get('/admin/menu/list/{menulocation}', array('uses'=>'MenuController@index','before'=>'auth'));
 Route::get('/admin/menu/create/{menulocation}', array('uses'=>'MenuController@create','before'=>'auth'));
 Route::post('/admin/menu/create/{menulocation}', array('uses'=>'MenuController@store','before'=>'auth'));
@@ -90,11 +103,18 @@ Route::get('/admin/menu/edit/{id}', array('uses'=>'MenuController@edit','before'
 Route::post('/admin/menu/edit/{id}', array('uses'=>'MenuController@update','before'=>'auth'));
 Route::get('/admin/menu/delete/{id}', array('uses'=>'MenuController@destroy','before'=>'auth'));
 
+Route::get('/query', array('uses'=>'QueryController@recent'));
+Route::get('/query/{id}', array('uses'=>'QueryController@view'));
+Route::post('/user/query', array('uses'=>'QueryController@store'));
+Route::get('/admin/query', array('uses'=>'QueryController@show','before'=>'auth'));
+Route::get('/admin/query/{id}', array('uses'=>'QueryController@response','before'=>'auth'));
+Route::post('/admin/query/{id}', array('uses'=>'QueryController@update','before'=>'auth'));
+Route::get('/admin/query/delete/{id}', array('uses'=>'QueryController@destroy','before'=>'auth'));
+
 Route::get('/admin/denied', array('uses'=>'AuthController@denied'));
 
 Route::get('/denied', array('uses'=>'AuthController@frontDenied'));
 Route::get('/notfound', array('uses'=>'AuthController@frontNotfound'));
-
 
 Route::get('/register', 'RegisterController@create');
 Route::post('/register', 'RegisterController@store');
@@ -107,14 +127,24 @@ Route::get('/category/{id}', array('uses'=>'CategoryController@show'));
 Route::get('/gallery', array('uses'=>'GalleryController@index'));
 Route::get('/gallery/album/{id}', array('uses'=>'GalleryController@album'));
 
-Route::get('/download', array('uses'=>'DownloadController@lists'));
-
 Route::get('/album', array('uses'=>'AlbumController@show'));
 Route::get('album/photo/{id}', array('uses'=>'PhotoController@photolist'));
 
 Route::get('/page/{id}', array('uses'=>'PageController@show'));
 
-Route::get('/contact', array('uses'=>'ContactController@index'));
+// Route::get('/contact', array('uses'=>'ContactController@index'));
 Route::post('/contact', array('uses'=>'ContactController@send'));
+Route::get('/admin/contact/create', array('uses'=>'ContactController@create','before'=>'auth'));
+Route::post('/admin/contact/create', array('uses'=>'ContactController@store','before'=>'auth'));
+Route::get('/admin/contact', array('uses'=>'ContactController@view','before'=>'auth'));
+Route::get('/admin/contact/delete/{id}', array('uses'=>'ContactController@destroy','before'=>'auth'));
+Route::get('/admin/contact/edit/{id}', array('uses'=>'ContactController@update','before'=>'auth'));
+Route::post('/admin/contact/edit/{id}', array('uses'=>'ContactController@save','before'=>'auth'));
+Route::get('/contact', array('uses'=>'ContactController@show'));
 
 Route::get('/search', array('uses'=>'SearchController@index'));
+Route::get('/view/{name}', array('uses'=>'PostController@posts'));
+Route::get('/student/add', array('uses'=>'StudentController@create'));
+Route::post('/student/add', array('uses'=>'StudentController@store'));
+
+

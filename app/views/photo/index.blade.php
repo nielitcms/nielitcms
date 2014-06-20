@@ -20,6 +20,7 @@
 			<tr>
 				<th>#</th>
 				<th>Title</th>
+				<th>Description</th>
 				<th>File</th>
 				<th>Album Name</th>
 				<th></th>
@@ -34,6 +35,7 @@
 			<tr>
 				<td>{{$key+$index}}</td>
 				<td>{{$photo->title}}</td>
+				<td>{{$photo->description}}</td>
 				<td><a href="{{url('admin/photo/' . $photo->id)}}" target="_blank" class="btn btn-xs btn-primary">
 					<i class="glyphicon glyphicon-download"></i> Downloads</a></td>
 				<td>{{$photo->album->title}}</td>

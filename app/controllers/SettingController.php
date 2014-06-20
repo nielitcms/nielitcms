@@ -53,7 +53,9 @@ class SettingController extends \BaseController {
 			'no_of_post'=> 'required|integer|min:1',
 			'footer_copyright_text'=> 'required',
 			'banner_image' => 'required',
-			'sidebar_notice' => 'required',
+			'sidebar_notice' => 'required',			
+			'news_category' => 'required',			
+			'student_corner_category' => 'required'			
 			);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -101,6 +103,14 @@ class SettingController extends \BaseController {
 		$comment_allowed_categories = Input::get('comment_allowed_categories');
 		Setting::where('setting_key', '=', 'comment_allowed_categories')
 			->update(array('setting_data'=>serialize($comment_allowed_categories)));
+
+		$news_category = Input::get('news_category');
+		Setting::where('setting_key', '=', 'news_category')
+			->update(array('setting_data'=>$news_category));
+
+		$student_corner_category = Input::get('student_corner_category');
+		Setting::where('setting_key', '=', 'student_corner_category')
+			->update(array('setting_data'=>$student_corner_category));
 
 		return Redirect::to('/admin/settings')->with('message', 'Settings updated succesfully');
 	}

@@ -18,9 +18,11 @@ class AuthController extends BaseController
 		if (Auth::attempt(array('username' => $username, 'password' => $password, 'status'=> 'active', 'role'=>'editor'))) 
 			return Redirect::to('/admin');
 
-		if (Auth::attempt(array('username' => $username, 'password' => $password, 'status'=> 'active'))) {
+		if (Auth::attempt(array('username' => $username, 'password' => $password, 'status'=> 'active', 'role'=>'user'))) {
 			if($redirect_to)
 				return Redirect::to($redirect_to);
+			else
+				return Redirect::to('/');
 		}
 		else
 			return Redirect::to('/')->with('message', 'Incorrect username or password');

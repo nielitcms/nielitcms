@@ -51,10 +51,11 @@ class RegisterController extends \BaseController {
 		$user->display_name = Input::get('display_name');
 		$user->email = Input::get('email');
 		$user->role = 'user';
+		$user->token = sha1(uniqid());
 		$user->status = 'pending';
 		$user->save();
 
-		return Redirect::to('register')
+		return Redirect::to('/')
 			->with('message','User Created, Waiting for Approval');
 	}
 

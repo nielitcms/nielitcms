@@ -60,11 +60,24 @@ class SettingTableSeeder extends Seeder {
             'setting_data' => '0',
             ));
 
+         DB::table('settings')->insert(array(
+            'setting_key' => 'news_category',
+            'setting_title' => 'News Category',
+            'setting_data' => '0',
+            ));
+
+         DB::table('settings')->insert(array(
+            'setting_key' => 'student_corner_category',
+            'setting_title' => 'Student Corner Category',
+            'setting_data' => '0',
+            ));
+
         DB::table('settings')->insert(array(
             'setting_key' => 'comment_allowed_categories',
             'setting_title' => 'Comment Allowed Categories',
             'setting_data' => '',
-            ));
+            )); 
+     
 
     }
 

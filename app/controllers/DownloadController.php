@@ -48,6 +48,7 @@ class DownloadController extends \BaseController {
 		$rules = array(
 			'title'=> 'required',
 			'file_path' => 'required|mimes:' . Setting::getData('allowed_file_extension'),
+			'category'=> 'required',
 			'status'=> 'required'
 		);	
 
@@ -66,6 +67,7 @@ class DownloadController extends \BaseController {
 		
 		$download = new Download;
 		$download->title = Input::get('title');
+		$download->category = Input::get('category');
 		$download->created_by = Auth::user()->id;
 		$download->status = Input::get('status');
 		$download->file_path = 'downloads/' . $fileName;
@@ -201,6 +203,10 @@ class DownloadController extends \BaseController {
 				'downloads' => $downloads,
 				'index' => $index
 				));
+	}
+	public function aj()
+	{
+		return View::make('download.aj');
 	}
 	
 }

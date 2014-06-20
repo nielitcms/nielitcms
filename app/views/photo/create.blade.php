@@ -22,6 +22,16 @@
 		</div>
 
 		<div class="form-group">
+			{{Form::label('description', 'Photo Description', array('class'=>'control-label'))}}
+			{{Form::text('description', Input::old('description'), array('class'=>'form-control input-sm tooltip-left', 
+			'placeholder'=>'Photo Description', 'description'=>'Photo Description'))}}
+			
+			@if($errors->has('description'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('description')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
 			{{Form::label('photo_path', 'File', array('class'=>'control-label'))}}
 			{{Form::file('photo_path', array('class'=>''))}}
 

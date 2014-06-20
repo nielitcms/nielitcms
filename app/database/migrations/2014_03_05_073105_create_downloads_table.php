@@ -18,6 +18,7 @@ class CreateDownloadsTable extends Migration {
 			$table->string('title', 400);
 			$table->integer('created_by')->unsigned();
 			$table->string('file_path')->nullable();
+			$table->enum('category', array('mca', 'bca', 'dete', 'dcse', 'olevel', 'alevel', 'other'))->default('other');
 			$table->enum('status', array('active', 'inactive'))->default('inactive');
 			$table->integer('no_of_download')->unsigned();
 			$table->timestamps();

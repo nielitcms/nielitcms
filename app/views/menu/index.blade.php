@@ -21,9 +21,9 @@
 	<hr>
 	@elseif($menulocation == 'sidebar')
 	<h3>
-		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Sidebar Menu List
+		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> Sidebar Quick Link
 		<a title="Add Top Menu" href="{{url('admin/menu/create/sidebar')}}" class="btn btn-success btn-xs pull-right">
-			<i class="glyphicon glyphicon-plus"></i> ADD SIDEBAR MENU
+			<i class="glyphicon glyphicon-plus"></i> ADD SIDEBAR QUICK LINK
 		</a>
 	</h3>
 	<hr>
@@ -57,6 +57,9 @@
 				<td>{{($menu->parent != 0)?$menu->parent_menu->title:'No Parent'}}</td>
 				<td>{{$menu->display_order}}</td>
 				<td class="tools">
+
+					<a title="Add Top Menu" href="{{url('admin/menu/list/child/'.$menu->id)}}" class="btn btn-success btn-xs">CHILD</a>
+
 					<a title="Edit Menu Title" href="{{url('admin/menu/edit', array($menu->id))}}" class="btn btn-warning btn-xs">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>

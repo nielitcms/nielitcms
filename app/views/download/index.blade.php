@@ -16,6 +16,7 @@
 				<th>#</th>
 				<th>Title</th>
 				<th>File</th>
+				<th>Category</th>
 				<th>Status</th>
 				<th>Created By</th>
 				<th></th>
@@ -32,6 +33,7 @@
 				<td>{{$download->title}}</td>
 				<td><a href="{{url('admin/download/' . $download->id)}}" target="_blank" class="btn btn-xs btn-primary">
 					<i class="glyphicon glyphicon-download"></i> Download</a></td>
+				<td>{{$download->category}}</td>
 				<td>
 					@if($download->status == 'active')
 					<span class="btn btn-success btn-xs">{{ucwords($download->status)}}</span>

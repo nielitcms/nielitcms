@@ -7,7 +7,7 @@ class UserController extends BaseController {
 		if(in_array(Auth::user()->role, array('editor','user')))
 			return Redirect::to('denied');
 
-		$users = user::paginate(Setting::getData('no_of_item_perpage'));
+		$users = user::where('status', '!=', 'pending')->paginate(Setting::getData('no_of_item_perpage'));
 
 		$index = $users->getCurrentPage() > 1? (($users->getCurrentPage()-1) * $users->getPerPage())+1 : 1;
 		return View::make('user.index')
@@ -62,6 +62,7 @@ class UserController extends BaseController {
 		$user->display_name = Input::get('display_name');
 		$user->email = Input::get('email');
 		$user->role = Input::get('role');
+		$user->token = sha1(uniqid());
 		$user->status = Input::get('status');
 		$user->save();
 
@@ -159,5 +160,75 @@ class UserController extends BaseController {
 		
 		return Redirect::to('/admin/user')
 			->with('message','User password updated successfully');
+	}
+
+	public function ForgetPassword()
+	{
+		return View::make('user.forgetpassword');
+	}
+
+	public function PostForgetPassword()
+	{
+		$email=Input::get('email');
+		$user=User::where('email', '=', $email)->get();
+
+		if ($user->count()) {
+			$user=$user->first();
+			$token=sha1(uniqid());
+			$user->token=$token;
+			if($user->save()){
+				$link='/admin/resetpassword/'.$token;
+				return View::make('user.link')
+					->with(array('url'=>$link));
+				}}
+
+		return Redirect::to('/admin/forgetpassword')
+				->with('message', 'Email does not exis');
+	}
+
+	public function ResetPassword($token)
+	{
+		return View::make('user.resetpassword')
+				->with(array('token'=>$token));
+	}
+
+	public function savePassword($token)
+	{	
+		$rules = array(
+			'password'=>'required',
+			'repeat_password'=> 'required|same:password'
+			);
+
+		$validation= Validator::make(Input::all(), $rules);
+		if ($validation ->fails()) {
+			return Redirect::to('/admin/resetpassword/'.$token)
+				->withErrors($validation);
+		}
+		
+		$user=User::where('token', '=', $token);
+		if($user->count()){
+			$user=$user->first();
+			$user->password = Hash::make(Input::get('password'));
+			$user->token='';
+			$user->save();
+		
+		return Redirect::to('/login')
+			->with('message','User password updated successfully');
+		}
+	}
+
+	public function PendingUser()
+	{
+		if(in_array(Auth::user()->role, array('editor','user')))
+			return Redirect::to('denied');
+
+		$users = user::where('status', '=', 'pending')->paginate(Setting::getData('no_of_item_perpage'));
+
+		$index = $users->getCurrentPage() > 1? (($users->getCurrentPage()-1) * $users->getPerPage())+1 : 1;
+		return View::make('user.pendinguser')
+			->with(array(
+				'users' => $users,
+				'index' => $index
+				));
 	}
 }

@@ -200,4 +200,11 @@ class PostController extends \BaseController {
 		return Redirect::to('post/' . $id . '#comments');
 	}
 
+	public function posts($name)
+	{
+		return View::make('post.posts')
+			->with(array(
+				'name' => $name
+				));
+	}
 }

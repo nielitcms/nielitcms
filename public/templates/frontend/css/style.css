@@ -8,7 +8,7 @@ a {
 	font-size: 12px;
 }
 a:hover, a:focus {
-	color: #2E93CC;
+	color: #198019;
 }
 .header {
 	width: 100%;
@@ -23,7 +23,7 @@ a:hover, a:focus {
 }
 .header .logo form p a{
 	font-size: 12px;
-	color: #ffffff;
+	color: #198019;
 }
 .header .logo p.user-panel {
 	font-size: 12px;
@@ -64,7 +64,7 @@ a:hover, a:focus {
 .top-navigation .nav>li.active>a,
 .top-navigation .nav>li>a:hover,
 .top-navigation .nav>li>a:focus {
-	background-color: #105b72;
+	background-color: #298fa6;
 	color: #ffffff;
 }
 .top-navigation .nav .dropdown-menu>li>a {
@@ -78,13 +78,21 @@ a:hover, a:focus {
 }
 .top-navigation .nav .dropdown-menu>li>a:hover>ul{
 	visibility: visible;
+	background-color: #105b72;
+	color: #ffffff;
 }
 .top-navigation .nav .dropdown-menu ul{
 	visibility: hidden;
 }
 .top-navigation .nav .dropdown-menu>li>a:focus {
 	background-color: #6392C5;
-	color: #fff;
+	color: #198019;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #298fa6;
 }
 
 .dropdown-menu { 
@@ -98,7 +106,7 @@ a:hover, a:focus {
   -webkit-transition: max-height .5s .2s;
 }
 .main-area {
-	margin-bottom: 80px;
+	margin-bottom: 20px;
 	margin-top: 30px;
 }
 #main {
@@ -172,9 +180,9 @@ a:hover, a:focus {
 	border-top: 1px solid #ffffff;
 	padding-top: 30px;
 }
-.posts {
+/*.posts {
 	margin-top: 30px;
-}
+}*/
 .posts.single {
 	margin-top: 0px;
 }
@@ -345,8 +353,40 @@ a:hover, a:focus {
 
 #element.style {
 }
+
+#user-query {
+border: 3px solid #F0F6F8;
+margin-right: px;
+margin-bottom: 3px;
+padding: 0px 10px 10px 20px;
+}
+
+.carousel-caption {
+position: absolute;
+right: 0;
+bottom: 0%;
+left: 0;
+padding: 15px;
+background: #333333;
+background-color: rgba(0, 0, 0, 0.75);
+}
+/*
+#side-marquee {
+cursor: default;
+height: 252px;
+padding: 2px 5px 0px 5px;
+text-align: justify;
+letter-spacing: 1px;
+color: #000;
+}
+*/
+#main-marquee{
+	margin-left: 30px;
+	/*background: transparent url(../images/top-navigation-bg.jpg);*/
+}
 /*.main-area {
 margin-bottom: 10px;
 margin-top: 20px;
 background: transparent url(../images/body-bg.jpg);
 }*/
+

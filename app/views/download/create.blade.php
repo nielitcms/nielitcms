@@ -27,6 +27,16 @@
 		</div>
 
 		<div class="form-group">
+			{{Form::select('category', array(''=>'Select Category', 'mca'=>'MCA', 'bca'=>'BCA', 'dete'=>'DETE', 'dcse'=>'DCSE', 'olevel'=>'O Level', 'alevel'=>'A Level', 'other'=>'OTHER'), Input::old('category'), array('class'=>'input-sm form-control tooltip-right', 'title'=>'Category'))}}
+			
+			@if($errors->has('category'))
+			<span class="help-block">
+				<p class="text-danger">{{$errors->first('category')}}</p>
+			</span>
+			@endif
+		</div>
+
+		<div class="form-group">
 			{{Form::label('status', 'Status', array('class'=>'control-label'))}}
 			{{Form::select('status', array('active'=>'Active', 'inactive'=>'Inactive'),  Input::old('status'), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select Download Status'))}}
 

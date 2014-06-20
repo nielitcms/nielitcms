@@ -52,7 +52,6 @@
 		<div class="form-group">
 			{{Form::label('footer_copyright_text', Setting::getTitle('footer_copyright_text'), array('class'=>'control-label'))}}
 			{{Form::text('footer_copyright_text', Input::old('footer_copyright_text', Setting::getData('footer_copyright_text')), array('class'=>'form-control input-sm tooltip-left', 'placeholder'=>Setting::getTitle('footer_copyright_text'), 'title'=>Setting::getTitle('footer_copyright_text')))}}
-			<p class="help-block">Enter file extension separated by comma. Ex: jpg,bmp,pdf.</p>
 			@if($errors->has('footer_copyright_text'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('footer_copyright_text')}}</span></p>
 			@endif
@@ -91,6 +90,24 @@
 			
 			@if($errors->has('sidebar_notice'))
 			<p class="help-block"><span class="text-danger">{{$errors->first('sidebar_notice')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
+			{{Form::label('news_category', Setting::getTitle('news_category'), array('class'=>'control-label'))}}
+			{{Form::select('news_category', $categories, Input::old('news_category', Setting::getData('news_category')), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select news category'))}}
+			
+			@if($errors->has('news_category'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('news_category')}}</span></p>
+			@endif
+		</div>
+
+		<div class="form-group">
+			{{Form::label('student_corner_category', Setting::getTitle('student_corner_category'), array('class'=>'control-label'))}}
+			{{Form::select('student_corner_category', $categories, Input::old('student_corner_category', Setting::getData('student_corner_category')), array('class'=>'tooltip-left input-sm form-control', 'title'=>'Select student corner category'))}}
+			
+			@if($errors->has('student_corner_category'))
+			<p class="help-block"><span class="text-danger">{{$errors->first('student_corner_category')}}</span></p>
 			@endif
 		</div>
 

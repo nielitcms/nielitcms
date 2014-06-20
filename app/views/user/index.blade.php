@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="col-sm-12">
-	<h3><i class="glyphicon glyphicon-th-list"></i> User List</h3>
+
+	<h3>
+		<i class="glyphicon glyphicon-th-list", class="col-sm-9"></i> User List
+		<a title="Add Top Menu" href="{{url('/admin/pendinguser')}}" class="btn btn-success btn-xs pull-right">VIEW USER PENDING</a>
+	</h3>
 	<hr>
 	
 	@if(Session::has('message'))

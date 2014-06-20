@@ -25,9 +25,6 @@
 		      	<li {{(Request::path() == 'admin/profile/change-password')?'class="active"':''}}>
 		      		<a href="/admin/profile/change-password">Change Password</a>
 		      	</li>
-		      	<li {{(Request::path() == 'admin/help')?'class="active"':''}}>
-		      		<a href="/admin/help">Help</a>
-		      	</li>
 		      	<li {{(Request::path() == 'logout')?'class="active"':''}}>
 		      		<a href="/logout">Logout</a>
 		      	</li>
